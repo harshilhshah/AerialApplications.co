@@ -1,0 +1,19 @@
+%h1 User Types
+
+%table.table
+  %thead
+    %tr
+      %th Description
+      %th
+      %th
+
+  %tbody
+    - @user_types.each do |user_type|
+      %tr
+        %td= user_type.description
+        %td= link_to 'Edit', edit_user_type_path(user_type)
+        %td= link_to 'Destroy', user_type, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User Type', new_user_type_path

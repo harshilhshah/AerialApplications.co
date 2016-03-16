@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @interaction.user
+%p
+  %b Url:
+  = @interaction.url
+%p
+  %b Type:
+  = @interaction.type
+
+= link_to 'Edit', edit_interaction_path(@interaction)
+\|
+= link_to 'Back', interactions_path

@@ -1,0 +1,63 @@
+%h1 #{UserType.find_by_id(@current_user.userTypeId).description} Dashboard
+-if @current_user.is_admin?
+  .tile-wrapper
+    .tile{onclick: "window.location = '/users';"}
+      .tile-cover
+      .tile-title Users
+  .tile-wrapper
+    .tile{onclick: "window.location = '/user_types';"}
+      .tile-cover
+      .tile-title User Types
+  .tile-wrapper
+    .tile{onclick: "window.location = '/interactions';"}
+      .tile-cover
+      .tile-title Audit Logs
+  .tile-wrapper
+    .tile{onclick: "window.location = '/projects';"}
+      .tile-cover
+      .tile-title Projects
+  .tile-wrapper
+    .tile{onclick: "window.location = '/project_types';"}
+      .tile-cover
+      .tile-title Project Types
+  .tile-wrapper
+    .tile{onclick: "window.location = '/project_status_types';"}
+      .tile-cover
+      .tile-title Project Status Types
+  .tile-wrapper
+    .tile{onclick: "window.location = '/media';"}
+      .tile-cover
+      .tile-title Media
+  .tile-wrapper
+    .tile{onclick: "window.location = '/media_types';"}
+      .tile-cover
+      .tile-title Media Types
+  .tile-wrapper
+    .tile{onclick: "window.location = '/referrals';"}
+      .tile-cover
+      .tile-title Referrals
+  .tile-wrapper
+    .tile{onclick: "window.location = '/payments';"}
+      .tile-cover
+      .tile-title Payments
+-if @current_user.is_affiliate?
+  .tile-wrapper
+    .tile.projects{onclick: "window.location = '/projects/dashboard';"}
+      .tile-cover
+      .tile-title Projects
+  .tile-wrapper
+    .tile.aircraft{onclick: "window.location = '/users/#{@current_user.id}/aircraft';"}
+      .tile-cover
+      .tile-title Aircraft
+  .tile-wrapper
+    .tile.availability{onclick: "window.location = '/users/calendar';"}
+      .tile-cover
+      .tile-title Availability
+  .tile-wrapper
+    .tile.profile{onclick: "window.location = '/users/#{@current_user.id}/profile';"}
+      .tile-cover
+      .tile-title Profile
+  .tile-wrapper
+    .tile.account-settings{onclick: "window.location = '/users/account';"}
+      .tile-cover
+      .tile-title Account Settings

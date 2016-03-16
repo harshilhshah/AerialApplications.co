@@ -1,0 +1,134 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %title Aerial Applications
+    %link{:href => "https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,400italic,600,700,700italic,800&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}
+    =stylesheet_link_tag "responsive"
+    %script{src: "/jquery.min.js"}
+    =javascript_include_tag "responsive"
+  %body
+    .wrapper
+      %header.header
+        %a.logo{:href => "/"} beta
+        %a.logo-small{:href => "/"} beta
+        .header-content
+          %nav.nav
+            %ul
+              %li.mobile
+                %a{:href => "/"} Home
+              / /.mobile
+              %li
+                %a{:href => "#"} About
+              %li
+                %a{:href => "#"} Pricing
+              %li
+                %a{:href => "#"} Contact
+              %li
+                %a{:href => "/affiliates"} Affiliates
+          -if @current_user.nil?
+            %nav.nav-access
+              %ul
+                %li
+                  %a{:href => "/signup"} Sign Up
+                %li
+                  %a{:href => "/sessions/login"} Log In
+                %li
+                  %a.btn.btn-rounded{:href => "/become_a_pilot"} Become a Pilot
+          -else
+            %nav.nav-access
+              %ul
+                %li
+                  %a{href: "/sessions/logout"} Logout
+            / /.nav-access
+        / /.header-content
+        %a.nav-trigger{:href => "#"}
+          %span
+          %span
+          %span
+      / /.header
+      = yield
+      %footer.footer
+        .footer-callout
+          .shell
+            %h3 Sign Up to Learn More
+          / /.shell
+        / /.footer-callout
+        .footer-content
+          .shell
+            .col.col-1of2
+              %h5 Get In Touch
+              %ul.list-contact
+                %li Aerial Applications
+                %li 41 University Drive
+                %li Suite 400
+                %li Newtown, PA 18940
+              / /.list-contact
+              %ul.list-contact
+                %li
+                  %a{:href => "tel:(267) 275 - 8700"} (267) 275 - 8700
+                %li
+                  %a{:href => "mailto:info@aerialapplications.co"} info@aerialapplications.co
+              / /.list-contact
+            / /.col col-1of2
+            .col.col-1of2
+              %h5 Let’s Be Friends
+              .socials
+                %ul
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-facebook
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-twitter
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-linkedin
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-instagram
+                %ul
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-behance
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-vimeo
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-gplus
+                  %li
+                    %a{:href => "#"}
+                      %i.ico-youtube
+              / /.socials
+            / /.col col-1of2
+          / /.shell
+        / /.footer-content
+        .footer-bar
+          .footer-bar-aside
+            %a.logo-footer{:href => "#"} beta
+            / /.logo-footer
+            %a.logo-footer-small{:href => "#"} beta
+            / /.logo-footer
+            %p.copyright All rights reserved &copy; 2016
+            / /.copyright
+          / /.footer-bar-aside
+          %nav.nav-footer
+            %ul
+              %li
+                %a{:href => "#"} About
+              %li
+                %a{:href => "#"} Pricing
+              %li
+                %a{:href => "#"} Contact
+              %li
+                %a{:href => "#"} Affiliates
+              %li
+                %a{:href => "#"} Sign Up
+              %li
+                %a{:href => "#"} Log In
+          / /.nav-footer
+        / /.footer-bar
+      / /.footer
+    / /.wrapper

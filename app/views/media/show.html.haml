@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Projectid:
+  = @medium.projectId
+%p
+  %b Title:
+  = @medium.title
+%p
+  %b Description:
+  = @medium.description
+%p
+  %b Filepath:
+  = @medium.filepath
+%p
+  %b Filetype:
+  = @medium.filetype
+%p
+  %b Mediatypeid:
+  = @medium.mediaTypeId
+
+= link_to 'Edit', edit_medium_path(@medium)
+\|
+= link_to 'Back', media_path

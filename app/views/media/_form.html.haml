@@ -1,0 +1,28 @@
+= form_for @medium do |f|
+  - if @medium.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@medium.errors.count, "error")} prohibited this medium from being saved:"
+      %ul
+        - @medium.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :projectId
+    = f.number_field :projectId
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :filepath
+    = f.text_field :filepath
+  .field
+    = f.label :filetype
+    = f.text_field :filetype
+  .field
+    = f.label :mediaTypeId
+    = f.number_field :mediaTypeId
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,129 @@
+.left
+  %h1 Basic Sitemap
+  %ol
+    %li
+      Home
+      %ol
+        %li Sign Up - Complete
+        %li Login - 
+    %li
+      My Account Dashboard (Customer)
+      %ol
+        %li My Account
+        %li Book a Project
+        %li Past Projects
+        %li Payments
+        %li My Account
+        %li Help
+    %li
+      My Account Dashboard (Affiliate)
+      %ol
+        %li My Account
+        %li My Availability
+        %li My Flight Log
+        %li My Payments
+        %li My Portfolio
+        %li My Projects
+        %li Help (Affiliates)
+    %li Contact
+    %li About - Need Content
+    %li Privacy Policy
+    %li Terms and Conditions
+  %h1 Data Objects and Types
+  %ul
+    %li
+      User
+      %ul
+        %li FirstName:string
+        %li LastName:string
+        %li ZipCode:string
+        %li Email:string
+        %li Username:string
+        %li Password_Enc:string
+        %li Password:string
+        %li Salt:string
+        %li UserTypeID:integer
+        %li Active:integer
+        %li Approved:integer
+    %li
+      UserType
+      %ul
+        %li Description:string
+    %li
+      Session
+      %ul
+        %li User:integer
+        %li AuthCode:string
+    %li
+      Interaction
+      %ul
+        %li User:integer
+        %li Url:string
+        %li Type:string
+    %li
+      Project
+      %ul
+        %li CustomerID:integer
+        %li AffiliateID:integer
+        %li Address:string
+        %li Zip:string
+        %li Latitude:float
+        %li Longitude:float
+        %li Due:DateTime
+        %li ProjectTypeID:integer
+        %li Owner:integer
+    %li
+      ProjectType
+      %ul
+        %li Description:string
+    %li
+      ProjectStatus
+      %ul
+        %li ProjectID:integer
+        %li Owner:integer
+        %li StatusID:integer
+        %li Comment:string
+    %li
+      ProjectStatusType
+      %ul
+        %li Description:string
+    %li
+      Media
+      %ul
+        %li ProjectID:integer
+        %li Title:string
+        %li Description:string
+        %li FilePath:string
+        %li FileType:string
+        %li MediaTypeID:integer
+    %li
+      MediaType
+      %ul
+        %li Description:string
+    %li
+      Payment
+      %ul
+        %li Amount:float
+        %li PaymentStatusID:integer
+        %li UserID:integer
+    %li
+      PaymentStatus
+      %ul
+        %li Description:string
+    %li
+      PaymentMethod
+      %ul
+        %li
+    %li
+      Payout
+      %ul
+        %li
+    %li
+      PayoutMethod
+      %ul
+        %li 
+    %li
+      Referral
+      %ul
+        %li ReferringUserID:integer
+        %li ReferredUserID:integer

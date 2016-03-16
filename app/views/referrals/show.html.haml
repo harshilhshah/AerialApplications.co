@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Referringuserid:
+  = @referral.referringUserId
+%p
+  %b Referreduserid:
+  = @referral.referredUserId
+
+= link_to 'Edit', edit_referral_path(@referral)
+\|
+= link_to 'Back', referrals_path

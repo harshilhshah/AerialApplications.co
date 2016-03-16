@@ -1,0 +1,36 @@
+.center
+  %h1 Users
+  %table.table
+    %thead
+      %tr
+        %th First
+        %th Last
+        %th Zip
+        %th Email
+        %th Username
+        %th Type
+        %th Active
+        %th Approved
+        %th
+        %th
+        %th
+  
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.firstName
+          %td= user.lastName
+          %td= user.zipCode
+          %td= user.email
+          %td= user.username
+          %td= UserType.find_by_id(user.userTypeId).description rescue "None"
+          %td= user.active
+          %td= user.approved
+          %td= link_to 'Show', user
+          %td= link_to 'Edit', edit_user_path(user)
+          %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  
+  %br
+  
+  = link_to 'New User', new_user_path
+  

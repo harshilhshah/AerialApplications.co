@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Projectid:
+  = @project_status.projectId
+%p
+  %b Owner:
+  = @project_status.owner
+%p
+  %b Statusid:
+  = @project_status.statusId
+%p
+  %b Comment:
+  = @project_status.comment
+
+= link_to 'Edit', edit_project_status_path(@project_status)
+\|
+= link_to 'Back', project_statuses_path

@@ -1,0 +1,39 @@
+%p#notice= notice
+
+%p
+  %b Firstname:
+  = @user.firstName
+%p
+  %b Lastname:
+  = @user.lastName
+%p
+  %b Zipcode:
+  = @user.zipCode
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Username:
+  = @user.username
+%p
+  %b Password enc:
+  = @user.password_enc
+%p
+  %b Password:
+  = @user.password
+%p
+  %b Salt:
+  = @user.salt
+%p
+  %b Usertypeid:
+  = @user.userTypeId
+%p
+  %b Active:
+  = @user.active
+%p
+  %b Approved:
+  = @user.approved
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

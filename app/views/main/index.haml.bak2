@@ -1,0 +1,51 @@
+#home-page-top-section
+  %h1 Aerial Applications
+  %h2 Your own personal flight team
+  %p Book professional, high quality aerial photos and <br/> video for your business whenever you need them.
+  %p With Aerial Applications, you'll have all of the benefits <br/> of a team of UAV pilots working for you, without the <br/>hassle of owning your own drones.
+  .button.narrow.center{onclick: "window.location = '/signup';"} Free Sign Up
+#home-page-simple-section
+  %h1 Ridiculously Simple
+  %p Set a date
+  %p Specify your requirements
+  %p Schedule the Flight
+  %p We fly for you
+  %p We deliver your files
+  .button.narrow.center{onclick: "window.location = '/signup';"} Try it for Free
+#home-page-uses-section.two-column-area
+  .column.left.padded
+    %h1 With a Wide Range of Uses
+    %h3 We're currently serving:
+    %ul
+      %li Real Estate
+      %li Construction
+      %li Building Inspections
+      %li Surveying
+      %li Film & Media
+    %p
+      We love solving problems. If you need an eagle-eye point of view for your business and don't see it on our list, reach out and we'll be happy to see if we can help you.
+    .button.center{onclick: "window.location = '/signup';"} Sign Up to Learn More
+  .column.commercial-building-image
+#home-page-tech-section.two-column-area
+  .column.drone-image
+    content
+  .column.right.padded
+    %h1 And Best in Class Technology
+    %p We're committed to flying the best devices available to meet the needs of our customers. We constantly update our fleet with new technology to make sure that our customers receive the highest level of service.
+    .button.center{onclick: "window.location = '/signup';"} Try it for Free
+#home-page-service-section.two-column-area
+  .column.left.padded
+    %h1 Plus Delightful Service
+    %p
+      Call us anytime.
+      %br
+      We're here 24/7 with anything you need, and we love haing the chance to help you in any way that we can.
+    %p 100% Satisfaction Guaranteed
+    If you don't like it, we'll reshoot it.
+  .column.right.padded
+    %h1 And Subscription or On Demand Pricing
+    %p
+      We have a straightforward approach to pricing, with discounts for frequent flights.
+    %p
+      Call us and we will be happy to set up a package that works for you.
+#home-page-sign-up-link{onclick: "window.location = '/signup';"} Sign Up to Learn More

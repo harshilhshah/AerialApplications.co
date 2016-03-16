@@ -1,0 +1,27 @@
+%h1 Listing project_statuses
+
+%table
+  %thead
+    %tr
+      %th Projectid
+      %th Owner
+      %th Statusid
+      %th Comment
+      %th
+      %th
+      %th
+
+  %tbody
+    - @project_statuses.each do |project_status|
+      %tr
+        %td= project_status.projectId
+        %td= project_status.owner
+        %td= project_status.statusId
+        %td= project_status.comment
+        %td= link_to 'Show', project_status
+        %td= link_to 'Edit', edit_project_status_path(project_status)
+        %td= link_to 'Destroy', project_status, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Project status', new_project_status_path

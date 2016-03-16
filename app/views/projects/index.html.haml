@@ -1,0 +1,37 @@
+%h1 Listing projects
+
+%table
+  %thead
+    %tr
+      %th Customerid
+      %th Affiliateid
+      %th Address
+      %th Zip
+      %th Latitude
+      %th Longitude
+      %th Due
+      %th Projecttypeid
+      %th Owner
+      %th
+      %th
+      %th
+
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= project.customerId
+        %td= project.affiliateId
+        %td= project.address
+        %td= project.zip
+        %td= project.latitude
+        %td= project.longitude
+        %td= project.due
+        %td= project.projectTypeId
+        %td= project.owner
+        %td= link_to 'Show', project
+        %td= link_to 'Edit', edit_project_path(project)
+        %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Project', new_project_path

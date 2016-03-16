@@ -1,0 +1,23 @@
+%h1 Listing referrals
+
+%table
+  %thead
+    %tr
+      %th Referringuserid
+      %th Referreduserid
+      %th
+      %th
+      %th
+
+  %tbody
+    - @referrals.each do |referral|
+      %tr
+        %td= referral.referringUserId
+        %td= referral.referredUserId
+        %td= link_to 'Show', referral
+        %td= link_to 'Edit', edit_referral_path(referral)
+        %td= link_to 'Destroy', referral, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Referral', new_referral_path

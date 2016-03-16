@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Customerid:
+  = @project.customerId
+%p
+  %b Affiliateid:
+  = @project.affiliateId
+%p
+  %b Address:
+  = @project.address
+%p
+  %b Zip:
+  = @project.zip
+%p
+  %b Latitude:
+  = @project.latitude
+%p
+  %b Longitude:
+  = @project.longitude
+%p
+  %b Due:
+  = @project.due
+%p
+  %b Projecttypeid:
+  = @project.projectTypeId
+%p
+  %b Owner:
+  = @project.owner
+
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Back', projects_path
