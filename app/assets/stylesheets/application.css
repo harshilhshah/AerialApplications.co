@@ -456,3 +456,39 @@ th, td{
 .logo-table td{
     padding: 10px;
 }
+.PH0T0{
+    float: left;
+    margin-left: 10%;
+    width: 300px;
+    height: 330px;
+    text-align: left;
+    padding: 25px;
+    font-family: 'Open Sans', sans-serif;
+}
+.touxiang{
+    background-color: #6e7071;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+.linkinlink{
+    /*font-family: 'Open Sans', sans-serif;*/
+    text-align: center;
+    color: #02b3ec;
+}
+.INF0{
+    font-family: 'Open Sans', sans-serif;
+    margin: 10px;
+    margin-top: 5px;
+    padding: 20px;
+    float: left;
+    width: 400px;
+}
+.pages{
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    width: 100%;
+    font-size: 14px;
+    color: #02b3ec;
+    text-align: center;
+}
