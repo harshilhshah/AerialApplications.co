@@ -26,6 +26,14 @@ body.homebody{
     background-size: cover;
     background-repeat: no-repeat;
 }
+/*h2{
+    font-size: 36px;
+}
+p{
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-size:18px;
+}*/
 .center{
 	text-align: center;
 }
@@ -57,7 +65,7 @@ textarea{
     max-width: 100%;
     box-sizing: border-box;
 }
-.actions input, .button{
+.actions input{
 	background:#4A90E2;
 	color:white;
 	height:36px;
@@ -288,6 +296,29 @@ th, td{
 	padding-left:5%;
 	padding-right:10%;
 	box-sizing:border-box;
+}
+#pagetitle{
+    margin: 20px;
+    padding-top: 10px;
+    font-weight: 100;
+    color: #1f1f1f;
+}
+.button{
+    font-family: 'Open Sans';
+    background:#4AA5EC;
+    color:white;
+    height:36px;
+    line-height:36px;
+    border-radius:2px;
+    border:none;
+    font-weight: bold;
+    font-size: 13px;
+    width: 340px;
+    max-width: 100%;
+    box-shadow: 0px 4px #3479AE;
+}
+.button:hover{
+    background-color: #8BC5F3;
 }
 .button.narrow{
 	max-width:350px;

@@ -17,7 +17,7 @@
     %p{:style => " margin-bottom: 20px;font-weight: bold;color: #7d7f80;"} General Email
     %p info@aerialapplications.co
   .column.right.padded
-    = form_for @contact, url: main_create_contact_path do |c|
+    = form_for @contact, url: main_create_contact_path, html: {:style => 'text-align: left'} do |c|
       - if @contact.errors.any?
         #error_explanation
           %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this signup from being   registered:"
@@ -34,10 +34,11 @@
         %br
         = c.text_field :email
         %br
-      .field
+      .text_area
         Message
         %br
-        = c.text_field :message
+        = c.text_area :message
         %br
-      %input#submit_button.button{:style => "margin-top: 10px", :type => "submit", :value => "Submit"}
+      .actions
+        = c.submit "Submit", :style => "margin-top: 10px", :class => "button"
         %br
