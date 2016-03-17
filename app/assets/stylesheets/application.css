@@ -26,14 +26,9 @@ body.homebody{
     background-size: cover;
     background-repeat: no-repeat;
 }
-/*h2{
-    font-size: 36px;
-}
 p{
-    font-family: 'Open Sans';
-    font-style: normal;
-    font-size:18px;
-}*/
+	font-size: 18px;
+}
 .center{
 	text-align: center;
 }
@@ -59,6 +54,7 @@ textarea{
     max-width: 100%;
     background-color: #F7F8FA;
     border:2px solid #CDCDCD;
+    border-radius: 3px;
     margin-top:5px;
     margin-bottom:12px;
     outline: none;
@@ -104,6 +100,7 @@ textarea{
     background:rgba(255,255,255,1);
     overflow:hidden;
     box-shadow: 0px 0px 2px 1px rgba(127,127,127,0.5);
+    border-bottom: 2px solid white;
     -ms-transform: translate(-50%,0); /* IE 9 */
     -webkit-transform: translate(-50%,0); /* Safari */
 }
@@ -259,7 +256,7 @@ th, td{
 	height:100%;
 }
 .no-margin{
-    padding:10 !important;
+    padding:0 !important;
 }
 .no-margin .center{
     position: relative;
@@ -299,7 +296,7 @@ th, td{
 }
 #pagetitle{
     margin: 20px;
-    padding-top: 10px;
+    padding-top: 20px;
     font-weight: 100;
     color: #1f1f1f;
 }

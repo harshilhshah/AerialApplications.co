@@ -12,28 +12,26 @@
       Suite 400
       %br
       Newtown, PA 18940
-    %p{:style => " margin-bottom: 20px;font-weight: bold;color: #7d7f80;"} Phone number
+    %br
+    %p{:style => " margin-bottom: 20px;font-weight: bold;color: #7d7f80;"} Phone Number
     %p (267) 757-8700
+    %br
     %p{:style => " margin-bottom: 20px;font-weight: bold;color: #7d7f80;"} General Email
     %p info@aerialapplications.co
   .column.right.padded
     = form_for @contact, url: main_create_contact_path, html: {:style => 'text-align: left'} do |c|
-      - if @contact.errors.any?
-        #error_explanation
-          %h2= "#{pluralize(@contact.errors.count, "error")} prohibited this signup from being   registered:"
-          %ul
-            - @contact.errors.full_messages.each do |msg|
-              %li= msg
       .field
         Name
         %br
         = c.text_field :name
-        %br
+        - if @contact.errors[:name].any?
+          %p= "Name #{@contact.errors[:name].join(',')}"
       .field
         Email
         %br
         = c.text_field :email
-        %br
+        - if @contact.errors[:name].any?
+          %p= "Email #{@contact.errors[:name].join(',')}"
       .text_area
         Message
         %br

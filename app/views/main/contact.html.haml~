@@ -40,5 +40,5 @@
         = c.text_area :message
         %br
       .actions
-        = c.submit "Submit", :style => "margin-top: 10px"
+        = c.submit "Submit", :style => "margin-top: 10px", :class => "button"
         %br

@@ -171,18 +171,18 @@ nav ol { list-style: none outside none; }
 	Base
 \* ------------------------------------------------------------ */
 
-body { min-width: 320px; background: #fff; font-family: 'Open Sans', sans-serif; font-size: 18px; line-height: 1.3; color: #000; letter-spacing: .147em; }
+body { min-width: 320px; background: #fff; font-family: 'Open Sans', sans-serif; font-size: 18px; line-height: 1.3; color: #000;}
 
 a { color: inherit; text-decoration: underline; }
 a:hover { text-decoration: none; }
 
 a[href^="tel"] { text-decoration: none; }
 
-h1 { font-size: 48px; color: #000; letter-spacing: .106em; font-family: 'Montserrat', sans-serif; font-weight: 400; }
-h2 { font-size: 30px; letter-spacing: .106em; color: #727272; font-family: 'Montserrat', sans-serif; font-weight: 400; }
-h3 { font-size: 36px; letter-spacing: .106em; font-family: 'Montserrat', sans-serif; color: #767676; font-weight: 400; }
-h4 { font-size: 30px; color: #59b5f0; letter-spacing: .17em; font-weight: 500; }
-h5 { font-size: 18px; letter-spacing: .106em; font-family: 'Montserrat', sans-serif; font-weight: 400; color: #fff; }
+h1 { font-size: 48px; color: #000; font-family: 'Montserrat', sans-serif; font-weight: 400; }
+h2 { font-size: 30px; color: #727272; font-family: 'Montserrat', sans-serif; font-weight: 400; }
+h3 { font-size: 36px; font-family: 'Montserrat', sans-serif; color: #767676; font-weight: 400; }
+h4 { font-size: 30px; color: #59b5f0; font-weight: 500; }
+h5 { font-size: 18px; font-family: 'Montserrat', sans-serif; font-weight: 400; color: #fff; }
 
 h1,
 h2,
