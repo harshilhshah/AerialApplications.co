@@ -92,8 +92,7 @@
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, main { display: block; }
 
-html,
-body { height: 100%; }
+html { height: 100%; }
 
 html { tap-highlight-color: rgba(0,0,0,0); }
 
@@ -273,7 +272,7 @@ blockquote:last-child { margin-bottom: 0; }
 /* ------------------------------------------------------------ *\
 	Footer
 \* ------------------------------------------------------------ */
-
+.footer { border-top: 2px solid white; }
 .footer .logo-footer-small { display: none; }
 .footer-callout { background: #4aa5ec; border-bottom: 4px solid  #f7f8fa; text-align: center; padding-top: 30px; padding-bottom: 31px; }
 .footer-callout h3 { color: #fff; font-size: 30px; margin-top: 0; margin-bottom: 0; font-family: 'Montserrat', sans-serif; font-weight: 400; letter-spacing: 0; }

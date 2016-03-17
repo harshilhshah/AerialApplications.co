@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   get 'signup' => 'users#signup'
   get 'confirm_signup' => 'users#confirm_signup'
   get 'dashboard' => 'main#dashboard'
-  get 'main/about'
-
+  get 'about' => 'main#about'
+  
   get 'contact' => 'main#contact'
   post 'main/create_contact'
   get 'affiliates' => 'main#affiliates'
