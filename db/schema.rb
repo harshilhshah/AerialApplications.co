@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160316204215) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "charges", force: :cascade do |t|
     t.float    "amount"
     t.boolean  "refunded"
