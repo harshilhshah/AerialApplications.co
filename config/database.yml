@@ -21,8 +21,8 @@ test:
   database: my_database_test
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
-  database: rsi_mvp_site
-  username: rsi_mvp_site
-  password: sjggyswornjf73mg
+  database: daq5he69lsqpnl
+  username: wkztayyfbviqdu
+  password: tBJCdI2fgdGxGaRicpuSOnnJeE
