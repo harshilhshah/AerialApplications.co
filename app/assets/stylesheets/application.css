@@ -80,9 +80,19 @@ textarea{
 	font-size: 13px;
 }
 .error input{
-	background: #FAFFBD;
-	color:red;
-	border:1px solid red;
+	border:2px solid #ce5851;
+}
+.error-message{
+    background: #e19e9d;
+    margin-right: 10px;
+    margin-top: -14px;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ce5851;
+    border: 2px solid #ce5851;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
 .success{
 	font-weight: bold;
@@ -351,8 +361,9 @@ th, td{
 
 /* TEAM MEMBER */
 .team-member-container{
-    width:95%;
-    max-width:900px;
+    width:100%;
+    padding-left: 10%;
+    background: white;
     position: relative;
     left:50%;
     transform:translate(-50%,0);
@@ -361,7 +372,7 @@ th, td{
 .PHOTO-container{
     float: left;
     padding: 0px 20px;
-    max-width: 450px;
+    max-width: 500px;
     max-height: 392px;
     margin-bottom: 20px;
 }
@@ -373,6 +384,7 @@ th, td{
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     color: #02b3ec;
+    text-decoration: none;
 }
 .back-link{
     margin-top: 40px;
@@ -388,7 +400,7 @@ th, td{
     float: left;
     margin-top:-7px;
     padding: 0px 20px;
-    max-width: 450px;
+    max-width: 500px;
 }
 .team-member-name{
     font-family: 'Open Sans', sans-serif;

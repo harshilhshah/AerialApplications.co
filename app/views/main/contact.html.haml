@@ -26,13 +26,13 @@
           %br
           = c.text_field :name
           - if @contact.errors[:name].any?
-            %p= "Name #{@contact.errors[:name].join(',')}"
+            %p{:class => "error-message"}= "Error: Name #{@contact.errors[:name].join(',')}"
         .field
           Email
           %br
           = c.text_field :email
           - if @contact.errors[:name].any?
-            %p= "Email #{@contact.errors[:name].join(',')}"
+            %p{:class => "error-message"}= "Error: Email #{@contact.errors[:name].join(',')}"
         .text_area
           Message
           %br
