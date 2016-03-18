@@ -125,38 +125,50 @@
           %tr
             %td{:colspan => "2"}
               .member
-                .photo photo
-                .position Joseph Sullivan
-                .name CEO
+                = image_tag "Joe-Sullivan.jpg", :class => "photo"
+                .name Joseph Sullivan
+                .position CEO
             %td{:colspan => "2"}
               .member
-                .photo photo
-                .position Joseph Sullivan
-                .name CEO
+                = image_tag "Nathan.jpg", :class => "photo"
+                .name Nathan Sullivan
+                .position Lead Engineer
             %td{:colspan => "2"}
               .member
-                .photo photo
-                .position Joseph Sullivan
-                .name CEO
+                = image_tag "Mike.jpg", :class => "photo"
+                .name Mike Ledermann
+                .position Engineer
           %tr
             %td
             %td{:colspan => "2"}
               .member
-                .photo photo
-                .position Joseph Sullivan
-                .name CEO
+                = image_tag "Kyle.jpg", :class => "photo"
+                .name Kyle Bembnister
+                .position Engineer
             %td{:colspan => "2"}
               .member
-                .photo photo
-                .position Joseph Sullivan
-                .name CEO
+                .photo
+                .name Timothy Haas
+                .position Business Development
             %td
   #advisor.about-block
     .block-title
       %h2 Advisors
-    .block-small-title
-      .office-photo
-        office photo
+    .block-content
+      .advisor-table
+        %table
+          %tr
+            %td{:colspan => "2"}
+              .member
+                = image_tag "Rich-Napoli.jpg", :class => "photo"
+                .name Rich Napoli
+                .position Advisor
+            %td{:colspan => "2"}
+              .member
+                = image_tag "Vamsi-Sistla.jpg", :class => "photo"
+                .name Vamsi Sistla
+                .position Advisor
+            %td
   #patner.about-block
     .block-title
       %h2 Partnerships
@@ -164,13 +176,6 @@
       %p
         Aerial Applications has formed research partnerships with Drexel University and Embry Riddle
         Aeronautical University to investigate some of the key questions around the UAV industry.
-      %div
-        %table.logo-table
-          %tr
-            %td
-              .logo logo
-            %td
-              .logo logo
   #legal.about-block
     .block-title
       %h2 Legal Entity
