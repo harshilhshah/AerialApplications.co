@@ -23,7 +23,7 @@ html,body{
     background: #ffffff;
     line-height: normal;
 }
-body.homebody{
+.homebody{
     background:url(mountains.svg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -84,7 +84,7 @@ textarea{
 }
 .error-message{
     background: #e19e9d;
-    margin-right: 10px;
+    width: 340px;
     margin-top: -14px;
     padding: 3px;
     font-size: 12px;
@@ -339,7 +339,7 @@ th, td{
     padding: 10px;
 }
 .photo{
-    height: 250px;
+    max-height: 306.66px;
     max-width: 306.66px;
     width: 90%;
     margin: 10px auto 10px auto;
@@ -366,6 +366,7 @@ th, td{
 .team-member-container{
     width:100%;
     padding-left: 10%;
+    padding-right: 10%;
     background: white;
     position: relative;
     left:50%;
@@ -377,7 +378,7 @@ th, td{
     padding: 0px 20px;
     max-width: 500px;
     max-height: 392px;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
 }
 .PHOTO{
     width: 392px;
