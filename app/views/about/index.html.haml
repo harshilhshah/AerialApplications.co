@@ -125,30 +125,31 @@
           %tr
             %td{:colspan => "2"}
               .member
-                = image_tag "Joe-Sullivan.jpg", :class => "photo"
-                .name Joseph Sullivan
+                = link_to image_tag("Joe-Sullivan.jpg", :class => "photo") , about_joe_sullivan_path
+                = link_to "Joe Sullivan", about_joe_sullivan_path, :class => "name"
                 .position CEO
             %td{:colspan => "2"}
               .member
-                = image_tag "Nathan-Sullivan.jpg", :class => "photo"
-                .name Nathan Sullivan
+                = link_to image_tag("Nathan-Sullivan.jpg", :class => "photo") , about_nathan_sullivan_path
+                = link_to "Nathan Sullivan", about_nathan_sullivan_path, :class => "name"
                 .position Lead Engineer
             %td{:colspan => "2"}
               .member
-                = image_tag "Mike-Ledermann.jpg", :class => "photo"
-                .name Mike Ledermann
+                = link_to image_tag("Mike-Ledermann.jpg", :class => "photo") , about_mike_ledermann_path
+                = link_to "Mike Ledermann", about_mike_ledermann_path, :class => "name"
                 .position Engineer
           %tr
             %td
             %td{:colspan => "2"}
               .member
-                = image_tag "Kyle-Bembnister.jpg", :class => "photo"
-                .name Kyle Bembnister
+                = link_to image_tag("Kyle-Bembnister.jpg", :class => "photo") , about_kyle_bembnister_path
+                = link_to "Kyle Bembnister", about_kyle_bembnister_path, :class => "name"
                 .position Engineer
             %td{:colspan => "2"}
               .member
+                //= link_to image_tag("", :class => "photo") , about_timothy_haas_path
                 .photo
-                .name Timothy Haas
+                = link_to "Timothy Haas", about_timothy_haas_path, :class => "name"
                 .position Business Development
             %td
   #advisor.about-block

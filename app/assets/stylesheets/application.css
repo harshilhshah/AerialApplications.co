@@ -180,7 +180,6 @@ th, td{
 	background-position: center center;
 	background-size: cover;
 	background-repeat:no-repeat;
-	padding-top:64px;
 	padding-bottom:64px;
 	box-sizing:border-box;
 }
@@ -349,6 +348,10 @@ th, td{
     color: black;
     font-size: 18px;
     margin-bottom: 10px;
+    text-decoration: none;
+}
+.member .name:hover{
+    color: white;
 }
 .member .position{
     color: gray;
