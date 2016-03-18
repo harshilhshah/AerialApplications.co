@@ -1,17 +1,18 @@
 -@page_title = "Aerial Applications | Login"
-.center
-  %h1 Log in
-  -if flash[:notice]
-    %p.error
-      =h flash[:notice]
-  = form_tag(:action => 'login_attempt') do
-    %p{class: "#{'error' if flash[:notice]}"}
-      Username or Email:
-      %br
-      = text_field_tag(:username_or_email)
-    %p{class: "#{'error' if flash[:notice]}"}
-      Password:
-      %br
-      = password_field_tag :login_password
-    .actions
-      = submit_tag("Log In")
+.homebody
+  .content.no-margin.center
+    %h1 Log in
+    -if flash[:notice]
+      %p.error
+        =h flash[:notice]
+    = form_tag(:action => 'login_attempt') do
+      %p{class: "#{'error' if flash[:notice]}"}
+        Username or Email:
+        %br
+        = text_field_tag(:username_or_email)
+      %p{class: "#{'error' if flash[:notice]}"}
+        Password:
+        %br
+        = password_field_tag :login_password
+      .actions
+        = submit_tag("Log In")
