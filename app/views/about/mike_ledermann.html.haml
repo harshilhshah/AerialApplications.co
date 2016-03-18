@@ -1,0 +1,25 @@
+.content.no-margin{class: "#{'no-margin' if @home}"}
+  .team-member-container
+    .back-link.link 
+      %a{:href => about_path} << Back to Team
+    .PHOTO-container
+      = image_tag "Mike-Ledermann.jpg", :class => "PHOTO"
+      .linkedIn-link.link
+        %a{:href => "https://www.linkedin.com/"} Connect on LinkedIn
+    .INF0
+      .team-member-name Mike Ledermann
+      .team-member-position Engineer
+      .education Education
+      %p
+        Embry­Riddle Aeronautical University (2008)
+      .team-member-experience 
+        Current Position and 
+        %br
+        Relevant Experience
+      %p
+        Mr. Mike Ledermann specializes in aeronautical materials and product development.
+        His  past  experience  includes  research  on  autonomous  package  deliver  under 
+        Google X [Wing] and aerial signal transmission under Google X [Loon].
+    .pages.link 
+      %a{:href => about_nathan_sullivan_path} << Previous Team Member
+      %a{:href => about_kyle_bembnister_path} Next Team Member >> 

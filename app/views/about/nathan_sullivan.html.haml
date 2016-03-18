@@ -1,0 +1,28 @@
+.content.no-margin{class: "#{'no-margin' if @home}"}
+  .team-member-container
+    .back-link.link 
+      %a{:href => about_path} << Back to Team
+    .PHOTO-container
+      = image_tag "Nathan-Sullivan.jpg", :class => "PHOTO"
+      .linkedIn-link.link
+        %a{:href => "https://www.linkedin.com/"} Connect on LinkedIn
+    .INF0
+      .team-member-name Nathan Sullivan
+      .team-member-position Lead Engineer
+      .education Education
+      %p
+        B.S. Software Engineering, Embry­Riddle Aeronautical University (2012)
+      .team-member-experience 
+        Current Position and 
+        %br
+        Relevant Experience
+      %p
+        Mr.  Nathan  Sullivan  leads  RSI’s  research  and engineering  efforts  for  autonomous  
+        technologies.  Mr.  Sullivan  has  worked  in  software development since 2007 and received 
+        a Divisional Recognition Award during his tenure at Intel for his work on high­performance 
+        tablet development. He has been involved in model aviation since 2002, as a former member 
+        of the District of Columbia Radio Controlled Club (DC/RC) and a founding member and former 
+        president of Montgomery County’s 4­H Aerospace club.
+    .pages.link 
+      %a{:href => about_joe_sullivan_path} << Previous Team Member
+      %a{:href => about_mike_ledermann_path} Next Team Member >> 
