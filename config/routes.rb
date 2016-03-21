@@ -24,16 +24,17 @@ Rails.application.routes.draw do
   get 'signup' => 'users#signup'
   get 'confirm_signup' => 'users#confirm_signup'
   get 'dashboard' => 'main#dashboard'
-  get 'about' => 'about#index'
-  get 'about/joe_sullivan'
-  get 'about/nathan_sullivan'
-  get 'about/kyle_bembnister'
-  get 'about/mike_ledermann'
-  get 'about/timothy_haas'
+  get 'about' => 'main#about'
+  get 'about/joe_sullivan' => 'main#joe_sullivan'
+  get 'about/nathan_sullivan' => 'main#nathan_sullivan'
+  get 'about/kyle_bembnister' => 'main#kyle_bembnister'
+  get 'about/mike_ledermann' => 'main#mike_ledermann'
+  get 'about/timothy_haas' => 'main#timothy_haas'
+  #get 'contact'
+
+  get 'affiliates' => 'main#affiliates'
   get 'contact' => 'main#contact'
   post 'main/create_contact'
-  get 'affiliates' => 'main#affiliates'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

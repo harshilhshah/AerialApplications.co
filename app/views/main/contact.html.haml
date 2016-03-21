@@ -21,7 +21,7 @@
         %p{:style => " margin-bottom: 20px;font-weight: bold;color: #7d7f80;"} General Email
         %p info@aerialapplications.co
       .column.right.padded
-        = form_for @contact, url: main_create_contact_path, html: {:style => 'text-align: left'} do |c|
+        = form_for @contact, url: '/main/create_contact', html: {:style => 'text-align: left'} do |c|
           .field
             Name
             %br
