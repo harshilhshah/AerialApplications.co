@@ -1,3 +1,266 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//colors
+$color_log_cabin_approx: #1f1f1f;
+$white: white;
+$color_link_water_approx: #d4e7f7;
+$color_white_lilac_approx: #f7f8fa;
+$color_picton_blue_approx: #5ab5f0;
+$color_hemp_approx: #8a7477;
+$black: black;
+$gray: gray;
+$color_cerulean_approx: #02b3ec;
+$color_chicago_approx: #5f5f5f;
+
+//fonts
+$font_0: Open Sans;
+$font_1: sans-serif;
+
+//@extend-elements
+//original selectors
+//.member-table table, .advisor-table table
+%extend_1 {
+	padding: 15px;
+	padding-left: 65px;
+	padding-right: 65px;
+	width: 100%;
+}
+
+//original selectors
+//.member-table td, .advisor-table td
+%extend_2 {
+	padding: 5px;
+	margin-left: 35px;
+	margin-right: 35px;
+	text-align: center;
+	padding: 10px;
+}
+
+
+#pagetitle {
+	margin: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-weight: 100;
+	color: $color_log_cabin_approx;
+}
+.about-content {
+	background-color: $white;
+	width: 100%;
+}
+.hero {
+	height: 570px;
+	background-color: $color_link_water_approx;
+	width: 100%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.about-block {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+	overflow: auto;
+}
+.title-in-about {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	text-align: center;
+	//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+	transform: translate(0,-50%);
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+	margin: auto;
+	h1 {
+		margin: 0;
+		font-weight: 100;
+		letter-spacing: 2px;
+	}
+}
+.block-content {
+	position: inherit;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	margin-left: 15%;
+	margin-right: 15%;
+	h1 {
+		font-size: 35px;
+	}
+}
+.block-small-title {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+h2 {
+	font-size: 35px;
+	margin: 0;
+	padding: 0;
+}
+h3 {
+	font-size: 35px;
+	margin: 0;
+	padding: 0;
+}
+.block-title {
+	width: 100%;
+	background-color: $color_white_lilac_approx;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	text-align: center;
+	h1 {
+		margin: 0;
+		padding: 0;
+	}
+}
+.spec {
+	font-size: 70%;
+	margin-bottom: 0;
+	h3 {
+		color: $color_picton_blue_approx;
+		font-style: italic;
+		font-size: 30px;
+	}
+}
+.name {
+	color: $color_hemp_approx;
+	text-align: center;
+}
+.member-table {
+	width: 100%;
+	font-family: $font_0, $font_1;
+	table {
+		@extend %extend_1;
+	}
+	th {
+		width: 16.6%;
+	}
+	tr {
+		height: 260px;
+		width: 100%;
+	}
+	td {
+		@extend %extend_2;
+	}
+}
+.advisor-table {
+	width: 100%;
+	font-family: $font_0, $font_1;
+	table {
+		@extend %extend_1;
+	}
+	tr {
+		height: 260px;
+		width: 100%;
+	}
+	td {
+		@extend %extend_2;
+	}
+}
+.photo {
+	max-height: 306.66px;
+	max-width: 306.66px;
+	width: 90%;
+	margin: 10px auto 10px auto;
+}
+.member {
+	.name {
+		color: $black;
+		font-size: 18px;
+		margin-bottom: 10px;
+		text-decoration: none;
+		&:hover {
+			color: $white;
+		}
+	}
+	.position {
+		color: $gray;
+		text-align: center;
+	}
+}
+#legal {
+	padding-bottom: 25px;
+}
+.team-member-container {
+	width: 100%;
+	padding-left: 10%;
+	padding-right: 10%;
+	background: $white;
+	position: relative;
+	left: 50%;
+	//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+	transform: translate(-50%,0);
+	overflow: hidden;
+}
+.PHOTO-container {
+	float: left;
+	padding: 0 20px;
+	max-width: 500px;
+	max-height: 392px;
+	margin-bottom: 80px;
+}
+.PHOTO {
+	width: 392px;
+	max-height: 392px;
+}
+.back-link {
+	margin-top: 40px;
+	margin-bottom: 30px;
+	padding-left: 20px;
+	text-align: left;
+}
+.linkedIn-link {
+	margin-top: 10px;
+	text-align: left;
+}
+.INF0 {
+	float: left;
+	margin-top: -7px;
+	padding: 0 20px;
+	max-width: 500px;
+}
+.team-member-name {
+	font-family: $font_0, $font_1;
+	font-size: 36px;
+}
+.team-member-position {
+	font-family: $font_0, $font_1;
+	margin-top: 20px;
+	font-size: 30px;
+	margin-bottom: 40px;
+	color: $color_chicago_approx;
+}
+.team-member-experience {
+	font-family: $font_0, $font_1;
+	font-size: 24px;
+	margin-top: 60px;
+	margin-bottom: 20px;
+}
+.education {
+	font-family: $font_0, $font_1;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+.pages {
+	margin: 60px 0;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	a {
+		margin: 0 15px;
+	}
+}
+.link a {
+	font-family: $font_0, $font_1;
+	font-size: 18px;
+	color: $color_cerulean_approx;
+	text-decoration: none;
+}

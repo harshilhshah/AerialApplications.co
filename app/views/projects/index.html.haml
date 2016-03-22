@@ -1,37 +1,48 @@
-%h1 Listing projects
+// - @projects.each do |project|
+// %tr
+// %td= project.customerId
+// %td= link_to 'Show', project
+// %td= link_to 'Edit', edit_project_path(project)
+// %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%table
-  %thead
-    %tr
-      %th Customerid
-      %th Affiliateid
-      %th Address
-      %th Zip
-      %th Latitude
-      %th Longitude
-      %th Due
-      %th Projecttypeid
-      %th Owner
-      %th
-      %th
-      %th
-
-  %tbody
-    - @projects.each do |project|
-      %tr
-        %td= project.customerId
-        %td= project.affiliateId
-        %td= project.address
-        %td= project.zip
-        %td= project.latitude
-        %td= project.longitude
-        %td= project.due
-        %td= project.projectTypeId
-        %td= project.owner
-        %td= link_to 'Show', project
-        %td= link_to 'Edit', edit_project_path(project)
-        %td= link_to 'Destroy', project, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Project', new_project_path
+.user-dash
+  .dashboard
+    %h2 Projects
+    .new-button
+      = link_to 'New Project', new_project_path
+    .notice-bar !You have a new project draft. Click to return to your draft.
+    .active-project
+      %h3 Active Projects
+      %table.a-1ist
+        %tr
+          %th Address
+          %th Date Scheduled
+          %th Pilot
+        - @projects.each do |project|
+          %tr
+            %td= project.address
+            %td= project.due.strftime('%m-%d-%Y')
+            %td 
+              = project.owner
+              %br
+              %span
+                %a Message Pilot
+    .active-project
+      %h3 Delivered Projects
+      %table.a-1ist
+        %tr
+          %th Address
+          %th DateScheduled
+          %th Pilot
+          %th
+        - @projects.each do |project|
+          %tr
+            %td= project.address
+            %td= project.due.strftime('%m-%d-%Y')
+            %td 
+              = project.owner
+              %br
+              %span
+                %a Leave a Review
+            %td
+              .button{:style => "width:160px"} Download Files

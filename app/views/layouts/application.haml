@@ -3,9 +3,10 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
-    %link{:href => "https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,400italic,600,700,700italic,800&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}
     %title Aerial Applications
+    %link{:href => "https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,300,400italic,600,700,700italic,800&subset=latin,latin-ext", :rel => "stylesheet", :type => "text/css"}
     =stylesheet_link_tag "application"
+    %script{src: "/jquery.min.js"}
     =javascript_include_tag "application"
   %body
     .wrapper
@@ -19,8 +20,6 @@
                 %a{:href => "/"} Home
               %li
                 %a{:href => "/about"} About
-              %li
-                %a{:href => "#"} Pricing
               %li
                 %a{:href => "/contact"} Contact
               %li
@@ -107,17 +106,15 @@
         %nav.nav-footer
           %ul
             %li
-              %a{:href => "#"} About
+              %a{:href => "/about"} About
             %li
-              %a{:href => "#"} Pricing
+              %a{:href => "/contact"} Contact
             %li
-              %a{:href => "#"} Contact
+              %a{:href => "/affiliates"} Affiliates
             %li
-              %a{:href => "#"} Affiliates
+              %a{:href => "/signup"} Sign Up
             %li
-              %a{:href => "#"} Sign Up
-            %li
-              %a{:href => "#"} Log In
+              %a{:href => "/sessions/login"} Log In
         / /.nav-footer
       / /.footer-bar
     / /.footer

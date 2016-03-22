@@ -20,11 +20,9 @@
                 %a{:href => "/"} Home
               / /.mobile
               %li
-                %a{:href => "#"} About
+                %a{:href => "/about"} About
               %li
-                %a{:href => "#"} Pricing
-              %li
-                %a{:href => "#"} Contact
+                %a{:href => "/contact"} Contact
               %li
                 %a{:href => "/affiliates"} Affiliates
           -if @current_user.nil?
@@ -117,17 +115,15 @@
           %nav.nav-footer
             %ul
               %li
-                %a{:href => "#"} About
+                %a{:href => "/about"} About
               %li
-                %a{:href => "#"} Pricing
+                %a{:href => "/contact"} Contact
               %li
-                %a{:href => "#"} Contact
+                %a{:href => "/affiliates"} Affiliates
               %li
-                %a{:href => "#"} Affiliates
+                %a{:href => "/signup"} Sign Up
               %li
-                %a{:href => "#"} Sign Up
-              %li
-                %a{:href => "#"} Log In
+                %a{:href => "/sessions/login"} Log In
           / /.nav-footer
         / /.footer-bar
       / /.footer
