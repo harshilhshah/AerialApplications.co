@@ -1,4 +1,3 @@
-%h1 #{UserType.find_by_id(@current_user.userTypeId).description} Dashboard
 -if @current_user.is_admin?
   .tile-wrapper
     .tile{onclick: "window.location = '/users';"}
@@ -61,3 +60,28 @@
     .tile.account-settings{onclick: "window.location = '/users/account';"}
       .tile-cover
       .tile-title Account Settings
+-else
+  .user-dash
+    .dashboard
+      //%h2 #{UserType.find_by_id(@current_user.userTypeId).description} Dashboard
+      %h2 Dashboard
+      .notice-bar 
+        .exclamation !
+        .notice-message Please verify your email address. Click to resend verification email.
+      .active-project
+        .project-list
+          %h3 Active Projects
+        .new-button.dashboard-btn
+          = link_to 'New Project', new_project_path
+      .active-project
+        .project-list
+          %h3 New Messages
+          %p No new messages
+      .active-project
+        .project-list
+          %h3 Refferals
+          %p
+            Invite a friend to join Aerial Applications, and you’ll both get $50 off your
+            next project
+        .new-button.dashboard-btn
+          = link_to 'Invite Friends', ''

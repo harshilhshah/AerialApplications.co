@@ -226,3 +226,104 @@ th, td{
 	left:50%;
 	transform:translateX(-50%);
 }
+
+/* Dark header for user */
+.dark-header{
+    background-color: #606060;
+}
+.dark-header .header-content .nav{
+    padding-top: 0px;
+}
+.dark-header .header-content .nav ul li{
+    padding-top: 13px;
+}
+.dark-header .bordered{
+    border: 2px solid white;
+    padding: 11px 28px 11px 28px;
+    border-radius: 5px;
+}
+.dark-header .header-content .nav ul li a,
+.dark-header .header-content .nav-access li a{
+    color: white;
+    letter-spacing: 0px;
+}
+.dark-header .logo{
+    background-position: -408px -103px;
+}
+
+
+/* User Dashboard */
+.user-dash{
+    width: 100%;
+    background-color: #ffffff;
+    padding-bottom: 80px;
+
+}
+.user-dash h3{
+    color: #6e7071;
+    font-size: 30px;
+}
+.dashboard{
+    margin-left: 155px;
+    margin-right:155px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.dashboard h2{
+    color: black;
+    margin: 30px 0px;
+}
+.notice-bar{
+    border:2px solid #ab8303;
+    background-color: #e2c875;
+    color: #be9418;
+    padding: 5px 10px 5px 30px;
+    margin: 10px 0px 10px 0px;
+    overflow: auto;
+}
+.active-project{
+    margin-top: 40px;
+    border: 2px solid #eeeff1;
+    padding: 20px 64px 20px 64px;
+    height: auto;
+    overflow: auto;
+    position: relative;
+    background-color: #f7f8fa;
+}
+.project-list{
+    display: inline-block;
+    width: 70%;
+    float: left;
+    min-height: 120px;
+}
+.project-list p{
+    margin-bottom: 0px;
+}
+.dashboard-btn{
+    bottom: 25px;
+    right: 64px;
+    position: absolute;
+}
+.new-button {
+  text-align: center;
+  width: 20%;
+  font-family: Open Sans;
+  background: #4aa5ec;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 2px;
+  border: none;
+  box-shadow: 0 4px #3479ae;
+}
+.new-button a, .new-button a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+.exclamation {
+    font-weight: 800;
+    font-size: 35px;
+    float: left
+}
+.notice-message{
+    padding: 11px 30px;
+}

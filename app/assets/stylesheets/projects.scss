@@ -4,81 +4,15 @@
 
 //colors
 $white: #ffffff;
-$color_dove_gray_approx: #6e7071;
-$color_hot_toddy_approx: #ab8303;
-$color_rob_roy_approx: #e2c875;
-$color_pizza_approx: #be9418;
 $color_athens_gray_approx: #eeeff1;
-$color_white_lilac_approx: #f7f8fa;
 $color_tapa_approx: #747474;
 $black: black;
 $color_cerulean_approx: #02b3ec;
-$color_picton_blue_approx: #4aa5ec;
-$color_astral_approx: #3479ae;
 
 //fonts
 $font_0: Open Sans;
 $font_1: sans-serif;
 
-.new-button {
-	text-align: center;
-	width: 20%;
-	font-family: $font_0;
-    background: $color_picton_blue_approx;
-    height: 36px;
-    line-height: 36px;
-    border-radius: 2px;
-    border: none;
-    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-	box-shadow: 0 4px $color_astral_approx;
-	a, a:visited{
-		color: $white;
-		text-decoration: none;
-	}
-}
-.button{
-	text-align: center;
-}
-.user-dash {
-	width: 100%;
-	background-color: $white;
-	padding-bottom: 80px;
-	h3 {
-		color: $color_dove_gray_approx;
-	}
-}
-.dashboard {
-	margin-left: 155px;
-	margin-right: 155px;
-	//Instead of the line below you could use @include box-sizing($bs)
-	box-sizing: border-box;
-	overflow: auto;
-}
-.notice-bar {
-	border: 2px solid $color_hot_toddy_approx;
-	background-color: $color_rob_roy_approx;
-	color: $color_pizza_approx;
-	padding: 5px 10px 5px 30px;
-	margin: 10px 0;
-}
-.active-project {
-	margin-top: 40px;
-	border: 2px solid $color_athens_gray_approx;
-	padding: 20px 64px;
-	height: auto;
-	overflow: auto;
-	position: relative;
-	background-color: $color_white_lilac_approx;
-}
-.project-list {
-	display: inline-block;
-	width: 70%;
-	float: left;
-	min-height: 120px;
-	p {
-		margin-bottom: 0;
-	}
-}
 .a-1ist {
 	font-family: $font_0, $font_1;
 	width: 100%;

@@ -10,39 +10,11 @@
     =javascript_include_tag "application"
   %body
     .wrapper
-      %header.header
-        %a.logo{:href => "/"} beta
-        %a.logo-small{:href => "/"} beta
-        .header-content
-          %nav.nav
-            %ul
-              %li.mobile
-                %a{:href => "/"} Home
-              %li
-                %a{:href => "/about"} About
-              %li
-                %a{:href => "/contact"} Contact
-              %li
-                %a{:href => "/affiliates"} Affiliates
-          -if @current_user.nil?
-            %nav.nav-access
-              %ul
-                %li
-                  %a{:href => "/signup"} Sign Up
-                %li
-                  %a{:href => "/sessions/login"} Log In
-                %li
-                  %a.btn.btn-rounded{:href => "/become_a_pilot"} Become a Pilot
-          -else
-            %nav.nav-access
-              %ul
-                %li
-                  %a{href: "/sessions/logout"} Logout
-        %a.nav-trigger{:href => "#"}
-          %span
-          %span
-          %span  
-      =yield
+      - if @current_user.nil?
+        = render 'layouts/header'
+      - else
+        = render 'layouts/user_header'
+    =yield
     %footer.footer
       .footer-content
         .shell

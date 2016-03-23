@@ -1,0 +1,154 @@
+.account
+  .page-tit1e
+    %h1 Account
+  #sidebar
+    #nav-anchor
+    %nav
+      %ul
+        %li
+          %a{:href => "#Personal"} Personal Settings
+        %li
+          %a{:href => "#Company"} Company Info
+        %li
+          %a{:href => "#Paymnet"} Payment Methods
+        %li
+          %a{:href => "#Notification"} Notification Setting
+        %li
+          %a{:href => "#Referrals"} Referrals
+  #content.account-content
+    %section#Personal
+      %h3 Personal Setting
+      .form_area
+        %form#basic
+          %h4 Account Basics
+          %label Email
+          %input{:type => "email"}
+          %br
+          %label Password
+          %input.button{:href => "#dialog1", :name => "modal", :type => "button", :value => "Change Password"}
+        .button connect Facebook
+      .form_area
+        %form#profile
+          %h4 Profile
+          %label First Name
+          %input
+          %br
+          %label Last Name
+          %input
+          %br
+          %label Address 1
+          %input
+          %br
+          %label Address 2
+          %input
+          %br
+          %label City
+          %input
+          %br
+          %label State
+          %input
+          %br
+          %label Zip code
+          %input
+          %br
+          %label Phone
+          %input{:maxlength => "12", :style => "width: 200px", :type => "tel"}
+          %select
+            %option cell
+            %option Home
+            %option Business
+    %section#Company
+      %h3 Company Info
+      .form_area
+        %form#company-basic
+          %h4 Company Basics
+          %label Industry
+          %input
+          %br
+          %label Website
+          %input
+          %br
+          %label HQ Phone
+          %input
+        %form#company-address
+          %h4 Company Address
+          %label Address 1
+          %input
+          %br
+          %label Address 2
+          %input
+          %br
+          %label City
+          %input
+          %br
+          %label State
+          %input
+          %br
+          %label Zip Code
+          %input
+    %section#Paymnet
+      %h3 Payment Methods
+      .form_area
+        %form
+          %h4 Saved cards
+          %table
+            %tbody
+              %tr
+                %td{:style => "width: 65%"} Visa **** **** **** 1234 Exp: 11/19
+                %td
+                  %input.button{:value => "Update This Card"}/
+              %tr
+                %td{:style => "width: 65%"} Visa **** **** **** 1234 Exp: 11/19
+                %td
+                  %input.button{:value => "Update This Card"}/
+              %tr
+                %td{:style => "width: 65%"}
+                %td
+                  %input.button{:value => "Add New Card"}/
+    %section#Notification
+      %h3 Notification Settings
+      .form_area
+        %form
+          %table
+            %tbody
+              %tr
+                %td
+                  %input#unchecked2.cbx.hidden{:type => "checkbox"}
+                    %label.lbl{:for => "unchecked2", :style => "padding: 0;margin-bottom: 5px;"}
+                %td{:style => "padding-left: 20px"} Updates about my project orders
+              %tr
+                %td
+                  %input#unchecked.cbx.hidden{:type => "checkbox"}
+                    %label.lbl{:for => "unchecked", :style => "padding: 0;margin-bottom: 5px;"}
+                %td{:style => "padding-left: 20px"} Occassional emails about the company (products, features, discounts, etc)
+    %section#Referrals
+      %h3 Refferals
+      .form_area
+        %h4 Referral Code
+        %br
+          %br
+            %br
+              under contrction
+    %section
+      .button{:style => "text-align: center"}
+        Deactivate Account
+/ #dialog is the id of a DIV defined in the code below
+/ <a href="#dialog" name="modal">Simple Modal Window</a>
+#boxes
+  / #customize your modal window here
+  #dialog1.window
+    / close button is defined as close class
+    %a.close{:href => "#", :style => "right: 5px;top: 5px; position: absolute;"} Close it
+    %h4 Change your pass
+    %form
+      %div{:style => "margin-bottom: 20px; overflow: auto"}
+        %label Old Password
+        %input
+      %div{:style => "margin-bottom: 20px; overflow: auto"}
+        %label New Password
+        %input
+      %div{:style => "margin-bottom: 20px; overflow: auto"}
+        %label Repeat Password
+        %input
+    .button{:style => "width: 150px;float: right;text-align: center"} Change Password
+    .button{:style => "width: 60px;float: right;text-align: center;margin-right: 5px; "} Cancel
