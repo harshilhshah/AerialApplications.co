@@ -10,7 +10,7 @@ $color_log_cabin_approx: #1f1f1f;
 $color_athens_gray_approx: #eff0f2;
 $color_silver_chalice_approx: gray;
 $color_malibu_approx: #87c8f2;
-$color_wild_sand_approx: #f2f3f5;
+$color_wild_sand_approx: #f7f8fa;
 $color_celeste_approx: #cbcbcb;
 $color_monsoon_approx: #898989;
 $white: #fff;
@@ -19,63 +19,37 @@ $color_picton_blue_approx: #4ba5ec;
 $color_astral_approx: #347aae;
 $color_quill_gray_approx: #d5d5d5;
 $color_silver_approx: #bcbdbc;
+$color_dark_gray: #edeef0;
+$color_sky_blue: #59b5f0;
+$color_dark_silver: #DBDCDD;
 
 //fonts
 $font_0: Open Sans;
 $font_1: sans-serif;
 
-#mask {
-	position: absolute;
-	z-index: 9888;
-	background-color: $black;
-	display: none;
-	width: 100%;
-	height: 100%;
-}
-#boxes {
-	.window {
-		position: fixed;
-		width: 600px;
-		height: 300px;
-		display: none;
-		z-index: 9999;
-		padding: 20px;
-		background-color: $color_white_lilac_approx;
-	}
-	#dialog {
-		width: 375px;
-		height: 203px;
-	}
-	h4 {
-		font-family: $font_0, $font_1;
-	}
-}
 .account {
 	font-family: $font_0, $font_1;
-	padding: 20px 64px 20px 160px;
-	width: 1000px;
+	padding: 0px 64px 0px 130px;
+	width: 100%;
 	overflow: auto;
 	h1 {
 		font-size: 30px;
+		margin: 40px 0;
+	}
+	h2{
+		color: $color_sky_blue;
 	}
 	h3 {
-		margin: 20px 0;
+		margin: 0px 0 20px 0;
+		font-size: 24px;
 	}
-	&.page-tit1e {
-		margin: 20px 20px 20px 0;
-		padding-top: 10px;
-		font-weight: 100;
-		color: $color_log_cabin_approx;
-	}
-}
-.side-nav {
-	width: 150px;
 }
 #sidebar {
 	width: 200px;
 	float: left;
 	nav {
 		width: 200px;
+		margin-bottom: 40px;
 		background-color: $color_white_lilac_approx;
 		border: solid 1px $color_athens_gray_approx;
 		padding: 0;
@@ -103,49 +77,72 @@ $font_1: sans-serif;
 }
 #content {
 	width: 724px;
-	float: right;
-	padding-left: 24px;
+	float: left;
+	padding-left: 40px;
 	.form_area {
 		width: auto;
-		padding: 10px;
-		padding-left: 30px;
+		padding: 20px 80px 40px 30px;
+		margin-bottom: 40px;
 		background-color: $color_wild_sand_approx;
+		border: solid 2px $color_dark_gray;
 		overflow: hidden;
 		.button {
 			width: 200px;
 			text-align: center;
 		}
+		.payment-info{
+			width: 75%;
+		    padding-bottom: 20px;
+		}
+		.padleft{
+			padding-left: 60px;
+			padding-top: 5px;
+		}
+	}
+	select {
+		margin: 5px 0 12px 20px;
+    	border: 2px solid $color_dark_gray;
+    	background: $white;
 	}
 }
 section {
-	margin: 10px;
 	label {
-		margin: 5px 0 12px;
+		margin: 8px 0 30px;
 		display: block;
 		float: left;
 		width: 150px;
-		padding: 5px;
-		padding-left: 20px;
+		padding: 5px 0px;
+	}
+	input{
+		margin: 5px 0 25px;
+		width: 420px;
+		background-color: $white;
+    	border: 2px solid $color_dark_gray;
+	}
+	hr{
+		margin: 40px 0;
+    	border: 0;
+    	border-top: 2px solid #C7C8C8;
 	}
 }
-select {
-	margin: 5px 0 12px 20px;
-	border: 2px solid $color_celeste_approx;
-	border-radius: 2px;
-	font-family: $font_0, $font_1;
-	font-size: 14px;
-	padding: 3px;
+.gray-button{
+	background: $color_dark_silver;
+	width: 180px;
+	padding: 0px;
+	border: none;
+	color: #777777;
+	box-shadow: 0px 4px #c7c8c8;
 }
 .lbl {
+	padding: 0;
+	margin-bottom: 5px;
 	position: relative;
 	display: block;
 	height: 20px;
 	width: 44px;
 	background: $color_monsoon_approx;
-	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
 	border-radius: 100px;
 	cursor: pointer;
-	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
 	transition: all 0.3s ease;
 	&:after {
 		position: absolute;
@@ -154,21 +151,18 @@ select {
 		display: block;
 		width: 26px;
 		height: 26px;
-		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
 		border-radius: 100px;
 		background: $white;
-		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
 		box-shadow: 0 3px 3px $black_5;
 		content: '';
-		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
 		transition: all 0.3s ease;
 	}
 	&:active:after {
-		//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
 		transform: scale(1.15, 0.85);
 	}
 }
 .cbx {
+	display: none;
 	&:checked ~ label {
 		background: $color_picton_blue_approx;
 		&:after {
@@ -183,7 +177,4 @@ select {
 			background: $color_silver_approx;
 		}
 	}
-}
-.hidden {
-	display: none;
 }

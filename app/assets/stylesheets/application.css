@@ -124,28 +124,10 @@ textarea{
 	border-spacing: 0;
 	display:inline-block;
 }
-th, td{
+th{
 	padding:8px;
 }
-.table th{
-	background:#4E80BC;
-	color:white;
-}
-.table td, .table th{
-	border-left:1px solid rgb(170,170,170);
-}
-.table td:last-of-type, .table th:last-of-type{
-	border-right:1px solid rgb(170,170,170);
-}
-.table tr{
-	border-top:1px solid rgb(170,170,170);
-}
-.table tr:last-of-type{
-	border-bottom:1px solid rgb(170,170,170);
-}
-.table tr:nth-of-type(2n){
-	background:#B7CBE3;
-}
+
 .column-title{
     font-family: 'Open Sans';
     font-weight: 600;
