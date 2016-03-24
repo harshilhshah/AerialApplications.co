@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   end
 
   def account
+    @user = @current_user
   end
 
   def aircraft

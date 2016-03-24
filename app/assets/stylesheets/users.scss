@@ -21,7 +21,6 @@ $color_quill_gray_approx: #d5d5d5;
 $color_silver_approx: #bcbdbc;
 $color_dark_gray: #edeef0;
 $color_sky_blue: #59b5f0;
-$color_dark_silver: #DBDCDD;
 
 //fonts
 $font_0: Open Sans;
@@ -29,12 +28,12 @@ $font_1: sans-serif;
 
 .account {
 	font-family: $font_0, $font_1;
-	padding: 0px 64px 0px 130px;
+	padding: 40px 130px;
 	width: 100%;
 	overflow: auto;
 	h1 {
 		font-size: 30px;
-		margin: 40px 0;
+		margin-bottom: 40px;
 	}
 	h2{
 		color: $color_sky_blue;
@@ -86,10 +85,6 @@ $font_1: sans-serif;
 		background-color: $color_wild_sand_approx;
 		border: solid 2px $color_dark_gray;
 		overflow: hidden;
-		.button {
-			width: 200px;
-			text-align: center;
-		}
 		.payment-info{
 			width: 75%;
 		    padding-bottom: 20px;
@@ -119,22 +114,17 @@ section {
 		background-color: $white;
     	border: 2px solid $color_dark_gray;
 	}
+	input:focus{
+		border: 2px solid $color_sky_blue;
+	}
 	hr{
 		margin: 40px 0;
     	border: 0;
     	border-top: 2px solid #C7C8C8;
 	}
 }
-.gray-button{
-	background: $color_dark_silver;
-	width: 180px;
-	padding: 0px;
-	border: none;
-	color: #777777;
-	box-shadow: 0px 4px #c7c8c8;
-}
 .lbl {
-	padding: 0;
+	padding: 1px;
 	margin-bottom: 5px;
 	position: relative;
 	display: block;
@@ -146,14 +136,11 @@ section {
 	transition: all 0.3s ease;
 	&:after {
 		position: absolute;
-		left: -2px;
-		top: -3px;
 		display: block;
-		width: 26px;
-		height: 26px;
+		width: 18px;
+		height: 18px;
 		border-radius: 100px;
 		background: $white;
-		box-shadow: 0 3px 3px $black_5;
 		content: '';
 		transition: all 0.3s ease;
 	}
@@ -166,7 +153,7 @@ section {
 	&:checked ~ label {
 		background: $color_picton_blue_approx;
 		&:after {
-			left: 20px;
+			right: 2px;
 			background: $color_astral_approx;
 		}
 	}

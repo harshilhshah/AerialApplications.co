@@ -8,6 +8,7 @@ $color_athens_gray_approx: #eeeff1;
 $color_tapa_approx: #747474;
 $black: black;
 $color_cerulean_approx: #02b3ec;
+$color_medium_gray: #e0e1e2;
 
 //fonts
 $font_0: Open Sans;
@@ -20,14 +21,22 @@ $font_1: sans-serif;
 	table {
 		border: solid 2px $color_athens_gray_approx;
 	}
+	tr:last-child{
+		border:none;
+	}
 	tr {
-		margin-top: 10px;
-		margin-bottom: 10px;
 		font-size: 13px;
 		color: $color_tapa_approx;
-		padding: 10px 0;
+		td:first-child, th:first-child{
+			padding-left: 30px;
+		}
+		td:last-child{
+			padding-right: 30px;
+		}
 		&:nth-child(even) {
 			background-color: $color_athens_gray_approx;
+			border-top: 2px solid $color_medium_gray;
+			border-bottom: 2px solid $color_medium_gray;
 		}
 	}
 	td {
@@ -36,7 +45,6 @@ $font_1: sans-serif;
 		height: 60px;
 		font-size: 16px;
 		color: $black;
-		border: none;
 	}
 	a {
 		font-size: 13px;

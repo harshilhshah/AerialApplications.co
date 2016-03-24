@@ -1,3 +1,4 @@
+=stylesheet_link_tag 'bootstrap.min'
 .account
   %h1 Account
   #sidebar
@@ -13,30 +14,30 @@
           %a{:href => "#Notification"} Notification Setting
         %li
           %a{:href => "#Referrals"} Referrals
-    %input.button{:type=>"button", :value=>"Save Changes", :style=>"width: 150px;"}
+    %input.button.sm{:type=>"button", :value=>"Save Changes"}
   #content.account-content
     %section#Personal
       %h2 Personal Settings
       .form_area
-        %form#basic
+        %div#dialog{:style=>"display:none"} Hello
+        = form_for @user do |u|
           %h3 Account Basics
           %label Email
-          %input{:type => "email"}
+          = u.text_field :email
           %br
           %label Password
-          %input.gray-button{:href => "#dialog1", :name => "modal", :type => "button", :value => "Change Password"}
+          %input.gray-button{'data-toggle' => "modal", :type => "button", :value => "Change Password", 'data-target' => "#myModal"}
           %br
           %br
-        %label
-        =image_tag "fb-connect.jpg"
-        %hr
-        %form#profile
+          %label
+          =image_tag "fb-connect.jpg"
+          %hr
           %h3 Profile
           %label First Name
-          %input
+          = u.text_field :firstName
           %br
           %label Last Name
-          %input
+          = u.text_field :lastName
           %br
           %label Address 1
           %input
@@ -51,7 +52,7 @@
           %input
           %br
           %label Zip code
-          %input
+          = u.text_field :zipCode
           %br
           %label Phone
           %input{:maxlength => "12", :style => "width: 130px", :type => "tel"}
@@ -104,17 +105,17 @@
                 %td.payment-info Visa **** **** **** 1234 Exp: 11/19
                 %td
                   %input.gray-button{:value => "Update This Card", :type => "button"}
-          %input.button{:value => "Add New Card", :type => "button", :style => "float:right; width: 180px;"}
+          %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;"}
     %section#Notification
       %h2 Notification Settings
       .form_area
         %form
-          %input#unchecked2.cbx{:type => "checkbox"}
-            %label.lbl{:for => "unchecked2"}
-          .padleft Updates about my project orders
-          %br
           %input#unchecked.cbx{:type => "checkbox"}
             %label.lbl{:for => "unchecked"}
+          .padleft Updates about my project orders
+          %br
+          %input#uncheckedd.cbx{:type => "checkbox"}
+            %label.lbl{:for => "uncheckedd"}
           .padleft Occassional emails about the company (products, features, discounts, etc)
     %section#Referrals
       %h2 Refferals
@@ -123,3 +124,19 @@
         under contrction
     %section
       %input.gray-button{:value => "Deactivate Account", :type=>"button"}
+    #myModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h4#gridSystemModalLabel.modal-title Add Payment Method
+          .modal-body
+            %br
+              .row
+                .col-md-3 Zip code
+                .col-md-5
+                  %input.form-control1{:placeholder => "10001", :type => "text"}/
+          .modal-footer
+            %button.btn.btn-primary1.btn-lg{"data-target" => "#myModal2", "data-toggle" => "modal", :type => "button"}
+              Next

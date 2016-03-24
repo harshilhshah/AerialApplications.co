@@ -34,8 +34,12 @@ p{
 	text-align: center;
 }
 .left{
-	text-align: left;
+    text-align: left;
 }
+.right{
+    text-align: right;
+}
+
 input{
     border:2px solid #CDCDCD;
     border-radius: 3px;
@@ -168,17 +172,11 @@ th{
 	background-image: url(home_2.jpg);
 	font-size: 0;
 }
-.left{
-	text-align: left;
-}
 .left.padded{
 	position: relative;
 	padding-left:10%;
 	padding-right:5%;
 	box-sizing:border-box;
-}
-.right{
-	text-align: right;
 }
 .right.padded{
 	position: relative;
@@ -186,8 +184,11 @@ th{
 	padding-right:10%;
 	box-sizing:border-box;
 }
+
+/* Buttons */
 .button{
     font-family: 'Open Sans';
+    text-align: center;
     background:#4AA5EC;
     color:white;
     height:36px;
@@ -198,7 +199,8 @@ th{
     font-size: 13px;
     width: 340px;
     max-width: 100%;
-    box-shadow: 0px 4px #3479AE;
+    border-bottom: 4px solid #3479AE;
+    padding: 0px;
 }
 .button:hover{
     background-color: #8BC5F3;
@@ -207,6 +209,37 @@ th{
 	max-width:350px;
 	left:50%;
 	transform:translateX(-50%);
+}
+.button.sm{
+    width: 160px;
+}
+.button.md{
+    width: 200px;
+}
+.button.sm-weighted{
+    width: 20%;
+}
+.button.dashboard-btn{
+    width: 140px;
+    bottom: 25px;
+    right: 64px;
+    position: absolute;
+}
+.button a, .button a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    background: none;
+}
+.gray-button{
+    padding: 0px;
+    width: 160px;
+    background-color: #DBDCDD;
+    border: none;
+    color: #777777;
+    border-bottom: 4px solid #c7c8c8;
+}
+.gray-button:hover{
+    background-color: #EEEFF1;
 }
 
 /* Dark header for user */
@@ -242,12 +275,11 @@ th{
 
 }
 .user-dash h3{
-    color: #6e7071;
+    padding-left: 30px;
     font-size: 30px;
 }
 .dashboard{
-    margin-left: 155px;
-    margin-right:155px;
+    margin: 0px 120px;
     box-sizing: border-box;
     overflow: auto;
 }
@@ -255,6 +287,24 @@ th{
     color: black;
     margin: 30px 0px;
 }
+.active-project{
+    margin-top: 40px;
+    border: 2px solid #eeeff1;
+    padding-top: 20px;
+    height: auto;
+    overflow: auto;
+    position: relative;
+    background-color: #f7f8fa;
+}
+.project-list{
+    min-height: 120px;
+}
+.project-list p{
+    margin-left: 30px;
+}
+
+
+/* Notice Bar */
 .notice-bar{
     border:2px solid #ab8303;
     background-color: #e2c875;
@@ -262,44 +312,6 @@ th{
     padding: 5px 10px 5px 30px;
     margin: 10px 0px 10px 0px;
     overflow: auto;
-}
-.active-project{
-    margin-top: 40px;
-    border: 2px solid #eeeff1;
-    padding: 20px 64px 20px 64px;
-    height: auto;
-    overflow: auto;
-    position: relative;
-    background-color: #f7f8fa;
-}
-.project-list{
-    display: inline-block;
-    width: 70%;
-    float: left;
-    min-height: 120px;
-}
-.project-list p{
-    margin-bottom: 0px;
-}
-.dashboard-btn{
-    bottom: 25px;
-    right: 64px;
-    position: absolute;
-}
-.new-button {
-  text-align: center;
-  width: 20%;
-  font-family: Open Sans;
-  background: #4aa5ec;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 2px;
-  border: none;
-  box-shadow: 0 4px #3479ae;
-}
-.new-button a, .new-button a:visited {
-  color: #ffffff;
-  text-decoration: none;
 }
 .exclamation {
     font-weight: 800;

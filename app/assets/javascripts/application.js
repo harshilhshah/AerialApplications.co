@@ -13,11 +13,18 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap
 //= require main
 //= require_tree .
-/*if(($(".content").height()+$(".top-link-bar").height()+$(".bottom-bar").height())<$(window).height())
-	$(".bottom-bar").addClass("docked");
-$(document).ready(function(){
-	if(($(".content").height()+$(".top-link-bar").height()+$(".bottom-bar").height())<$(window).height())
-		$(".bottom-bar").addClass("docked");
-});*/
+
+
+function pass(){ 
+	event.preventDefault();
+    $("#dialog").dialog({					
+			width: 600,
+			modal: true,
+			close: function(event, ui) {
+				$("#dialog").remove();
+				}
+			});
+};

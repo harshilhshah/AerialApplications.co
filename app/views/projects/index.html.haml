@@ -1,9 +1,11 @@
 .user-dash
   .dashboard
     %h2 Projects
-    .new-button
+    .button.sm
       = link_to 'New Project', new_project_path
-    .notice-bar !You have a new project draft. Click to return to your draft.
+    .notice-bar
+      .exclamation ! 
+      .notice-message You have a new project draft. Click to return to your draft.
     .active-project
       %h3 Active Projects
       %table.a-1ist
@@ -38,4 +40,5 @@
               %span
                 %a Leave a Review
             %td
-              .button{:style => "width:160px"} Download Files
+              .button{:style=>"min-width: 120px; width: 100%;"}
+                = link_to 'View Files', ''
