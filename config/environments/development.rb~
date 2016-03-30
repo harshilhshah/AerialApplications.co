@@ -39,7 +39,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  ENV['MAILCHIMP_USERNAME'] = "harshilhshah"
-  ENV["MAILCHIMP_API"] = "d805a219fe05b5d4415bab89c7d22a95-us13"
 end

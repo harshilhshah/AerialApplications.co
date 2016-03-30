@@ -429,7 +429,7 @@ blockquote:last-child { margin-bottom: 0; }
 
 .list-contact { color: #fff; font-size: 14px; margin-bottom: 21px; letter-spacing: .106em; }
 .list-contact li + li { margin-top: 6px; }
-.list-contact a { display: inline-block; text-decoration: none; }
+.list-contact a { color:inherit; display: inline-block; text-decoration: none; }
 .list-contact a:hover { text-decoration: underline; }
 
 @media (max-width: 1023px) {

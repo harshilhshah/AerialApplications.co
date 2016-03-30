@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   Stripe.api_key = "sk_test_F6hkpzgbNpwqPLOAIH22UOZy"
   before_save :encrypt_password
   before_create :set_user_type
-  before_create :set_stripe_id
+  #before_create :set_stripe_id
   validates :email, presence: true
   validates :email, uniqueness: true
   attr_accessor :card_number, :exp_month, :exp_year, :cvc
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
-      self.password_enc= BCrypt::Engine.hash_secret(password, salt)
+#      self.password_enc= BCrypt::Engine.hash_secret(password, salt)
     end
     self.password = nil
   end

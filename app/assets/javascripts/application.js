@@ -16,15 +16,3 @@
 //= require bootstrap
 //= require main
 //= require_tree .
-
-
-function pass(){ 
-	event.preventDefault();
-    $("#dialog").dialog({					
-			width: 600,
-			modal: true,
-			close: function(event, ui) {
-				$("#dialog").remove();
-				}
-			});
-};

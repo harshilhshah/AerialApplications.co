@@ -26,7 +26,7 @@
           = u.text_field :email
           %br
           %label Password
-          %input.gray-button{'data-toggle' => "modal", :type => "button", :value => "Change Password", 'data-target' => "#myModal"}
+          %input.gray-button{'data-toggle' => "modal", :type => "button", :value => "Change Password", 'data-target' => "#changePassModal"}
           %br
           %br
           %label
@@ -100,12 +100,12 @@
               %tr
                 %td.payment-info Visa **** **** **** 1234 Exp: 11/19
                 %td
-                  %input.gray-button{:value => "Update This Card", :type => "button"}
+                  %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
               %tr
                 %td.payment-info Visa **** **** **** 1234 Exp: 11/19
                 %td
-                  %input.gray-button{:value => "Update This Card", :type => "button"}
-          %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;"}
+                  %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
+          %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
     %section#Notification
       %h2 Notification Settings
       .form_area
@@ -123,20 +123,68 @@
         %h3 Referral Code
         under contrction
     %section
-      %input.gray-button{:value => "Deactivate Account", :type=>"button"}
-    #myModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      .modal-dialog{:role => "document"}
-        .modal-content
-          .modal-header
+      %input.gray-button{:value => "Deactivate Account", :type=>"button", 'data-toggle' => "modal", 'data-target' => "#deactivateModal"}
+    #changePassModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document"}
+        .form_area.popup_form
+          %form
             %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
               %span{"aria-hidden" => "true"} ×
-            %h4#gridSystemModalLabel.modal-title Add Payment Method
-          .modal-body
-            %br
-              .row
-                .col-md-3 Zip code
-                .col-md-5
-                  %input.form-control1{:placeholder => "10001", :type => "text"}/
-          .modal-footer
-            %button.btn.btn-primary1.btn-lg{"data-target" => "#myModal2", "data-toggle" => "modal", :type => "button"}
-              Next
+            %h3 Change Your Password
+            %label Old Password
+            %input{:type => "password"}
+            %label New Password
+            %input{:type => "password"}
+            %label Repeat Password
+            %input{:type => "password"}
+            %input.button.sm{:value => "Change password", :type => "button", :style => "float:right;"}
+            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
+    #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document"}
+        .form_area.popup_form
+          %form
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h3 Add New Card
+            %label Card Number
+            %input
+            %label Name On Card
+            %input
+            %label Expiration Date
+            %input{:maxlength => "2", :style => "width: 80px", :placeholder => "MM"}
+            %input{:maxlength => "4", :style => "width: 100px", :placeholder => "YYYY"}
+            CVC
+            %input{:maxlength => "3", :style => "width: 100px"}
+            %input.button.sm{:value => "Save", :type => "button", :style => "float:right;"}
+            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
+    #updateCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document"}
+        .form_area.popup_form
+          %form
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h3 Update Card Information
+            %label Card Number
+            %input
+            %label Name On Card
+            %input
+            %label Expiration Date
+            %input{:maxlength => "2", :style => "width: 80px", :placeholder => "MM"}
+            %input{:maxlength => "4", :style => "width: 100px", :placeholder => "YYYY"}
+            CVC
+            %input{:maxlength => "3", :style => "width: 100px"}
+            %input.button.sm{:value => "Save", :type => "button", :style => "float:right;"}
+            %input.button.sm{:value => "Remove Card", :type => "button", :style => "float:right;"}
+            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
+    #deactivateModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document"}
+        .form_area.popup_form
+          %form
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+            %h3 Deactivate Your Account
+            %p Deactivating means that no one will see your profile or projects. You won’t be able to access any of your project files through our website Referrals unless you reactivate.
+            %strong Please tell us why you’re leaving (optional):
+            %textarea
+            %input.button.sm{:value => "Deactivate", :type => "button", :style => "float:right;"}
+            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
