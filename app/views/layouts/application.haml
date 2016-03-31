@@ -12,6 +12,8 @@
     .wrapper
       - if @current_user.nil?
         = render 'layouts/header'
+      - elsif @current_user.is_affiliate?
+        = render 'layouts/affiliate_header'
       - else
         = render 'layouts/user_header'
     =yield

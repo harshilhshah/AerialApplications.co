@@ -9,7 +9,10 @@
         %li
           %a{:href => "#Company"} Company Info
         %li
-          %a{:href => "#Payment"} Payment Methods
+          -if @user.is_affiliate?
+            %a{:href => "#Payout"} Payout Methods
+          -else
+            %a{:href => "#Payment"} Payment Methods
         %li
           %a{:href => "#Notification"} Notification Setting
         %li
@@ -29,7 +32,6 @@
           %input.gray-button{'data-toggle' => "modal", :type => "button", :value => "Change Password", 'data-target' => "#changePassModal"}
           %br
           %br
-          %label
           =image_tag "fb-connect.jpg"
           %hr
           %h3 Profile
@@ -90,22 +92,30 @@
           %br
           %label Zip Code
           %input
-    %section#Payment
-      %h2 Payment Methods
-      .form_area
-        %form
-          %h3 Saved cards
-          %table
-            %tbody
-              %tr
-                %td.payment-info Visa **** **** **** 1234 Exp: 11/19
-                %td
-                  %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
-              %tr
-                %td.payment-info Visa **** **** **** 1234 Exp: 11/19
-                %td
-                  %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
-          %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
+    -if @user.is_affiliate?
+      %section#Payout
+        %h2 Payout Methods
+        .form_area
+          %form
+            %h3 Saved Methods
+            %input.button.sm{:value => "Add New Method", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addMethodModal"}      
+    -else
+      %section#Payment
+        %h2 Payment Methods
+        .form_area
+          %form
+            %h3 Saved cards
+            %table
+              %tbody
+                %tr
+                  %td.payment-info Visa **** **** **** 1234 Exp: 11/19
+                  %td
+                    %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
+                %tr
+                  %td.payment-info Visa **** **** **** 1234 Exp: 11/19
+                  %td
+                    %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
+            %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
     %section#Notification
       %h2 Notification Settings
       .form_area
@@ -124,12 +134,13 @@
         under contrction
     %section
       %input.gray-button{:value => "Deactivate Account", :type=>"button", 'data-toggle' => "modal", 'data-target' => "#deactivateModal"}
+    %br
     #changePassModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document"}
+      %section.modal-dialog{:role => "document", :style => "width: 670px;"}
         .form_area.popup_form
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
           %form
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
             %h3 Change Your Password
             %label Old Password
             %input{:type => "password"}
@@ -137,54 +148,64 @@
             %input{:type => "password"}
             %label Repeat Password
             %input{:type => "password"}
-            %input.button.sm{:value => "Change password", :type => "button", :style => "float:right;"}
-            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
-    #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document"}
+            %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 260px; margin-right: 25px;"}
+            %input.button.sm{:value => "Change password", :type => "button", 'data-toggle' => "modal", 'data-target' => "#successModal"}
+    #successModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document", :style => "width: 570px;"}
         .form_area.popup_form
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
           %form
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
+            %h3 Success
+            %p.popup-message Your new password has been saved.
+            %input.button.sm{:value => "Okay", :type => "button", "data-dismiss" => "modal", :style => "margin: 40px 0px 0px 310px;"}
+    #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+        .form_area.popup_form
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %form
             %h3 Add New Card
             %label Card Number
             %input
             %label Name On Card
             %input
             %label Expiration Date
-            %input{:maxlength => "2", :style => "width: 80px", :placeholder => "MM"}
-            %input{:maxlength => "4", :style => "width: 100px", :placeholder => "YYYY"}
-            CVC
-            %input{:maxlength => "3", :style => "width: 100px"}
-            %input.button.sm{:value => "Save", :type => "button", :style => "float:right;"}
-            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
+            %input{:maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"}
+            %input{:maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"}
+            .popup-message CVC
+            %input{:maxlength => "3", :style => "width: 110px; margin-left: 11px;"}
+            %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 295px; margin-right: 20px;"}
+            %input.button{:value => "Save", :type => "button", :style => "width: 130px;"}
     #updateCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document"}
+      %section.modal-dialog{:role => "document", :style => "width: 670px;"}
         .form_area.popup_form
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
           %form
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
             %h3 Update Card Information
             %label Card Number
             %input
             %label Name On Card
             %input
             %label Expiration Date
-            %input{:maxlength => "2", :style => "width: 80px", :placeholder => "MM"}
-            %input{:maxlength => "4", :style => "width: 100px", :placeholder => "YYYY"}
-            CVC
-            %input{:maxlength => "3", :style => "width: 100px"}
-            %input.button.sm{:value => "Save", :type => "button", :style => "float:right;"}
-            %input.button.sm{:value => "Remove Card", :type => "button", :style => "float:right;"}
-            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
+            %input{:maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"}
+            %input{:maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"}
+            .popup-message CVC
+            %input{:maxlength => "3", :style => "width: 110px; margin-left: 11px;"}
+            %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 150px; margin-right: 20px;"}
+            %input.red-button{:value => "Remove Card", :type => "button", :style => "width: 120px;"}
+            %input.button{:value => "Save", :type => "button", :style => "margin-left: 20px; width: 130px;"}
     #deactivateModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
       %section.modal-dialog{:role => "document"}
         .form_area.popup_form
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
           %form
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
             %h3 Deactivate Your Account
-            %p Deactivating means that no one will see your profile or projects. You won’t be able to access any of your project files through our website Referrals unless you reactivate.
-            %strong Please tell us why you’re leaving (optional):
+            %p.popup-message Deactivating means that no one will see your profile or projects. You won’t be able to access any of your project files through our website Referrals unless you reactivate.
+            %br
+            %strong.popup-message Please tell us why you’re leaving (optional):
             %textarea
-            %input.button.sm{:value => "Deactivate", :type => "button", :style => "float:right;"}
-            %input.gray-button{:value => "Cancel", :type => "button", :style => "float:right;", "data-dismiss" => "modal"}
+            %input.gray-button.cancel{:value => "Cancel", :type => "button", :style => "margin-left: 200px; margin-right: 15px; margin-top: 20px;", "data-dismiss" => "modal"}
+            %input.button.sm{:value => "Deactivate", :type => "button"}          

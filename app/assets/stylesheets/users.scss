@@ -21,6 +21,8 @@ $color_quill_gray_approx: #d5d5d5;
 $color_silver_approx: #bcbdbc;
 $color_dark_gray: #edeef0;
 $color_sky_blue: #59b5f0;
+$color_darker_gray: #C7C8C8;
+$color_darkest_gray: #777777;
 
 //fonts
 $font_0: Open Sans;
@@ -95,7 +97,22 @@ $font_1: sans-serif;
 		}
 	}
 	.form_area.popup_form{
-		padding: 10px;
+		padding: 5px;
+		form{
+			padding-top: 15px;
+    		padding-left: 50px;
+    		padding-right: 36px;
+    		padding-bottom: 15px;
+    		textarea{
+				width: 100%;
+				background: $white;
+				margin-top: 25px;
+			}
+		}
+		.popup-message{
+			font-size: 14px;
+			color: $color_darkest_gray;
+		}
 	}
 	select {
 		margin: 5px 0 12px 20px;
@@ -105,11 +122,13 @@ $font_1: sans-serif;
 }
 section {
 	label {
-		margin: 8px 0 30px;
+		margin: 10px 0 30px;
 		display: block;
 		float: left;
 		width: 150px;
 		padding: 5px 0px;
+		font-size: 14px;
+		color: $color_darkest_gray;
 	}
 	input{
 		margin: 5px 0 25px;
@@ -123,7 +142,12 @@ section {
 	hr{
 		margin: 40px 0;
     	border: 0;
-    	border-top: 2px solid #C7C8C8;
+    	border-top: 2px solid $color_darker_gray;
+	}
+}
+section#Payment{
+	.gray-button{
+		margin-bottom: 20px;
 	}
 }
 .lbl {

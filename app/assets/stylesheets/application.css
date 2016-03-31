@@ -198,6 +198,7 @@ th{
     max-width: 100%;
     border-bottom: 4px solid #3479AE;
     padding: 0px;
+    margin: 0px;
 }
 .button:hover{
     background-color: #8BC5F3;
@@ -208,7 +209,7 @@ th{
 	transform:translateX(-50%);
 }
 .button.sm{
-    width: 160px;
+    width: 160px !important;
 }
 .button.md{
     width: 200px;
@@ -229,6 +230,7 @@ th{
 }
 .gray-button{
     padding: 0px;
+    margin: 0px;
     width: 160px;
     background-color: #DBDCDD;
     border: none;
@@ -238,7 +240,18 @@ th{
 .gray-button:hover{
     background-color: #EEEFF1;
 }
-
+.gray-button.cancel{
+    width: 120px;
+}
+.red-button{
+    padding: 0px;
+    margin: 0px;
+    width: 160px;
+    background-color: #e19e9d;
+    color: white;
+    border: none;
+    border-bottom: 4px solid #c03e3b;
+}
 /* Dark header for user */
 .dark-header{
     background-color: #606060;
@@ -307,7 +320,7 @@ th{
     background-color: #e2c875;
     color: #be9418;
     padding: 5px 10px 5px 30px;
-    margin: 10px 0px 10px 0px;
+    margin: 30px 0px 10px 0px;
     overflow: auto;
 }
 .exclamation {
