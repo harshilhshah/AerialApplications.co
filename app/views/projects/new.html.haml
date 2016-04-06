@@ -2,4 +2,23 @@
 
 = render 'form'
 
+/
+	= form_for @project do |p|
+		- if @current_user.is_affiliate?
+		- else
+			%label Affiliate ID
+			= p.number_field :affiliateId
+			= p.hidden_field :customerId, :value => @current_user.id 
+		%br 	
+		%label Address
+		= p.text_field :address
+		%br
+		%label Zip
+		= p.number_field :zip
+		%br
+		%label Owner
+		= p.text_field :owner
+		%br
+		= p.submit
+
 = link_to 'Back', projects_path

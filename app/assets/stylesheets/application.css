@@ -40,6 +40,12 @@ p{
     text-align: right;
 }
 
+select{
+    height: 40px;
+    vertical-align: top;
+    border: 2px solid #edeef0;
+    background: white;
+}
 input{
     border:2px solid #CDCDCD;
     border-radius: 3px;
@@ -219,9 +225,10 @@ th{
 }
 .button.dashboard-btn{
     width: 140px;
-    bottom: 25px;
-    right: 64px;
-    position: absolute;
+    float: right;
+    margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 .button a, .button a:visited {
     color: #ffffff;
@@ -236,6 +243,7 @@ th{
     border: none;
     color: #777777;
     border-bottom: 4px solid #c7c8c8;
+    line-height:36px;
 }
 .gray-button:hover{
     background-color: #EEEFF1;
@@ -331,3 +339,5 @@ th{
 .notice-message{
     padding: 11px 30px;
 }
+
+

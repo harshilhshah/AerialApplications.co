@@ -4,7 +4,18 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    active_id = ProjectType.find_by_description("Active").id
+    delivered_id = ProjectType.find_by_description("Delivered").id
+    if @current_user.is_admin?
+      @active_projects = Project.where(:projectTypeId => active_id)
+      @delivered_projects = Project.where(:projectTypeId => delivered_id)
+    elsif @current_user.is_affiliate?
+      @active_projects = Project.where(:projectTypeId => active_id, :affiliateId => @current_user.id)
+      @delivered_projects = Project.where(:projectTypeId => delivered_id, :affiliateId => @current_user.id)
+    else
+      @active_projects = Project.where(:projectTypeId => active_id, :customerId => @current_user.id)
+      @delivered_projects = Project.where(:projectTypeId => delivered_id, :customerId => @current_user.id)
+    end
   end
 
   def dashboard

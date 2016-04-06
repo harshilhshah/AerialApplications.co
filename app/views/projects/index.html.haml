@@ -1,44 +1,65 @@
 .user-dash
   .dashboard
     %h2 Projects
-    .button.sm
-      = link_to 'New Project', new_project_path
-    .notice-bar
-      .exclamation ! 
-      .notice-message You have a new project draft. Click to return to your draft.
+    - if @current_user.is_new_user?
+      .button.sm
+        = link_to 'New Project', new_project_path
+      .notice-bar
+        .exclamation ! 
+        .notice-message You have a new project draft. Click to return to your draft.
     .active-project
       %h3 Active Projects
       %table.a-1ist
         %tr
           %th Address
           %th Date Scheduled
-          %th Pilot
-        - @projects.each do |project|
+          - if @current_user.is_affiliate?
+            %th Client
+          - else
+            %th Pilot
+        - @active_projects.each do |project|
           %tr
             %td= project.address
             %td= project.due.strftime('%m-%d-%Y')
             %td 
-              = project.owner
+              - if @current_user.is_affiliate?
+                = project.get_client_name
+              - else
+                = project.get_pilot_name
               %br
               %span
+              - if @current_user.is_affiliate?
+                %a Message Client
+              - else
                 %a Message Pilot
     .active-project
       %h3 Delivered Projects
       %table.a-1ist
         %tr
           %th Address
-          %th DateScheduled
-          %th Pilot
+          - if @current_user.is_affiliate?
+            %th Date Delivered
+            %th Client
+            %th Review
+          - else
+            %th Delivered On
+            %th Pilot
           %th
-        - @projects.each do |project|
+        - @delivered_projects.each do |project|
           %tr
             %td= project.address
             %td= project.due.strftime('%m-%d-%Y')
-            %td 
-              = project.owner
-              %br
-              %span
-                %a Leave a Review
-            %td
-              .button{:style=>"min-width: 120px; width: 100%;"}
-                = link_to 'View Files', ''
+            - if @current_user.is_affiliate?
+              %td 
+                = project.get_client_name
+              %td
+                %a Read review
+            -else
+              %td 
+                = project.get_pilot_name
+                %br
+                %span
+                  %a Leave a Review
+              %td
+                .button{:style=>"min-width: 120px; width: 50%;"}
+                  = link_to 'View Files', ''              

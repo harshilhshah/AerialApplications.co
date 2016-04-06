@@ -39,31 +39,9 @@
     .tile{onclick: "window.location = '/payments';"}
       .tile-cover
       .tile-title Payments
--if @current_user.is_affiliate?
-  .tile-wrapper
-    .tile.projects{onclick: "window.location = '/projects/dashboard';"}
-      .tile-cover
-      .tile-title Projects
-  .tile-wrapper
-    .tile.aircraft{onclick: "window.location = '/users/#{@current_user.id}/aircraft';"}
-      .tile-cover
-      .tile-title Aircraft
-  .tile-wrapper
-    .tile.availability{onclick: "window.location = '/users/calendar';"}
-      .tile-cover
-      .tile-title Availability
-  .tile-wrapper
-    .tile.profile{onclick: "window.location = '/users/#{@current_user.id}/profile';"}
-      .tile-cover
-      .tile-title Profile
-  .tile-wrapper
-    .tile.account-settings{onclick: "window.location = '/users/account';"}
-      .tile-cover
-      .tile-title Account Settings
--else
+-elsif @current_user.is_affiliate?
   .user-dash
     .dashboard
-      //%h2 #{UserType.find_by_id(@current_user.userTypeId).description} Dashboard
       %h2 Dashboard
       .notice-bar 
         .exclamation !
@@ -71,6 +49,20 @@
       .active-project
         .project-list
           %h3 Active Projects
+          %table.a-1ist
+            %tr
+              %th Address
+              %th Date Scheduled
+              %th Pilot
+            - @projects.each do |project|
+              %tr
+                %td= project.address
+                %td= project.due.strftime('%m-%d-%Y')
+                %td 
+                  = project.get_client_name
+                  %br
+                  %span
+                    %a Message Client
         .button.dashboard-btn
           = link_to 'New Project', new_project_path
       .active-project
@@ -79,7 +71,48 @@
           %p No new messages
       .active-project
         .project-list
-          %h3 Refferals
+          %h3 Referrals
+          %p
+            Invite a friend to join Aerial Applications, and you’ll both get $50 off your
+            next project
+        .button.dashboard-btn
+          = link_to 'Invite Friends', ''
+-else
+  .user-dash
+    .dashboard
+      %h2 Dashboard
+      .notice-bar 
+        .exclamation !
+        .notice-message Please verify your email address. Click to resend verification email.
+      .active-project
+        .project-list
+          %h3 Active Projects
+          %table.a-1ist
+            %tr
+              %th Address
+              %th Date Scheduled
+              - if @current_user.is_affiliate?
+                %th Client
+              - else
+                %th Pilot
+            - @projects.each do |project|
+              %tr
+                %td= project.address
+                %td= project.due.strftime('%m-%d-%Y')
+                %td 
+                  = project.get_pilot_name
+                  %br
+                  %span
+                    %a Message Pilot
+        .button.dashboard-btn
+          = link_to 'New Project', new_project_path
+      .active-project
+        .project-list
+          %h3 New Messages
+          %p No new messages
+      .active-project
+        .project-list
+          %h3 Referrals
           %p
             Invite a friend to join Aerial Applications, and you’ll both get $50 off your
             next project

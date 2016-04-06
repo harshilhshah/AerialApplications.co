@@ -18,6 +18,14 @@ class MainController < ApplicationController
   end
 
   def dashboard
+    active_id = ProjectType.find_by_description("Active").id
+    if @current_user.is_admin?
+      @projects = Project.where(:projectTypeId => active_id)
+    elsif @current_user.is_affiliate?
+      @projects = Project.where(:projectTypeId => active_id, :affiliateId => @current_user.id)
+    else
+      @projects = Project.where(:projectTypeId => active_id, :customerId => @current_user.id)
+    end 
   end
 
   def joe_sullivan
@@ -42,8 +50,8 @@ class MainController < ApplicationController
       if @contact.save
       	format.html { redirect_to '/' }
       else
-	format.html { render 'contact' }
-	format.json { render json: @contact.errors, status: :unprocessable_entity }
+      	format.html { render 'contact' }
+      	format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end

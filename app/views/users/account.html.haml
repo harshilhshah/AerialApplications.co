@@ -1,29 +1,30 @@
 =stylesheet_link_tag 'bootstrap.min'
 .account
-  %h1 Account
-  #sidebar
-    %nav
-      %ul
-        %li
-          %a{:href => "#Personal"} Personal Settings
-        %li
-          %a{:href => "#Company"} Company Info
-        %li
-          -if @user.is_affiliate?
-            %a{:href => "#Payout"} Payout Methods
-          -else
-            %a{:href => "#Payment"} Payment Methods
-        %li
-          %a{:href => "#Notification"} Notification Setting
-        %li
-          %a{:href => "#Referrals"} Referrals
-    %input.button.sm{:type=>"button", :value=>"Save Changes"}
-  #content.account-content
-    %section#Personal
-      %h2 Personal Settings
-      .form_area
-        %div#dialog{:style=>"display:none"} Hello
-        = form_for @user do |u|
+  = form_for @user, method: :put do |u|
+    #sidebar
+      %h1 Account
+      %nav
+        %ul
+          %li
+            %a{:href => "#Personal"} Personal Settings
+          %li
+            %a{:href => "#Company"} Company Info
+          %li
+            -if @user.is_affiliate?
+              %a{:href => "#Payout"} Payout Methods
+            -else
+              %a{:href => "#Payment"} Payment Methods
+          %li
+            %a{:href => "#Notification"} Notification Settings
+          %li
+            %a{:href => "#Referrals"} Referrals
+      %input.button.sm{:type=>"submit", :value=>"Save Changes"}
+    #content
+      .flash-message
+        = flash[:notice]
+      %section#Personal
+        %h2 Personal Settings
+        .form_area#personal
           %h3 Account Basics
           %label Email
           = u.text_field :email
@@ -32,7 +33,7 @@
           %input.gray-button{'data-toggle' => "modal", :type => "button", :value => "Change Password", 'data-target' => "#changePassModal"}
           %br
           %br
-          =image_tag "fb-connect.jpg"
+          =image_tag "fb-connect.jpg", :style => "border-radius: 2px;"
           %hr
           %h3 Profile
           %label First Name
@@ -51,22 +52,23 @@
           %input
           %br
           %label State
-          %input
+          = select_tag :state, options_for_select(us_states)
           %br
           %label Zip code
-          = u.text_field :zipCode
+          = u.number_field :zipCode
           %br
           %label Phone
-          %input{:maxlength => "12", :style => "width: 130px", :type => "tel"}
-          %select
+          %input{:maxlength => "12", :style => "width: 130px; margin-right: 20px", :type => "tel"}
+          %select{:style => "width: 100px;"}
             %option Cell
             %option Home
             %option Business
-    %section#Company
-      %h2 Company Info
-      .form_area
-        %form#company-basic
+      %section#Company
+        %h2 Company Info
+        .form_area#company
           %h3 Company Basics
+          %label Company Name
+          %input
           %label Industry
           %input
           %br
@@ -75,8 +77,7 @@
           %br
           %label HQ Phone
           %input
-        %hr{:style=>"margin-top:15px;"}
-        %form#company-address
+          %hr{:style=>"margin-top:15px;"}
           %h3 Company Address
           %label Address 1
           %input
@@ -88,22 +89,31 @@
           %input
           %br
           %label State
-          %input
+          = select_tag :state, options_for_select(us_states)
           %br
           %label Zip Code
           %input
-    -if @user.is_affiliate?
-      %section#Payout
-        %h2 Payout Methods
-        .form_area
-          %form
+      -if @user.is_affiliate?
+        %section#Payout
+          %h2 Payout Methods
+          .form_area
             %h3 Saved Methods
+            %table
+              %tbody
+                %tr
+                  %td.payment-info John Doe, *****1234,
+                    123456789 (checking)
+                  %td
+                    %input.gray-button{:value => "Edit Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#editMethodModal"}
+                %tr
+                  %td.payment-info Visa **** **** **** 1234 Exp: 11/19
+                  %td
+                    %input.gray-button{:value => "Edit Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#editMethodModal"}
             %input.button.sm{:value => "Add New Method", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addMethodModal"}      
-    -else
-      %section#Payment
-        %h2 Payment Methods
-        .form_area
-          %form
+      -else
+        %section#Payment
+          %h2 Payment Methods
+          .form_area
             %h3 Saved cards
             %table
               %tbody
@@ -116,10 +126,9 @@
                   %td
                     %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
             %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
-    %section#Notification
-      %h2 Notification Settings
-      .form_area
-        %form
+      %section#Notification
+        %h2 Notification Settings
+        .form_area
           %input#unchecked.cbx{:type => "checkbox"}
             %label.lbl{:for => "unchecked"}
           .padleft Updates about my project orders
@@ -127,85 +136,212 @@
           %input#uncheckedd.cbx{:type => "checkbox"}
             %label.lbl{:for => "uncheckedd"}
           .padleft Occassional emails about the company (products, features, discounts, etc)
-    %section#Referrals
-      %h2 Refferals
-      .form_area
-        %h3 Referral Code
-        under contrction
-    %section
-      %input.gray-button{:value => "Deactivate Account", :type=>"button", 'data-toggle' => "modal", 'data-target' => "#deactivateModal"}
-    %br
-    #changePassModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document", :style => "width: 670px;"}
-        .form_area.popup_form
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %form
-            %h3 Change Your Password
+      %section#Referrals
+        %h2 Referrals
+        .form_area
+          %h3 Referral Code
+          under contrction
+      %section
+        %input.gray-button{:value => "Deactivate Account", :type=>"button", 'data-toggle' => "modal", 'data-target' => "#deactivateModal"}
+      %br
+  #changePassModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        = form_for @user, url:  user_update_password_url(@user), :remote => true, :authenticity_token => true do |u|
+          %h3#hh Change Your Password
+          .field
             %label Old Password
-            %input{:type => "password"}
+            = u.password_field :old_password
+          .field
             %label New Password
-            %input{:type => "password"}
+            = u.password_field :password
+          .field
             %label Repeat Password
-            %input{:type => "password"}
-            %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 260px; margin-right: 25px;"}
-            %input.button.sm{:value => "Change password", :type => "button", 'data-toggle' => "modal", 'data-target' => "#successModal"}
-    #successModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document", :style => "width: 570px;"}
-        .form_area.popup_form
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %form
-            %h3 Success
-            %p.popup-message Your new password has been saved.
-            %input.button.sm{:value => "Okay", :type => "button", "data-dismiss" => "modal", :style => "margin: 40px 0px 0px 310px;"}
-    #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document", :style => "width: 670px;"}
-        .form_area.popup_form
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %form
-            %h3 Add New Card
-            %label Card Number
-            %input
-            %label Name On Card
-            %input
-            %label Expiration Date
-            %input{:maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"}
-            %input{:maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"}
-            .popup-message CVC
-            %input{:maxlength => "3", :style => "width: 110px; margin-left: 11px;"}
-            %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 295px; margin-right: 20px;"}
-            %input.button{:value => "Save", :type => "button", :style => "width: 130px;"}
-    #updateCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document", :style => "width: 670px;"}
-        .form_area.popup_form
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %form
-            %h3 Update Card Information
-            %label Card Number
-            %input
-            %label Name On Card
-            %input
-            %label Expiration Date
-            %input{:maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"}
-            %input{:maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"}
-            .popup-message CVC
-            %input{:maxlength => "3", :style => "width: 110px; margin-left: 11px;"}
-            %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 150px; margin-right: 20px;"}
-            %input.red-button{:value => "Remove Card", :type => "button", :style => "width: 120px;"}
-            %input.button{:value => "Save", :type => "button", :style => "margin-left: 20px; width: 130px;"}
-    #deactivateModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-      %section.modal-dialog{:role => "document"}
-        .form_area.popup_form
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-          %form
-            %h3 Deactivate Your Account
-            %p.popup-message Deactivating means that no one will see your profile or projects. You won’t be able to access any of your project files through our website Referrals unless you reactivate.
-            %br
-            %strong.popup-message Please tell us why you’re leaving (optional):
-            %textarea
-            %input.gray-button.cancel{:value => "Cancel", :type => "button", :style => "margin-left: 200px; margin-right: 15px; margin-top: 20px;", "data-dismiss" => "modal"}
-            %input.button.sm{:value => "Deactivate", :type => "button"}          
+            = u.password_field :password_confirmation
+          = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 260px; margin-right: 25px;"
+          = u.submit "Change password", :class => "button sm", 'data-toggle' => "modal"
+        :javascript
+          $(document).ready(function(){
+            $("#edit_user_18").on("ajax:success", function (e, data, status, xhr){
+              $('#hh').text('Done.');
+            });
+          });
+  #successModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 570px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3 Success
+          %p.popup-message Your new password has been saved.
+          %input.button.sm{:value => "Okay", :type => "button", "data-dismiss" => "modal", :style => "margin: 40px 0px 0px 310px;"}
+  #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        = form_for @user, :remote => true, :authenticity_token => true do |u|
+          %h3 Add New Card
+          %label Card Number
+          = u.number_field :card_number
+          %label Name On Card
+          = u.text_field :name
+          %label Expiration Date
+          = u.text_field :exp_month, :maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"
+          = u.text_field :exp_year, :maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"
+          .popup-message.inline CVC
+          = u.text_field :cvc, :maxlength => "3", :style => "width: 110px; margin-left: 11px;"
+          = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 295px; margin-right: 20px;"
+          =u.submit "Save", :class => "button", :style => "width: 130px;"
+  #updateCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        = form_for @user, :remote => true, :authenticity_token => true do |u|
+          %h3 Update Card Information
+          %label Card Number
+          = u.number_field :card_number
+          %label Name On Card
+          = u.text_field :name
+          %label Expiration Date
+          = u.text_field :exp_month, :maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"
+          = u.text_field :exp_year, :maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"
+          .popup-message.inline CVC
+          = u.text_field :cvc, :maxlength => "3", :style => "width: 110px; margin-left: 11px;"
+          = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 150px; margin-right: 20px;"
+          = u.button "Remove Card", :class => "red-button button", :style => "width: 120px;"
+          = u.button "Save",:class => "button", :style => "margin-left: 20px; width: 130px;"
+  #addMethodModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Add Payout Method
+          %h5 Billing Information
+          %label Address 1
+          %input{:type => "text"}
+          %label Address 2
+          %input{:type => "text"}
+          %label City
+          %input#city{:placeholder => "New York", :type => "text"}
+          %label State
+          %input#state{:placeholder => "NY", :type => "text"}
+          %label Zip Code
+          %input#zip-code
+          %label Country
+          = select_tag :state, options_for_select(countries, "United States")
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal2"}
+  #addMethodModal2.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Add Payout Method
+          %h5 Method Type
+          %p Payment will be released the day after you submit project files to your client. It may take additional time for your time for payment to reach you depending on which method you choose.
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal3"}
+  #addMethodModal3.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Add Payout Method
+          %h5 Direct Deposit (ACH)
+          %label Name on Account
+          %input
+          %label Account Type 
+          %select
+            %option{:value => "Checking"} Checking
+            %option{:value => "Savings"} Savings
+          %label Routing Number
+          %input
+          %label Account Number
+          %input
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal4"}
+  #addMethodModal4.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Add Payout Method
+          %h5 PayPal (replace this with an image)
+          %p Paypal is an online payment processing service that allows you to receive paments from Aerial Applications, you must  have an existing account with paypal. Enter the email address associated with your PayPal account.
+          %label PayPal Email
+          %input
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal5"}
+  #addMethodModal5.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Add Payout Method
+          %h5 PayPal (replace this with an image)
+          %p Is this the correct email address for your existing PayPal account?
+          %h2 xyz@gmail.com
+          %input.gray-button{:value => "Back", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal4"}
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal6"}
+  #addMethodModal6.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Add Payout Method
+          %h5 Direct Deposit (ACH)
+          %label Name on Account
+          %input
+          %label Account Type 
+          %select
+            %option{:value => "Checking"} Checking
+            %option{:value => "Savings"} Savings
+          %label Routing Number
+          %input
+          %label Account Number
+          %input
+          %input.red-button{:value => "Delete", :type => "button", :style => "width: 120px;"}
+          %input.button.next{:value => "Save", :type => "button", 'data-dismiss' => "modal"}
+  #editMethodModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Update PayPal
+          %h5 PayPal (replace this with an image)
+          %p Paypal is an online payment processing service that allows you to receive paments from Aerial Applications, you must  have an existing account with paypal. Enter the email address associated with your PayPal account.
+          %label PayPal Email
+          %input
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#editMethodModal2"}
+  #editMethodModal2.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3.header-margin Update PayPal
+          %h5 PayPal (replace this with an image)
+          %p Is this the correct email address for your existing PayPal account?
+          %h2 xyz@gmail.com
+          %input.gray-button{:value => "Back", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#editMethodModal"}
+          %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal"}
+  #deactivateModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3 Deactivate Your Account
+          %p.popup-message Deactivating means that no one will see your profile or projects. You won’t be able to access any of your project files through our website unless you reactivate.
+          %br
+          %strong.popup-message Please tell us why you’re leaving (optional):
+          %textarea
+          %input.gray-button.cancel{:value => "Cancel", :type => "button", :style => "margin-left: 200px; margin-right: 15px; margin-top: 20px;", "data-dismiss" => "modal"}
+          %input.button.sm{:value => "Deactivate", :type => "submit"}

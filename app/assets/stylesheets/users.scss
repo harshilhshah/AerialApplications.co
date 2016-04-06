@@ -44,6 +44,9 @@ $font_1: sans-serif;
 		margin: 0px 0 20px 0;
 		font-size: 24px;
 	}
+	h5 {
+		color: #767676;
+	}
 }
 #sidebar {
 	width: 200px;
@@ -80,44 +83,59 @@ $font_1: sans-serif;
 	width: 724px;
 	float: left;
 	padding-left: 40px;
-	.form_area {
-		width: auto;
-		padding: 20px 80px 40px 30px;
-		margin-bottom: 40px;
-		background-color: $color_wild_sand_approx;
-		border: solid 2px $color_dark_gray;
-		overflow: hidden;
-		.payment-info{
-			width: 75%;
-		    padding-bottom: 20px;
-		}
-		.padleft{
-			padding-left: 60px;
-			padding-top: 5px;
-		}
-	}
-	.form_area.popup_form{
-		padding: 5px;
-		form{
-			padding-top: 15px;
-    		padding-left: 50px;
-    		padding-right: 36px;
-    		padding-bottom: 15px;
-    		textarea{
-				width: 100%;
-				background: $white;
-				margin-top: 25px;
-			}
-		}
-		.popup-message{
-			font-size: 14px;
-			color: $color_darkest_gray;
-		}
-	}
 	select {
-		margin: 5px 0 12px 20px;
-    	border: 2px solid $color_dark_gray;
-    	background: $white;
+		margin: 5px 0 25px 0px;
+		width: 420px;
+	}
+}
+.form_area {
+	width: auto;
+	padding: 20px 80px 40px 30px;
+	margin-bottom: 40px;
+	background-color: $color_wild_sand_approx;
+	border: solid 2px $color_dark_gray;
+	overflow: hidden;
+	.payment-info{
+		width: 75%;
+	    padding-bottom: 20px;
+	}
+	.padleft{
+		padding-left: 60px;
+		padding-top: 5px;
+	}
+}
+.form_area.popup{
+	padding: 5px;
+	form{
+		padding-top: 15px;
+		padding-left: 50px;
+		padding-right: 36px;
+		padding-bottom: 15px;
+		textarea{
+			width: 100%;
+			background: $white;
+			margin-top: 25px;
+		}
+		select{
+			margin-top: 5px;
+			margin-bottom: 30px;
+			width: 420px;
+		}
+	}
+	.popup-message{
+		font-size: 14px;
+		color: $color_darkest_gray;
+	}
+	.inline{
+		display: inline;
+	}
+	.header-margin{
+		margin-bottom: 5px;
+	}
+	.next{
+		float: right;
+		margin-bottom: 10px;
+		width: 130px;
 	}
 }
 section {
@@ -191,4 +209,10 @@ section#Payment{
 			background: $color_silver_approx;
 		}
 	}
+}
+.flash-message{
+	text-align: center;
+	margin-top: 10px;
+	height: 20px;
+	margin-bottom: 40px;
 }

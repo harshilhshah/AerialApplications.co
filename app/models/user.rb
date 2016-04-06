@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   require 'stripe'
   Stripe.api_key = "sk_test_F6hkpzgbNpwqPLOAIH22UOZy"
+  @email_regex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   before_save :encrypt_password
   before_create :set_user_type
   #before_create :set_stripe_id
   validates :email, presence: true
   validates :email, uniqueness: true
+  validates_format_of :email,:with => @email_regex
   attr_accessor :card_number, :exp_month, :exp_year, :cvc
   has_many :charges
 
@@ -27,8 +29,7 @@ class User < ActiveRecord::Base
   end
   def encrypt_password
     if password.present?
-      self.salt = BCrypt::Engine.generate_salt
-#      self.password_enc= BCrypt::Engine.hash_secret(password, salt)
+      self.password_enc= BCrypt::Password.create(password)
     end
     self.password = nil
   end
@@ -99,16 +100,17 @@ class User < ActiveRecord::Base
     else
       user = User.find_by_username(username_or_email)
     end
-    if user && user.match_password(login_password)
+    if user && user.match_password(login_password, user)
       return user
     else
       return false
     end
   end   
-  def match_password(login_password="")
-    password_enc == BCrypt::Engine.hash_secret(login_password, salt)
+  def match_password(login_password="", user)
+    user_pass = BCrypt::Password.new(user.password_enc)
+    return user_pass == login_password
   end
   def self.is_email(email)
-    (email =~ /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i)
+    (email =~ @email_regex)
   end
 end
