@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_aircraft, :profile]
-  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :user_aircraft]
+  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile]
 
   # GET /users
   # GET /users.json
@@ -57,6 +57,11 @@ class UsersController < ApplicationController
   end
 
   def profile
+    @user = @current_user
+  end
+
+  def edit_profile
+    @user = @current_user
   end
 
   def signup

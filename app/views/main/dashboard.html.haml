@@ -47,8 +47,8 @@
         .exclamation !
         .notice-message Please verify your email address. Click to resend verification email.
       .active-project
-        .project-list
-          %h3 Active Projects
+        %h3 Active Projects
+        - if @projects.length > 0
           %table.a-1ist
             %tr
               %th Address
@@ -63,18 +63,14 @@
                   %br
                   %span
                     %a Message Client
-        .button.dashboard-btn
-          = link_to 'New Project', new_project_path
       .active-project
-        .project-list
-          %h3 New Messages
-          %p No new messages
+        %h3 New Messages
+        %p No new messages
       .active-project
-        .project-list
-          %h3 Referrals
-          %p
-            Invite a friend to join Aerial Applications, and you’ll both get $50 off your
-            next project
+        %h3 Referrals
+        %p.inline
+          Invite a friend to join Aerial Applications, and you’ll both get $50 off your
+          next project
         .button.dashboard-btn
           = link_to 'Invite Friends', ''
 -else
@@ -85,8 +81,8 @@
         .exclamation !
         .notice-message Please verify your email address. Click to resend verification email.
       .active-project
-        .project-list
-          %h3 Active Projects
+        %h3 Active Projects
+        - if @projects.length > 0
           %table.a-1ist
             %tr
               %th Address
@@ -107,14 +103,12 @@
         .button.dashboard-btn
           = link_to 'New Project', new_project_path
       .active-project
-        .project-list
-          %h3 New Messages
-          %p No new messages
+        %h3 New Messages
+        %p No new messages
       .active-project
-        .project-list
-          %h3 Referrals
-          %p
-            Invite a friend to join Aerial Applications, and you’ll both get $50 off your
-            next project
+        %h3 Referrals
+        %p.inline
+          Invite a friend to join Aerial Applications, and you’ll both get $50 off your
+          next project
         .button.dashboard-btn
           = link_to 'Invite Friends', ''

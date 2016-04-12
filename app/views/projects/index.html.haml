@@ -9,57 +9,59 @@
         .notice-message You have a new project draft. Click to return to your draft.
     .active-project
       %h3 Active Projects
-      %table.a-1ist
-        %tr
-          %th Address
-          %th Date Scheduled
-          - if @current_user.is_affiliate?
-            %th Client
-          - else
-            %th Pilot
-        - @active_projects.each do |project|
+      - if @active_projects.length > 0
+        %table.a-1ist
           %tr
-            %td= project.address
-            %td= project.due.strftime('%m-%d-%Y')
-            %td 
-              - if @current_user.is_affiliate?
-                = project.get_client_name
-              - else
-                = project.get_pilot_name
-              %br
-              %span
-              - if @current_user.is_affiliate?
-                %a Message Client
-              - else
-                %a Message Pilot
+            %th Address
+            %th Date Scheduled
+            - if @current_user.is_affiliate?
+              %th Client
+            - else
+              %th Pilot
+          - @active_projects.each do |project|
+            %tr
+              %td= project.address
+              %td= project.due.strftime('%m-%d-%Y')
+              %td 
+                - if @current_user.is_affiliate?
+                  = project.get_client_name
+                  %br
+                  %span
+                  %a Message Client
+                - else
+                  = project.get_pilot_name
+                  %br
+                  %span                 
+                  %a Message Pilot
     .active-project
       %h3 Delivered Projects
-      %table.a-1ist
-        %tr
-          %th Address
-          - if @current_user.is_affiliate?
-            %th Date Delivered
-            %th Client
-            %th Review
-          - else
-            %th Delivered On
-            %th Pilot
-          %th
-        - @delivered_projects.each do |project|
+      - if @delivered_projects.length > 0     
+        %table.a-1ist
           %tr
-            %td= project.address
-            %td= project.due.strftime('%m-%d-%Y')
+            %th Address
             - if @current_user.is_affiliate?
-              %td 
-                = project.get_client_name
-              %td
-                %a Read review
-            -else
-              %td 
-                = project.get_pilot_name
-                %br
-                %span
-                  %a Leave a Review
-              %td
-                .button{:style=>"min-width: 120px; width: 50%;"}
-                  = link_to 'View Files', ''              
+              %th Date Delivered
+              %th Client
+              %th Review
+            - else
+              %th Delivered On
+              %th Pilot
+            %th
+          - @delivered_projects.each do |project|
+            %tr
+              %td= project.address
+              %td= project.due.strftime('%m-%d-%Y')
+              - if @current_user.is_affiliate?
+                %td 
+                  = project.get_client_name
+                %td
+                  %a Read review
+              -else
+                %td 
+                  = project.get_pilot_name
+                  %br
+                  %span
+                    %a Leave a Review
+                %td
+                  .button{:style=>"min-width: 120px; width: 50%;"}
+                    = link_to 'View Files', ''              

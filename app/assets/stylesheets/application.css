@@ -227,7 +227,6 @@ th{
     width: 140px;
     float: right;
     margin-right: 30px;
-    margin-top: 20px;
     margin-bottom: 30px;
 }
 .button a, .button a:visited {
@@ -244,6 +243,12 @@ th{
     color: #777777;
     border-bottom: 4px solid #c7c8c8;
     line-height:36px;
+    text-align: center;
+}
+.gray-button a, .gray-button a:visited {
+    color: #777777;
+    text-decoration: none;
+    background: none;
 }
 .gray-button:hover{
     background-color: #EEEFF1;
@@ -306,6 +311,7 @@ th{
     margin: 30px 0px;
 }
 .active-project{
+    min-height: 120px;
     margin-top: 40px;
     border: 2px solid #eeeff1;
     padding-top: 20px;
@@ -314,11 +320,11 @@ th{
     position: relative;
     background-color: #f7f8fa;
 }
-.project-list{
-    min-height: 120px;
-}
-.project-list p{
+.active-project p{
     margin-left: 30px;
+}
+.active-project .inline{
+    display: inline;
 }
 
 
@@ -341,3 +347,43 @@ th{
 }
 
 
+
+section.profile{
+    padding: 40px 130px;
+    width: 100%;
+    overflow: auto;
+}
+.sidebar-section h2{color: #03A9F4;}
+.sidebar-section .sm {font-size:14px;}
+.sidebar-section {
+    width: 30%;
+    float:left;
+    margin-top:50px;
+    border:1px solid #dbdcdd;
+    padding:20px;
+    background-color: #F8FAFB;
+    font-family: 'Open Sans', sans-serif;
+}
+.sidebar-section h4{font-size:22px; color:#b7b8b9;}
+.sidebar-section .url {font-size:18px; color:#6ebaf1;padding-bottom:10px;}
+.main-section-body {
+    width: 65%;
+    float: right;
+    margin-top:50px;
+    border:1px solid #dbdcdd;
+    padding:20px;
+    background-color: #F8FAFB;
+}
+.potrait-section p {
+    padding: 79px 30%;
+}
+.potrait-section{
+    height: 200px;
+    border: 1px solid #222;
+    background-color:#d8d8d8;
+}
+.main-portfolio {
+    width: 46%;
+    margin: 2%;
+    float: left;
+}

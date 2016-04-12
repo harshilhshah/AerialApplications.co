@@ -1,0 +1,77 @@
+%section.profile
+  .gray-button
+    = link_to 'Edit Profile', users_edit_profile_path
+  %div
+    .sidebar-section
+      %h2 
+        = @user.name
+      %p $85/hr
+      %br
+      %p New York, NY
+      %br
+      %p.url
+        www.johndronepilot.com
+      %p
+        .potrait-section
+          %p Portrait
+      %h4 &nbsp;
+      %h4 Services Offered
+      %p.sm Photography, Videography
+      %br
+      %h4 Industries Served
+      %p.sm Industry1, Industry2
+      %br
+      %h4 Aircraft
+      %p.sm DJI Phantom3 Professional
+      %br
+      %h4 Overview
+      %p.sm bio/about paragraph go here, loram ipsum dolor sit amet,bio/about paragraph go here, loram ipsum dolor sit amet, bio/about paragraph go here, loram ipsum dolor sit amet, bio/about paragraph go here, loram ipsum dolor sit amet, bio/about paragraph go here, loram ipsum dolor sit amet, bio/about paragraph go here, loram ipsum dolor sit amet, bio/about paragraph go here, loram ipsum dolor sit amet, bio/about paragraph go here, loram ipsum dolor sit amet,bio/about paragraph go here, loram ipsum dolor sit amet.
+    .main-section-body
+      .body-section
+        .section{:style => "width:40%;float:left;"}
+          %label{:style => "float:none;font-size:16px"} Jobs Completed
+          %label{:style => "float:none;color:#222;"} 5Jobs/30hours
+          %div{:style => "clear:both;"}
+        .section{:style => "width:40%;float:left;"}
+          %label{:style => "float:none;font-size:16px"} Reviews
+          %label{:style => "float:none;color:#03A9F4;"} Read Reviews
+          %div{:style => "clear:both;"}
+        .section{:style => "width:20%; margin: 30px 0px;float:left;"}
+          %input.button{:type => "button", :value => "Send Message"}
+          %div{:style => "clear:both;"}
+        %div{:style => "clear:both;"}
+      %hr/
+      .body-section
+        %h3
+          Portfolio
+          %span{:style => "font-size:14px;"} Add Work
+        .main-portfolio
+          .potrait-section
+            %p photo/video/project thumbnail
+          %p Title of Work
+          %p service1, service2, service3, serv...
+        .main-portfolio
+          .potrait-section
+            %p photo/video/project thumbnail
+          %p Title of Work
+          %p service1, service2, service3, serv...
+        .main-portfolio
+          .potrait-section
+            %p photo/video/project thumbnail
+          %p Title of Work
+          %p service1, service2, service3, serv...
+        .main-portfolio
+          .potrait-section
+            %p photo/video/project thumbnail
+          %p Title of Work
+          %p service1, service2, service3, serv...
+        .main-portfolio
+          .potrait-section
+            %p photo/video/project thumbnail
+          %p Title of Work
+          %p service1, service2, service3, serv...
+        .main-portfolio
+          .potrait-section
+            %p photo/video/project thumbnail
+          %p Title of Work
+          %p service1, service2, service3, ser

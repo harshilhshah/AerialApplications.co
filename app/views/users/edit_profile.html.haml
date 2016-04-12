@@ -1,0 +1,77 @@
+.account
+  %h1 Edit Profile
+  = form_for @user, method: :put do |u|
+    #sidebar
+      %nav
+        %ul
+          %li
+            %a{:href => "#Personal"} Profile Basics
+          %li
+            %a{:href => "#Company"} Social Media
+          %li
+            %a{:href => "#Notification"} Hourly Rate
+          %li
+            %a{:href => "#Referrals"} Services Offered
+          %li
+            %a{:href => "#Referrals"} Aircraft
+          %li
+            %a{:href => "#Referrals"} Availability
+      %input.button.sm{:type => "submit", :value => "Save Changes"}
+      %br
+      %br
+      .gray-button
+        = link_to 'View Profile', users_profile_path
+    #content
+      %section#Personal
+        %h2 Profile Basics
+        .form_area
+          %form
+            %label First Name
+            = u.text_field :firstName
+            %br
+            %label Last Name
+            = u.text_field :lastName
+            %br
+            %label Location
+            %input{:value => "New York, New York"}
+            %label Website
+            %input{:value => "http://"}/
+            %label About Yourself
+            %textarea{:placeholder => "What's your background? Clients and potential clients will be able to read this to learn more about you.", :style => "width:73%; background-color:#FFFFFF;"}
+            %label Portrait
+            %input{:size => "40", :style => "width:73%;", :type => "file"}
+            %button.gray-button{:style => "margin-left:150px;", :type => "upload"} Upload Photo
+            %button.button.sm{:style => "margin-left:50px;", :type => "upload"} Replace Photo
+      %section#Company
+        %h2 Services Offered
+        .form_area
+          %div{:style => "width:50%; margin-left:150px;"}
+            %div{:style => "float:left; background-color:#999;"} Photography X
+            %div{:style => "float:left;margin-left:10px; background-color:#999;"} Videography X
+          %br
+          %label{:style => "width:15%;"}
+            I Offer...
+            = succeed "(add" do
+              %br
+            up to 10 Services)
+          %div{:style => "margin-left:120px;"}
+            %select#select-services{:multiple => ""}
+              %option{:value => "Survay"} Survay
+              %option{:value => "Aerial Surveying"} Aerial Surveying
+              %option{:value => "Agricultural Surveying"} Agricultural Surveying
+              %option{:value => "Supervision"} Supervision
+      %section#Notification
+        %h2 Hourly Rate
+        .form_area{:style => "padding-bottom:10px;"}
+          %form
+            %label USD Per Hour
+            %input{:name => "Input", :style => "width:25%;", :value => "$"}
+      %section#Company
+        %h2 Aircraft
+        .form_area
+          %div{:style => "width:50%; margin-left:150px; padding-bottom:5px;"}
+            %div{:style => "float:left; background-color:#999;"} DjI Phantom 3 Professional X
+          %br
+          %label{:style => "width:15%;"} I use...
+          %div{:style => "margin-left:150px;"}
+            %input{:type => "text", :value => "add aircraft"}

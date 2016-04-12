@@ -23,16 +23,5 @@ module Site
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| "<span class='error'>#{html_tag}</span>".html_safe }
-
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = true
-
-    ActionMailer::Base.smtp_settings = {
-    address: 'smtp.mailchimp.com',
-    port: 587,
-    user_name: ENV['MAILCHIMP_USERNAME'],
-    password: ENV['MAILCHIMP_APIKEY']
-    }
   end
 end

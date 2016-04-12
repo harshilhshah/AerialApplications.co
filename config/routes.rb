@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   resources :charges
   get 'users/account'
+  get 'users/profile'
+  get 'users/edit_profile'
   get 'users/calendar'
   get 'projects/dashboard'
   get 'users/:id/aircraft' => 'users#aircraft'
-  get 'users/:id/profile' => 'users#profile'
   get 'sessions/login'
   get 'sessions/logout'
   get 'become_a_pilot' => 'users#become_a_pilot'
@@ -19,8 +20,11 @@ Rails.application.routes.draw do
   resources :project_types
   resources :projects
   resources :user_types
-  resources :users
+  resources :users do
+    patch 'update_password'
+  end
   get 'main/index'
+  get 'about' => 'main#about'
   get 'signup' => 'users#signup'
   get 'confirm_signup' => 'users#confirm_signup'
   get 'dashboard' => 'main#dashboard'
@@ -30,8 +34,6 @@ Rails.application.routes.draw do
   get 'about/kyle_bembnister' => 'main#kyle_bembnister'
   get 'about/mike_ledermann' => 'main#mike_ledermann'
   get 'about/timothy_haas' => 'main#timothy_haas'
-  #get 'contact'
-
   get 'affiliates' => 'main#affiliates'
   get 'contact' => 'main#contact'
   post 'main/create_contact'
