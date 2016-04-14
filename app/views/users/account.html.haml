@@ -20,7 +20,7 @@
             %a{:href => "#Referrals"} Referrals
       %input.button.sm{:type=>"submit", :value=>"Save Changes"}
     #content
-      .flash-message
+      #flashmessage.flash-message
         = flash[:notice]
       %section#Personal
         %h2 Personal Settings
@@ -151,7 +151,7 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
         = form_for @user, url:  user_update_password_url(@user), :remote => true, :authenticity_token => true do |u|
-          %h3#hh Change Your Password
+          %h3 Change Your Password
           .field
             %label Old Password
             = u.password_field :old_password
@@ -163,21 +163,16 @@
             = u.password_field :password_confirmation
           = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 260px; margin-right: 25px;"
           = u.submit "Change password", :class => "button sm", 'data-toggle' => "modal"
-        :javascript
-          $(document).ready(function(){
-            $("#edit_user_18").on("ajax:success", function (e, data, status, xhr){
-              $('#hh').text('Done.');
-            });
-          });
-  #successModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-    %section.modal-dialog{:role => "document", :style => "width: 570px;"}
-      .form_area.popup
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %form
-          %h3 Success
-          %p.popup-message Your new password has been saved.
-          %input.button.sm{:value => "Okay", :type => "button", "data-dismiss" => "modal", :style => "margin: 40px 0px 0px 310px;"}
+    / The success modal is a child modal of changePass so when user closes success, the parent closes too.
+    #successModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+      %section.modal-dialog{:role => "document", :style => "width: 570px;"}
+        .form_area.popup
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %form
+            %h3 Success
+            %p.popup-message Your new password has been saved.
+            %input.button.sm{:value => "Okay", :type => "button", "data-dismiss" => "modal", :style => "margin: 40px 0px 0px 310px;"}
   #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
     %section.modal-dialog{:role => "document", :style => "width: 670px;"}
       .form_area.popup

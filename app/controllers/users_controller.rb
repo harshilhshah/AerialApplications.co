@@ -30,18 +30,24 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    user = User.authenticate(@current_user.email,params[:old_password])
+    user = User.authenticate(@current_user.email,params[:user][:old_password])
     respond_to do |format|
       if user
-        if params["user"][:password] == params["user"][:password_confirmation]
-          format.html { redirect_to :back, notice: "Success!" }
-          format.json{ render json: "Success" }
-          format.js{ render json: "sad"}
+        if params[:user][:password] == params[:user][:password_confirmation]
+          @current_user.password = params[:user][:password]
+          @current_user.encrypt_password
+          @current_user.update({:password_enc => @current_user.password_enc})
+          format.json
+          format.js{ render :layout => false}
         else
-          format.html { redirect_to :back, notice: "Passwords don't match." }
+          @current_user.errors.add(:match, "Passwords don't match.")
+          format.json {render json: @current_user.errors, status: :unprocessable_entity }
+          format.js{ render :layout => false, status: :unprocessable_entity}
         end
       else
-        format.json { render json: user.errors, status: :unprocessable_entity }
+          @current_user.errors.add(:incorrect, "Incorrect Password.")
+          format.json {render json: @current_user.errors, status: :unprocessable_entity }
+          format.js{ render :layout => false, status: :unprocessable_entity}
       end
     end
   end

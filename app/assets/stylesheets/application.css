@@ -100,6 +100,19 @@ textarea{
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
+.error-popup{
+    float: right;
+    background: #e19e9d;
+    width: 420px;
+    margin-top: -27px;
+    padding: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ce5851;
+    border: 2px solid #ce5851;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;  
+}
 .success{
 	font-weight: bold;
 	color:gray;
