@@ -48,6 +48,7 @@ class MainController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        AdminMailer.contact_mail(params[:contact][:name],params[:contact][:email],params[:contact][:message]).deliver
       	format.html { redirect_to '/' }
       else
       	format.html { render 'contact' }
