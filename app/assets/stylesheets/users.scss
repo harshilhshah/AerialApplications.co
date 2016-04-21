@@ -77,6 +77,14 @@ $font_1: sans-serif;
 				}
 			}
 		}
+		li.selected a{
+			color: $color_malibu_approx;
+			background-color: inherit;	
+		}
+		li:hover a{
+			color: $color_malibu_approx;
+			background-color: inherit;		
+		}
 	}
 }
 #content {
@@ -148,7 +156,11 @@ section {
 		font-size: 14px;
 		color: $color_darkest_gray;
 	}
-	input{
+	input[type=text],
+	input[type=number],
+	input[type=email],
+	input[type=tel],
+	input[type=password]{
 		margin: 5px 0 25px;
 		width: 420px;
 		background-color: $white;

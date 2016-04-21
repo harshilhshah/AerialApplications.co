@@ -1,0 +1,14 @@
+<% if @current_user.errors[:message].present? %>
+if ($('#update_user_card_number').parent().is( "span" )){
+	$('#update_user_card_number').unwrap();
+	$('.error-popup').remove();
+}
+$('#update_user_card_number').wrap( "<span class='error'></span>" ).after("<p class=\"error-popup\"><%= escape_javascript(@current_user.errors[:message].join(',')) %></p>");
+<% else %>
+if ($('#update_user_card_number').parent().is( "span" )){
+	$('#update_user_card_number').unwrap();
+	$('.error-popup').remove();
+}
+jQuery.noConflict(); // Because having multiple jQuery plugins causes trouble.
+$('#updateCardModal').modal('hide');
+<% end %>

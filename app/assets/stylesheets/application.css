@@ -46,7 +46,11 @@ select{
     border: 2px solid #edeef0;
     background: white;
 }
-input{
+input[type=text],
+input[type=number],
+input[type=email],
+input[type=tel],
+input[type=password]{
     border:2px solid #CDCDCD;
     border-radius: 3px;
     height:40px;
@@ -86,7 +90,7 @@ textarea{
 	font-size: 13px;
 }
 .error input{
-	border:2px solid #ce5851;
+	border:2px solid #ce5851 !important;
 }
 .error-message{
     background: #e19e9d;

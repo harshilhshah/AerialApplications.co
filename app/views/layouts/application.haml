@@ -10,7 +10,7 @@
     =javascript_include_tag "application"
   %body
     .wrapper
-      - if @current_user.nil?
+      - if @non_user_page or @current_user.nil?
         = render 'layouts/header'
       - elsif @current_user.is_affiliate?
         = render 'layouts/affiliate_header'
@@ -40,29 +40,29 @@
             .socials
               %ul
                 %li
-                  %a{:href => "#"}
+                  %a{:href => "https://www.facebook.com/aerialapplications"}
                     %i.ico-facebook
                 %li
-                  %a{:href => "#"}
+                  %a{:href => "https://twitter.com/Aerapps"}
                     %i.ico-twitter
                 %li
-                  %a{:href => "#"}
+                  %a{:href => "https://www.linkedin.com/company/aerial-applications"}
                     %i.ico-linkedin
                 %li
-                  %a{:href => "#"}
+                  %a{:href => "https://www.instagram.com/aerial_applications"}
                     %i.ico-instagram
               %ul
                 %li
-                  %a{:href => "#"}
+                  %a{:href => "https://www.behance.net/aerialapps"}
                     %i.ico-behance
+                / /%li
+                / /%a{:href => "#"}
+                / /%i.ico-vimeo
                 %li
-                  %a{:href => "#"}
-                    %i.ico-vimeo
-                %li
-                  %a{:href => "#"}
+                  %a{:href => "https://plus.google.com/b/116799119508172466446/116799119508172466446"}
                     %i.ico-gplus
                 %li
-                  %a{:href => "#"}
+                  %a{:href => "https://www.youtube.com/channel/UCvAwsM_hptnObHEX90fbN8Q"}
                     %i.ico-youtube
             / /.socials
           / /.col col-1of2

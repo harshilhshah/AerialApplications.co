@@ -4,20 +4,21 @@
     #sidebar
       %h1 Account
       %nav
+        - func ="$(this).parent().addClass('selected').siblings().removeClass('selected');"
         %ul
           %li
-            %a{:href => "#Personal"} Personal Settings
+            = link_to "Personal Settings", "#Personal", :onclick => "#{func}"
           %li
-            %a{:href => "#Company"} Company Info
+            = link_to "Company Info", "#Company", :onclick => "#{func}"
           %li
             -if @user.is_affiliate?
-              %a{:href => "#Payout"} Payout Methods
+              = link_to "Payout Methods", "#Payout", :onclick => "#{func}"
             -else
-              %a{:href => "#Payment"} Payment Methods
+              = link_to "Payment Methods", "#Payment", :onclick => "#{func}"
           %li
-            %a{:href => "#Notification"} Notification Settings
+            = link_to "Notification Settings", "#Notification", :onclick => "#{func}"
           %li
-            %a{:href => "#Referrals"} Referrals
+            = link_to "Referrals", "#Referrals", :onclick => "#{func}"
       %input.button.sm{:type=>"submit", :value=>"Save Changes"}
     #content
       #flashmessage.flash-message
@@ -43,13 +44,13 @@
           = u.text_field :lastName
           %br
           %label Address 1
-          %input
+          %input{:type => "text"}
           %br
           %label Address 2
-          %input
+          %input{:type => "text"}
           %br
           %label City
-          %input
+          %input{:type => "text"}
           %br
           %label State
           = select_tag :state, options_for_select(us_states)
@@ -68,31 +69,31 @@
         .form_area#company
           %h3 Company Basics
           %label Company Name
-          %input
+          %input{:type => "text"}
           %label Industry
-          %input
+          %input{:type => "text"}
           %br
           %label Website
-          %input
+          %input{:type => "text"}
           %br
           %label HQ Phone
-          %input
+          %input{:type => "text"}
           %hr{:style=>"margin-top:15px;"}
           %h3 Company Address
           %label Address 1
-          %input
+          %input{:type => "text"}
           %br
           %label Address 2
-          %input
+          %input{:type => "text"}
           %br
           %label City
-          %input
+          %input{:type => "text"}
           %br
           %label State
           = select_tag :state, options_for_select(us_states)
           %br
           %label Zip Code
-          %input
+          %input{:type => "text"}
       -if @user.is_affiliate?
         %section#Payout
           %h2 Payout Methods
@@ -118,14 +119,15 @@
             %h3 Saved cards
             %table
               %tbody
-                %tr
-                  %td.payment-info Visa **** **** **** 1234 Exp: 11/19
-                  %td
-                    %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
-                %tr
-                  %td.payment-info Visa **** **** **** 1234 Exp: 11/19
-                  %td
-                    %input.gray-button{:value => "Update This Card", :type => "button", 'data-toggle' => "modal", 'data-target' => "#updateCardModal"}
+                - @cards.each do |c|
+                  %tr
+                    %td.payment-info
+                      = "%s **** **** **** %d Exp: %d/%d" % [c.brand, c.last4, c.exp_month, c.exp_year]
+                    %td
+                      .gray-button
+                        =link_to "Update This Card", user_card_info_url(@user, :authenticity_token => form_authenticity_token(), card_id: c.id), :type => "button", :style=>"margin: 0px;", :remote => true, method: :post, "data-toggle" => "modal"
+                      = radio_button_tag "Default", "Primary", (c.id == @default_id)
+                      Primary
             %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
       %section#Notification
         %h2 Notification Settings
@@ -141,7 +143,7 @@
         %h2 Referrals
         .form_area
           %h3 Referral Code
-          under contrction
+          under construction
       %section
         %input.gray-button{:value => "Deactivate Account", :type=>"button", 'data-toggle' => "modal", 'data-target' => "#deactivateModal"}
       %br
@@ -178,12 +180,14 @@
       .form_area.popup
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
-        = form_for @user, :remote => true, :authenticity_token => true do |u|
+        = form_for @user, url:  user_add_card_url(@user), :remote => true, :authenticity_token => true do |u|
           %h3 Add New Card
-          %label Card Number
-          = u.number_field :card_number
-          %label Name On Card
-          = u.text_field :name
+          .field
+            %label Card Number
+            = u.number_field :card_number
+          .field
+            %label Name On Card
+            = u.text_field :name
           %label Expiration Date
           = u.text_field :exp_month, :maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"
           = u.text_field :exp_year, :maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"
@@ -191,25 +195,6 @@
           = u.text_field :cvc, :maxlength => "3", :style => "width: 110px; margin-left: 11px;"
           = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 295px; margin-right: 20px;"
           =u.submit "Save", :class => "button", :style => "width: 130px;"
-  #updateCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
-    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
-      .form_area.popup
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        = form_for @user, :remote => true, :authenticity_token => true do |u|
-          %h3 Update Card Information
-          %label Card Number
-          = u.number_field :card_number
-          %label Name On Card
-          = u.text_field :name
-          %label Expiration Date
-          = u.text_field :exp_month, :maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"
-          = u.text_field :exp_year, :maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"
-          .popup-message.inline CVC
-          = u.text_field :cvc, :maxlength => "3", :style => "width: 110px; margin-left: 11px;"
-          = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 150px; margin-right: 20px;"
-          = u.button "Remove Card", :class => "red-button button", :style => "width: 120px;"
-          = u.button "Save",:class => "button", :style => "margin-left: 20px; width: 130px;"
   #addMethodModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
     %section.modal-dialog{:role => "document", :style => "width: 670px;"}
       .form_area.popup

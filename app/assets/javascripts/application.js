@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require bootstrap
 //= require main
 //= require_tree .
+
+$(document).ready(function() {
+
+
+});

@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   require 'stripe'
-  Stripe.api_key = "sk_test_F6hkpzgbNpwqPLOAIH22UOZy"
+  Stripe.api_key = "sk_test_4xudmwlD9S7Hd4e2X28Ki9dh"
   @email_regex = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   before_save :encrypt_password
   before_create :set_user_type
-  #before_create :set_stripe_id
+  before_create :set_stripe_id
   validates :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email,:with => @email_regex
@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
     end
     self.password = nil
   end
-  #def add_card
   def set_stripe_id
     customer = Stripe::Customer.create()
     self.stripe_id = customer.id
@@ -43,23 +42,51 @@ class User < ActiveRecord::Base
       self.userTypeId = UserType.find_by_description("New User").id
     end
   end
-  def add_card(number,month,year,cvc)
-    token = Stripe::Token.create(
-      :card => {
-      :number => number,
-      :exp_month => month,
-      :exp_year => year,
-      :cvc => cvc
-      }
-    )
-    customer = Stripe::Customer.retrieve(self.stripe_id)
-    customer.sources.create(source: token) 
+  def add_card(name,number,month,year,cvc)
+    begin 
+      token = Stripe::Token.create(
+        :card => {
+        :name=>name,
+        :number => number,
+        :exp_month => month,
+        :exp_year => year,
+        :cvc => cvc
+        }
+      )
+      customer = Stripe::Customer.retrieve(self.stripe_id)
+      customer.sources.create(source: token) 
+    rescue => e
+      return e.message
+    end
+  end
+  def update_card(card_id, name, month, year)
+    begin
+      card = Stripe::Customer.retrieve(self.stripe_id).sources.retrieve(card_id)
+      card.name = name
+      card.exp_month = month
+      card.exp_year = year
+      card.save
+      return nil
+    rescue => e
+      return e.message
+    end
   end
   def remove_card(card_id)
-    Stripe::Customer.retrieve(self.stripe_id).sources.retrieve(card_id).delete()
+    begin
+      Stripe::Customer.retrieve(self.stripe_id).sources.retrieve(card_id).delete()
+      return nil
+    rescue => e
+      return e.message
+    end
   end
   def cards
     Stripe::Customer.retrieve(self.stripe_id).sources.all(object: :card).data
+  end
+  def get_card(card_id)
+    Stripe::Customer.retrieve(self.stripe_id).sources.retrieve(card_id)
+  end
+  def get_default_id
+    return Stripe::Customer.retrieve(self.stripe_id).default_source
   end
   def set_default_card(card_id)
     customer = Stripe::Customer.retrieve(self.stripe_id)

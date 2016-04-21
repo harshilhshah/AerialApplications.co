@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :projects
   resources :user_types
   resources :users do
+    patch 'add_card'
+    patch 'update_card'
+    post 'card_info'
+    post 'remove_card'
     patch 'update_password'
   end
   get 'main/index'

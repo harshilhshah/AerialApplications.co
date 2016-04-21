@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :user_aircraft]
-  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile]
+  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile, :add_card, :update_card, :remove_card, :card_info]
 
   # GET /users
   # GET /users.json
@@ -27,6 +27,8 @@ class UsersController < ApplicationController
 
   def account
     @user = @current_user
+    @cards = @user.cards
+    @default_id = @user.get_default_id()
   end
 
   def update_password
@@ -53,7 +55,62 @@ class UsersController < ApplicationController
   end
 
   def add_card
-    User.add_card(card_params)
+    name = params[:user][:name]
+    number = params[:user][:card_number]
+    month = params[:user][:exp_month]
+    year = params[:user][:exp_year]
+    cvc = params[:user][:cvc]
+    response = @current_user.add_card(name,number,month,year,cvc)
+    respond_to do |format|
+      if response
+        @current_user.errors.add(:message, response)
+        format.json {render json: @current_user.errors, status: :unprocessable_entity }
+        format.js{ render :layout => false, status: :unprocessable_entity}
+      else
+        format.json
+        format.js{ render :layout => false}
+      end
+    end
+  end
+
+  def card_info
+    @user = @current_user
+    @card = @user.get_card(params[:card_id])
+    respond_to do |format|
+      format.js{render :layout => false}
+    end
+  end
+
+  def update_card
+    name = params[:user][:name]
+    month = params[:user][:exp_month]
+    year = params[:user][:exp_year]
+    card_id = params[:user][:id]
+    response = @current_user.update_card(card_id,name,month,year)
+    respond_to do |format|
+      if response
+        @current_user.errors.add(:message, response)
+        format.json {render json: @current_user.errors, status: :unprocessable_entity }
+        format.js{ render :layout => false, status: :unprocessable_entity}
+      else
+        format.json
+        format.js{ render :layout => false}
+      end
+    end
+  end
+
+  def remove_card
+    response = @current_user.remove_card(params[:card_id])
+    respond_to do |format|
+      if response
+        @current_user.errors.add(:message, response)
+        format.json {render json: @current_user.errors, status: :unprocessable_entity }
+        format.js{ render :layout => false, status: :unprocessable_entity}
+      else
+        format.json
+        format.js{ render :layout => false}
+      end
+    end
   end
 
   def aircraft
@@ -152,9 +209,5 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:firstName, :lastName, :zipCode, :email, :username, :password_enc, :password, :salt, :userTypeId, :active, :approved)
-    end
-
-    def card_params
-      params.require(:user).permit(:card_number, :exp_month, :exp_year, :cvc)
     end
 end

@@ -1,0 +1,3 @@
+jQuery.noConflict(); // Because having multiple jQuery plugins causes trouble.
+$('body').append("<%= escape_javascript(render :partial => 'users/update_card_partial') %>");
+$('#updateCardModal').modal('show');
