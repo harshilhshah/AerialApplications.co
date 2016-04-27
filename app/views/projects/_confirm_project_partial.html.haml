@@ -1,3 +1,4 @@
+=stylesheet_link_tag 'bootstrap.min'
 = form_for @project do |project|
   #confirmProject.col-8.right-block.floatleft.confirm
     %h3.sub-title Price Estimation
@@ -18,8 +19,8 @@
         %br
           = "%s **** **** **** %d" % [@card.brand, @card.last4]
       .full.border-bottom
-      %input.gray-button{:value =>  "Change Method"}
-      %input.gray-button{:value =>  "Add New Method"}
+      %input.gray-button{:value =>  "Change Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#changeCardModal"}
+      %input.gray-button{:value =>  "Add New Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
     %h3.sub-title Review and Confirm
     .full.right-content
       %h4 Pilot

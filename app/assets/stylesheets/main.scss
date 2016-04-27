@@ -179,6 +179,7 @@ h3 {
 		text-decoration: none;
 		&:hover {
 			color: $white;
+			background: $black;
 		}
 	}
 	.position {
@@ -216,10 +217,12 @@ h3 {
 	margin-bottom: 30px;
 	padding-left: 20px;
 	text-align: left;
+	color: $color_cerulean_approx;
 }
 .linkedIn-link {
 	margin-top: 10px;
 	text-align: left;
+	color: $color_cerulean_approx;
 }
 .INF0 {
 	float: left;
@@ -254,6 +257,7 @@ h3 {
 	display: inline-block;
 	width: 100%;
 	text-align: center;
+	color: $color_cerulean_approx;
 	a {
 		margin: 0 15px;
 	}
@@ -261,6 +265,5 @@ h3 {
 .link a {
 	font-family: $font_0, $font_1;
 	font-size: 18px;
-	color: $color_cerulean_approx;
 	text-decoration: none;
 }

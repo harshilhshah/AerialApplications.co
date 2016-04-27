@@ -1,3 +1,4 @@
+=stylesheet_link_tag 'bootstrap.min'
 .full
   .container
     .col-row
@@ -12,7 +13,16 @@
               %a{:href => "#choosePilot"} Choose a Pilot
             %li
               %a{:href => "#confirmProject"} Confirm Project
-        %input.gray-button{:value => "Cancel This Project"}
+        %input.gray-button{:value => "Cancel This Project", :type => "button", 'data-toggle' => "modal", 'data-target' => "#confirmCancel"}
+        #confirmCancel.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+          %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+            .form_area.popup
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                %span{"aria-hidden" => "true"} ×
+              %form.center
+                %h3.header-margin Are you sure you want to cancel this project?
+                %input.gray-button{:value => "Nevermind", :type => "button", 'data-dismiss' => "modal"}
+                %input.red-button.button{:value => "Yes, Cancel", :type => "button", 'data-dismiss' => "modal"}
       = form_for @project, url: projects_confirm_project_url(@project), :remote => true, :authenticity_token => true do |p|
         #projectSpecs.col-8.right-block.floatleft{:style => "display: block;"}
           %h2.sub-title Project Specifications
@@ -65,3 +75,38 @@
               %a.link{:href => "#"} Show more
           .button-right.full.right
             = p.submit 'Next Step', :class => "button sm"
+  #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        = form_for @current_user, url:  user_add_card_url(@current_user), :remote => true, :authenticity_token => true do |u|
+          %h3 Add New Card
+          .field
+            %label Card Number
+            = u.number_field :card_number
+          .field
+            %label Name On Card
+            = u.text_field :name
+          %label Expiration Date
+          = u.text_field :exp_month, :maxlength => "2", :style => "width: 110px; margin-right: 20px;", :placeholder => "MM"
+          = u.text_field :exp_year, :maxlength => "4", :style => "width: 110px; margin-right: 20px;", :placeholder => "YYYY"
+          .popup-message.inline CVC
+          = u.text_field :cvc, :maxlength => "3", :style => "width: 103px; margin-left: 11px;"
+          = u.button "Cancel", :class => "gray-button cancel", "data-dismiss" => "modal", :style => "margin-left: 295px; margin-right: 20px;"
+          = u.submit "Save", :class => "button", :style => "width: 129px;"
+  #changeCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+    %section.modal-dialog{:role => "document", :style => "width: 670px;"}
+      .form_area.popup
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %form
+          %h3 Change Method
+          %table
+            %tbody
+              - @cards.each do |c|
+                %tr
+                  %td.payment-info
+                    = "%s **** **** **** %d Exp: %d/%d" % [c.brand, c.last4, c.exp_month, c.exp_year]
+          %input.gray-button.cancel{:value => "Cancel", :type => "button", "data-dismiss" => "modal", :style => "margin-left: 295px; margin-right: 20px;"}
+          %input.button{:value => "Change", :type => "button", "data-dismiss" => "modal", :style => "width: 129px;"}

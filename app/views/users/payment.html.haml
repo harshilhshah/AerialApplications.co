@@ -1,0 +1,11 @@
+%table.a-1ist
+  %tr
+    %th Address
+    %th Date Scheduled
+    %th Charge Amount
+  - @projects.each do |project|
+    %tr
+      %td
+        = link_to project.address, project_path(project.id)
+      %td= project.due.strftime('%m-%d-%Y')
+      %td 1

@@ -44,22 +44,22 @@
           = u.text_field :lastName
           %br
           %label Address 1
-          %input{:type => "text"}
+          = u.text_field :address1
           %br
           %label Address 2
-          %input{:type => "text"}
+          = u.text_field :address2
           %br
           %label City
-          %input{:type => "text"}
+          = u.text_field :city
           %br
           %label State
-          = select_tag :state, options_for_select(us_states)
+          = u.select :state, options_for_select(us_states, @user.state), include_blank: true
           %br
           %label Zip code
           = u.number_field :zipCode
           %br
           %label Phone
-          %input{:maxlength => "12", :style => "width: 130px; margin-right: 20px", :type => "tel"}
+          = u.text_field :phone, :maxlength => "12", :style => "width: 130px; margin-right: 20px", :type => "tel"
           %select{:style => "width: 100px;"}
             %option Cell
             %option Home
@@ -67,33 +67,34 @@
       %section#Company
         %h2 Company Info
         .form_area#company
-          %h3 Company Basics
-          %label Company Name
-          %input{:type => "text"}
-          %label Industry
-          %input{:type => "text"}
-          %br
-          %label Website
-          %input{:type => "text"}
-          %br
-          %label HQ Phone
-          %input{:type => "text"}
-          %hr{:style=>"margin-top:15px;"}
-          %h3 Company Address
-          %label Address 1
-          %input{:type => "text"}
-          %br
-          %label Address 2
-          %input{:type => "text"}
-          %br
-          %label City
-          %input{:type => "text"}
-          %br
-          %label State
-          = select_tag :state, options_for_select(us_states)
-          %br
-          %label Zip Code
-          %input{:type => "text"}
+          = u.fields_for @company do |c_fields|
+            %h3 Company Basics
+            %label Company Name
+            = c_fields.text_field :name
+            %label Industry
+            = c_fields.text_field :industry
+            %br
+            %label Website
+            = c_fields.text_field :website
+            %br
+            %label HQ Phone
+            = c_fields.text_field :phone
+            %hr{:style=>"margin-top:15px;"}
+            %h3 Company Address
+            %label Address 1
+            = c_fields.text_field :address1
+            %br
+            %label Address 2
+            = c_fields.text_field :address2
+            %br
+            %label City
+            = c_fields.text_field :city
+            %br
+            %label State
+            = c_fields.select :state, options_for_select(us_states, @company.state), include_blank: true
+            %br
+            %label Zip Code
+            = c_fields.text_field :zip
       -if @user.is_affiliate?
         %section#Payout
           %h2 Payout Methods

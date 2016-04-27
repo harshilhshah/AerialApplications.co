@@ -32,6 +32,12 @@ class UsersController < ApplicationController
     @user = @current_user
     @cards = @user.cards
     @default_id = @user.get_default_id()
+    @company = @user.get_company
+    if not @company
+      @company = Company.create
+      logger.debug @company.id
+      @user.update_attributes(:company_id => @company.id)
+    end
   end
 
   def update_password
@@ -173,6 +179,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @company = Company.find(@user.company_id).update(company_params)
     respond_to do |format|
       if @user.is_admin?
         if @user.update(user_params)
@@ -183,7 +190,7 @@ class UsersController < ApplicationController
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       else
-        if @user.update(user_params)
+        if @user.update(user_params) and @company
           format.html { redirect_to :back, notice: 'Changes have been saved.' }
           format.json { render :account, status: :ok, location: @user }
         else
@@ -195,6 +202,13 @@ class UsersController < ApplicationController
   end
 
   def payment
+    if @current_user.is_admin?
+      @projects = Project.all
+    elsif @current_user.is_affiliate?
+      @projects = Project.where(:affiliateId => @current_user.id)
+    else
+      @projects = Project.where(:customerId => @current_user.id)
+    end
   end
 
   # DELETE /users/1
@@ -215,6 +229,10 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:firstName, :lastName, :zipCode, :email, :username, :password_enc, :password, :salt, :userTypeId, :active, :approved)
+      params.require(:user).permit(:firstName, :lastName, :zipCode, :email, :username, :password_enc, :password, :salt, :userTypeId, :active, :approved, :phone, :address1, :address2, :city, :state)
+    end
+
+    def company_params
+      params[:user].require(:company).permit(:name, :website, :industry, :phone, :city, :state, :address1, :address2, :zip)
     end
 end

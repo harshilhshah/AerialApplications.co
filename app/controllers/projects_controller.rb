@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     @pilots = User.where(:userTypeId => UserType.find_by_description("Affiliate").id)
+    @cards = @current_user.cards
     respond_to do |format|
       format.html{}
       format.js{render :layout => false}

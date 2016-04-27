@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   validates_format_of :email,:with => @email_regex
   attr_accessor :card_number, :exp_month, :exp_year, :cvc
   has_many :charges
+  belongs_to :company
+  has_one :company, :foreign_key => :id
+  accepts_nested_attributes_for :company
 
   #after_save :clear_password
   def balance #This should really be implemented
@@ -140,5 +143,12 @@ class User < ActiveRecord::Base
   end
   def self.is_email(email)
     (email =~ @email_regex)
+  end
+  def get_company
+    if self.company_id == nil
+      return nil
+    else
+      return Company.find(self.company_id)
+    end
   end
 end
