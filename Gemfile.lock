@@ -159,6 +159,8 @@ GEM
       mimemagic
       smtpapi (~> 0.1)
     sexp_processor (4.6.1)
+    simple_calendar (2.1.0)
+      rails (>= 3.0)
     smtpapi (0.1.0)
     spring (1.6.3)
     sprockets (3.5.2)
@@ -211,6 +213,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sendgrid-ruby
+  simple_calendar (~> 2.0)
   spring
   stripe
   therubyracer

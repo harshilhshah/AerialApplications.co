@@ -1,14 +1,12 @@
-.success 
-  %h1.confirm Success!
-  =image_tag "checkmark.png", size: "80x80"
-  %p
-    Thanks you for
-    %br
-    joining us!
-  %p
-    We are delighted
-    %br
-    to serve you.
-  %br
-  %br
-  %a{href: "/dashboard"} My Dashboard
+.homebody
+  .content{:style => "padding: 0px;"}
+    .success 
+      %h1.confirm Success!
+      =image_tag "checkmark.png", size: "80x80"
+      %p
+        Thanks you for joining us!
+        We are delighted to serve you.
+      %br
+      %br
+      .button{:style => "margin: 0px auto;"}
+        = link_to 'View Your Dashboard', '/dashboard'

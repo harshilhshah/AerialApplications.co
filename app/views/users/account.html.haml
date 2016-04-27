@@ -212,7 +212,7 @@
           %label State
           %input#state{:placeholder => "NY", :type => "text"}
           %label Zip Code
-          %input#zip-code
+          %input#zip-code{:type => "text"}
           %label Country
           = select_tag :state, options_for_select(countries, "United States")
           %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal2"}
@@ -235,15 +235,15 @@
           %h3.header-margin Add Payout Method
           %h5 Direct Deposit (ACH)
           %label Name on Account
-          %input
+          %input{:type => "text"}
           %label Account Type 
           %select
             %option{:value => "Checking"} Checking
             %option{:value => "Savings"} Savings
           %label Routing Number
-          %input
+          %input{:type => "text"}
           %label Account Number
-          %input
+          %input{:type => "text"}
           %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal4"}
   #addMethodModal4.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
     %section.modal-dialog{:role => "document", :style => "width: 670px;"}
@@ -255,7 +255,7 @@
           %h5 PayPal (replace this with an image)
           %p Paypal is an online payment processing service that allows you to receive paments from Aerial Applications, you must  have an existing account with paypal. Enter the email address associated with your PayPal account.
           %label PayPal Email
-          %input
+          %input{:type => "text"}
           %input.button.next{:value => "Next", :type => "button", 'data-dismiss' => "modal", 'data-toggle' => "modal", 'data-target' => "#addMethodModal5"}
   #addMethodModal5.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
     %section.modal-dialog{:role => "document", :style => "width: 670px;"}
@@ -278,15 +278,15 @@
           %h3.header-margin Add Payout Method
           %h5 Direct Deposit (ACH)
           %label Name on Account
-          %input
+          %input{:type => "text"}
           %label Account Type 
           %select
             %option{:value => "Checking"} Checking
             %option{:value => "Savings"} Savings
           %label Routing Number
-          %input
+          %input{:type => "number"}
           %label Account Number
-          %input
+          %input{:type => "text"}
           %input.red-button{:value => "Delete", :type => "button", :style => "width: 120px;"}
           %input.button.next{:value => "Save", :type => "button", 'data-dismiss' => "modal"}
   #editMethodModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}

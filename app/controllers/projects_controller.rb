@@ -28,6 +28,27 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @pilots = User.where(:userTypeId => UserType.find_by_description("Affiliate").id)
+    respond_to do |format|
+      format.html{}
+      format.js{render :layout => false}
+    end
+  end
+
+  # intermediary between project input and confirm project details.
+  def confirm_project
+    @loc = params[:project][:address]
+    @due = DateTime.strptime(params[:due][:month] + params[:due][:day].strip + params[:due][:year],"%B%d%Y")
+    @comment = params[:comment][:text]
+    @card = @current_user.get_card(@current_user.get_default_id)
+    logger.debug params["pilot"].keys.first.to_s
+    @pilot = User.find(params["pilot"].keys.first.to_i)
+    @project = Project.new
+    @active_id = ProjectType.find_by_description("Active").id
+    @my_id = @current_user.id
+    respond_to do |format|
+      format.js{render :layout => false}
+    end
   end
 
   # GET /projects/1/edit
@@ -38,7 +59,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
+    @current_user.charge(1)
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

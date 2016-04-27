@@ -1,0 +1,59 @@
+= form_for @project do |project|
+  #confirmProject.col-8.right-block.floatleft.confirm
+    %h3.sub-title Price Estimation
+    .full.c-t-content
+      %p
+        Based on your project specifications and pilot selection, this
+        project will cost
+        = succeed "." do
+          %span $500
+      %strong
+        Please note that this is a base estimation of the total cost of
+        the project. Final price upon completion of project may vary.
+    %h3.sub-title Payment Method
+    .full.payment-method
+      %h4 Primary Method
+      %p
+        = @card.name
+        %br
+          = "%s **** **** **** %d" % [@card.brand, @card.last4]
+      .full.border-bottom
+      %input.gray-button{:value =>  "Change Method"}
+      %input.gray-button{:value =>  "Add New Method"}
+    %h3.sub-title Review and Confirm
+    .full.right-content
+      %h4 Pilot
+      .full.pilot-list.no-padding
+        .col-row
+          .pilot-image.col-3.floatleft
+            %img{:alt => "", :height => "200", :src => "", :width => "200"}
+          .pilot-content.col-9.floatleft
+            .floatleft.p-left
+              %h3 
+              = @pilot.name
+              %h5 $100 hourly
+              = link_to 'View Portfolio', user_path(@pilot.id)
+            .hire-buton
+              %input.gray-button{:value =>  "Change"}
+      .border-bottom.full
+      %h4 Project Specifications
+      %p
+        %span Location
+        = @loc
+      %p
+        %span Deadline
+        = @due
+      %p
+        %span Comments
+        = @comment
+      .button-right.full.right
+        %input.gray-button{:value => "Change"}
+    = project.hidden_field :address, :value => @loc
+    = project.hidden_field :zip, :value => "08854"
+    = project.hidden_field :affiliateId, :value => @pilot.id
+    = project.hidden_field :projectTypeId, :value => @active_id
+    = project.hidden_field :customerId, :value => @my_id
+    = project.hidden_field :owner, :value => @my_id
+    = project.hidden_field :due, :value => @due
+    .button-right.full.right
+      = project.submit "Submit", :class => "button full"  

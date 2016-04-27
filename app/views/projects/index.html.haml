@@ -20,19 +20,20 @@
               %th Pilot
           - @active_projects.each do |project|
             %tr
-              %td= project.address
+              %td
+                = link_to project.address, project_path(project.id)
               %td= project.due.strftime('%m-%d-%Y')
               %td 
                 - if @current_user.is_affiliate?
-                  = project.get_client_name
+                  = link_to project.get_client_name, user_path(project.customerId)
                   %br
                   %span
-                  %a Message Client
+                  %a.blue-link Message Client
                 - else
-                  = project.get_pilot_name
+                  = link_to project.get_pilot_name, user_path(project.affiliateId)
                   %br
-                  %span                 
-                  %a Message Pilot
+                  %span
+                    %a.blue-link Message Pilot
     .active-project
       %h3 Delivered Projects
       - if @delivered_projects.length > 0     
@@ -49,19 +50,20 @@
             %th
           - @delivered_projects.each do |project|
             %tr
-              %td= project.address
+              %td
+                = link_to project.address, project_path(project.id)
               %td= project.due.strftime('%m-%d-%Y')
               - if @current_user.is_affiliate?
                 %td 
-                  = project.get_client_name
+                  = link_to project.get_client_name, user_path(project.customerId)
                 %td
-                  %a Read review
+                  .blue-link Read review
               -else
                 %td 
-                  = project.get_pilot_name
+                  = link_to project.get_pilot_name, user_path(project.affiliateId)
                   %br
                   %span
-                    %a Leave a Review
+                    .blue-link Leave a Review
                 %td
                   .button{:style=>"min-width: 120px; width: 50%;"}
                     = link_to 'View Files', ''              

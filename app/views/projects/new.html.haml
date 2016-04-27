@@ -1,24 +1,67 @@
-%h1 New project
-
-= render 'form'
-
-/
-	= form_for @project do |p|
-		- if @current_user.is_affiliate?
-		- else
-			%label Affiliate ID
-			= p.number_field :affiliateId
-			= p.hidden_field :customerId, :value => @current_user.id 
-		%br 	
-		%label Address
-		= p.text_field :address
-		%br
-		%label Zip
-		= p.number_field :zip
-		%br
-		%label Owner
-		= p.text_field :owner
-		%br
-		= p.submit
-
-= link_to 'Back', projects_path
+.full
+  .container
+    .col-row
+      .col-12.title
+        %h2 New Project Request
+      #sidebar.col-3
+        %nav
+          %ul
+            %li.active
+              %a{:href => "#projectSpecs"} Project Specifications
+            %li
+              %a{:href => "#choosePilot"} Choose a Pilot
+            %li
+              %a{:href => "#confirmProject"} Confirm Project
+        %input.gray-button{:value => "Cancel This Project"}
+      = form_for @project, url: projects_confirm_project_url(@project), :remote => true, :authenticity_token => true do |p|
+        #projectSpecs.col-8.right-block.floatleft{:style => "display: block;"}
+          %h2.sub-title Project Specifications
+          .full.right-content
+            %h4 Location
+            %p What is the location of your project?
+            = p.text_field :address, :class => "form-control", :placeholder => "10 Park Ave, New York, NY 10016"
+            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14231.630964141881!2d75.73132284999998!3d26.906422949999996!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1460826242500", :style => "border:0", :width => "100%"}
+            .border-bottom.full
+            %h4 Deadline
+            %p
+              When do you need this project delivered? Please note that our pilots cannot fly in
+              inclement weather so it is best to schedule as far in advance as possible to ensure
+              timely delivery.
+            #simple-calendar-container
+              = hidden_field(:due, :day) 
+              = render(partial: 'calendar')
+            .border-bottom.full
+            %h4 Comments
+            %p
+              Provide as much information about your project as you can. Your pilot will be in touch with you further once you submit your new project request.
+            = text_area(:comment, :text, class: 'form-control', placeholder: "place your comment")
+          .button-right.full.right
+            %input.button.sm{:id=>"projectSpecsNext",:value => "Next Step", :onclick => "$('#projectSpecs').hide();$('#choosePilot').show();", :type => "button"}
+        #choosePilot.col-8.right-block.floatleft.pilot{"aria-labelledby" => "gridSystemModalLabel", :style => "display:none; padding-left: 50px;", :tabindex => "-1"}
+          %h3.sub-title Choose a Pilot
+          .full.right-content
+            %h4 Available Pilots
+            %p.no-padding 
+              = @pilots.size 
+              available pilots
+            .border-bottom.full
+            - @pilots.each do |pilot|
+              .full.pilot-list
+                .col-row
+                  .pilot-image.col-3.floatleft
+                    %img{:alt => "", :height => "200", :width => "200"}
+                  .pilot-content.col-9.floatleft
+                    .floatleft.p-left
+                      = pilot.name
+                      %p $100 hourly
+                      = link_to 'View Portfolio', user_path(pilot.id)
+                    .hire-buton
+                      = p.submit "Hire Pilot" , :class => "button sm", :name => "pilot[#{pilot.id}]"
+            .border-bottom.full
+            %p
+              Showing 10 of 
+              = @pilots.size
+              available pilots
+              %a.link{:href => "#"} Show more
+          .button-right.full.right
+            = p.submit 'Next Step', :class => "button sm"

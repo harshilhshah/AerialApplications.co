@@ -24,6 +24,16 @@ html,body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+a{
+    text-decoration: none;
+}
+a:hover, a:visited{
+    color: inherit;
+    background-color: inherit;
+}
+.a-blue{
+    color: #4aa5ec;
+}
 p{
 	font-size: 18px;
     font-family: 'Open Sans', sans-serif;
@@ -64,6 +74,11 @@ input[type=password]{
     box-sizing: border-box;
     padding-left: 5px;
 }
+input[disabled]{
+    background-color: #f7f8fa;
+    color: #e3e3e3;
+    border-bottom: 2px solid #e3e3e3;
+}
 textarea{
     width: 340px;
     height:150px;
@@ -79,22 +94,12 @@ textarea{
     padding-left: 5px;
     padding-top: 5px; 
 }
-.actions input{
-	background:#4A90E2;
-	color:white;
-	height:36px;
-	line-height:36px;
-	border-radius:2.5px;
-	border:none;
-	font-weight: bold;
-	font-size: 13px;
-}
 .error input{
 	border:2px solid #ce5851 !important;
 }
 .error-message{
     background: #e19e9d;
-    width: 340px;
+    width: inherit;
     margin-top: -14px;
     padding: 3px;
     font-size: 12px;
@@ -118,15 +123,11 @@ textarea{
     border-bottom-right-radius: 3px;  
 }
 .success{
-	font-weight: bold;
-	color:gray;
 	text-align: center;
 }
-.success a{
-	color:#61A6E8;
-}
 .success h1{
-	color:#58C535;
+	background-color: #b0e59e;
+    color: white;
 }
 
 /*Content Area*/
@@ -306,6 +307,19 @@ th{
     background-position: -408px -103px;
 }
 
+/* User Signup Page*/
+#new_user{
+    padding-left: 25%;
+    padding-right: 25%;
+}
+#new_user input{
+    width: 100%;
+}
+#new_user .field{
+    margin-bottom: 20px;
+    text-align: left;
+}
+
 
 /* User Dashboard */
 .user-dash{
@@ -364,7 +378,7 @@ th{
 }
 
 
-
+/* Affiliate Profile Page CSS */
 section.profile{
     padding: 40px 130px;
     width: 100%;
@@ -403,4 +417,136 @@ section.profile{
     width: 46%;
     margin: 2%;
     float: left;
+}
+
+/* custom page css */
+
+.col-1{ width:8.33333%; padding:0 15px;}
+.col-2{ width:16.6667%;padding:0 15px;}
+.col-3{ width:25%;padding:0 15px;}
+.col-4{ width:33.3333%;padding:0 15px;}
+.col-5{ width:41.6667%;padding:0 15px;}
+.col-6{ width:50%;padding:0 15px;}
+.col-7{ width:58.3333%;padding:0 15px;}
+.col-8{ width:66.6667%;padding:0 15px;}
+.col-9{ width:75%;padding:0 15px;}
+.col-10{ width:83.3333%;padding:0 15px;}
+.col-11{ width:91.6667%;padding:0 15px;}
+.col-12{ width:100%;padding:0 15px;}
+.floatleft{ float:left;}
+.floatright{ float:right;}
+.col-row{ margin-left:55px; margin-right:25px;}
+
+
+.full{overflow:auto; width:100%;}
+.container .title h2{color:#000; font-size:40px; margin:40px 0;}
+.container{ max-width:1170px; width:100%}
+
+/* left part */
+.button-left{ margin-top:25px;}
+
+/* right part */
+.right-block{margin: 0px 50px; padding: 0px;}
+.container .sub-title{ color:#5eb3e4; margin:0 0 25px 0; font-size:36px;}
+.right-content{border:3px solid #f0f1f3; padding:25px; background-color:#f8fafb;}
+.border-bottom{ border-bottom:2px solid #dbddde; margin:40px 0;}
+.right-content h4{ color:#727372; margin:0 0 25px 0}
+.right-content p{ margin-bottom:5px; font-size: 15px;}
+.right-content .form-control{
+    border: 2px solid #f0f1f3;
+    padding: 10px 10px;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: #FFFFFF;}
+.prev, .picker-switch{font-size:30px;}
+.right-content h6{ color:#8c8c8d; font-weight:400; font-size:16px; line-height:22px;}
+.right-content textarea{border:3px solid #f0f1f3; color:#000; font-size:20px; width:100%;padding:12px 12px; min-height:450px;}
+.button-right{ padding:30px 0;}
+
+/* pilot list */
+.pilot-image img{ border:4px solid #979797}
+.pilot-list{ background:#eeeff1; padding:25px;}
+.pilot-content h3{ font-size:26px; color:#000; margin-bottom:5px;}
+.pilot-content h5{ color:#878787;}
+.pilot-content a{ color:#4aa5ec;}
+.hire-buton{ float:right;}
+.hire-buton .db-blue{ min-width:150px;}
+.pilot-list{ margin-bottom:30px;}
+.pilot .link{color:#4aa5ec;}
+
+/* confirm project */
+
+.c-t-content, .payment-method{border: 3px solid #f0f1f3;padding: 25px; margin-bottom:80px; background-color:#f8fafb;}
+.c-t-content span{ color:#4aa5ec;}
+.payment-method h4{color: #727372; font-weight: 400;  margin: 0 0 25px;  font-size: 36px;}
+.payment-method .border-bottom{ margin:0 0 30px 0;}
+.payment-method p{ margin-bottom:13px;}
+
+
+.payment-method a{ margin-right:15px;}
+.pilot-list .db-gray{ min-width:150px;}
+
+.confirm .right-content p span{ display:block; color:gray; font-size:16px;}
+.confirm .right-content .db-gray{ min-width:150px;}
+
+.table-striped{
+    background: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+.table th{
+    font-weight: 400;
+    color: #717171;
+}
+.simple-calendar{
+    text-align: center;
+}
+.simple-calendar .top-row{
+    background: white;
+    font-size: 28px;
+    color: #929292;
+    padding: 15px 0px;
+}
+.simple-calendar a{
+    color: #5f5f5f;
+}
+.simple-calendar .month-name{
+    margin: 0px 90px;
+}
+.simple-calendar .day {    
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    background: #f8fafb;
+    border: 2px solid white;
+    color: #9d9d9c;
+    font-size: 16px;
+}
+.simple-calendar .clicked{
+    background:#57a3d9; color:#fff;
+}
+.simple-calendar .prev-month, .simple-calendar .next-month{
+    color:#f8fafb;
+}
+
+.project_summary_sidebar{
+    width: 310px;
+    float: left;
+    background-color: #f8fafb;
+    border: 3px solid #f0f1f3;
+    padding: 25px;
+}
+.project_summary_heading{
+    color: gray;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.project_summary_title{
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 36px;
+    color: black;
 }

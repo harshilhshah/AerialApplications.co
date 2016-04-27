@@ -1,0 +1,4 @@
+jQuery.noConflict(); // Because having multiple jQuery plugins causes trouble.
+$('.col-row').append("<%= escape_javascript(render :partial => 'projects/confirm_project_partial') %>");
+$('#choosePilot').hide();
+$('#confirmProject').show();

@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
       )
       customer = Stripe::Customer.retrieve(self.stripe_id)
       customer.sources.create(source: token) 
+      return nil
     rescue => e
       return e.message
     end

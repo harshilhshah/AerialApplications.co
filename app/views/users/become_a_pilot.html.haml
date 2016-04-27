@@ -1,32 +1,43 @@
-%h1.center Affiliate Signup
-.center
-  = form_for @user, url: {action: "new_pilot", controller: :users} do |f|
-    - if @user.errors.any?
-      #error_explanation
-        %h2= "#{pluralize(@user.errors.count, "error")} prohibited this signup from being registered:"
-        %ul
-          - @user.errors.full_messages.each do |msg|
-            %li= msg
-    .field
-      = f.label :first_name
+.homebody
+  .content
+    %h1.center Pilot Signup
+    .center
+      = form_for @user, url: {action: "new_pilot", controller: :users} do |f|
+        .field
+          = f.label :first_name
+          %br
+          = f.text_field :firstName
+          - if @user.errors[:firstName].any?
+            %p{:class => "error-message"}= "Error: Name #{@user.errors[:firstName].join(', ')}"
+        .field
+          = f.label :last_name
+          %br
+          = f.text_field :lastName
+        .field
+          = f.label :zip_code
+          %br
+          = f.text_field :zipCode
+        .field
+          = f.label :email
+          %br
+          = f.text_field :email
+          - if @user.errors[:email].any?
+            %p{:class => "error-message"}= "Error: Email #{@user.errors[:email].join(', ')}"
+        .field
+          = f.label :password
+          %br
+          = f.password_field :password
+          = f.hidden_field :userTypeId, value: UserType.find_by_description("Affiliate").id
+        .actions
+          = f.submit 'Sign Up', :class => "button"
       %br
-      = f.text_field :firstName
-    .field
-      = f.label :last_name
-      %br
-      = f.text_field :lastName
-    .field
-      = f.label :zip_code
-      %br
-      = f.text_field :zipCode
-    .field
-      = f.label :email
-      %br
-      = f.text_field :email
-    .field
-      = f.label :password
-      %br
-      = f.password_field :password
-      = f.hidden_field :userTypeId, value: UserType.find_by_description("Affiliate").id
-    .actions
-      = f.submit 'Sign Up'
+      %p 
+        By signing up, I agree to Aerial Application’s 
+        %br
+        Terms and Conditions and Privacy Policy.
+      %p
+        %br
+        Already a member? 
+        %span{:class => "a-blue"}
+          = link_to "Log in", "/sessions/login", :class => "a-blue"
+        %span .

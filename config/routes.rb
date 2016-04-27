@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'users/profile'
   get 'users/edit_profile'
   get 'users/calendar'
+  get 'users/payment'
   get 'projects/dashboard'
   get 'users/:id/aircraft' => 'users#aircraft'
   get 'sessions/login'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   get 'become_a_pilot' => 'users#become_a_pilot'
   post 'sessions/login_attempt'
   post 'users/new_pilot'
+  post 'projects/confirm_project'
   resources :interactions
   resources :referrals
   resources :media_types

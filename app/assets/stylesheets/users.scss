@@ -20,6 +20,7 @@ $color_astral_approx: #347aae;
 $color_quill_gray_approx: #d5d5d5;
 $color_silver_approx: #bcbdbc;
 $color_dark_gray: #edeef0;
+$sidebar_dark_gray: #dbdcdd;
 $color_sky_blue: #59b5f0;
 $color_darker_gray: #C7C8C8;
 $color_darkest_gray: #777777;
@@ -64,18 +65,23 @@ $font_1: sans-serif;
 		}
 		ul {
 			list-style-type: none;
+			padding: 0px 10px;
+			font-size: 16px;
 		}
 		li {
-			padding: 10px 15px;
+			padding: 10px 0px;
 			width: auto;
-			border-bottom: 2px solid $color_athens_gray_approx;
+			border-spacing: 10px 50px;
+			border-bottom: 2px solid $sidebar_dark_gray;
 			a {
 				color: $color_silver_chalice_approx;
-				text-decoration: none;
 				&.nav-active {
 					color: $color_malibu_approx;
 				}
 			}
+		}
+		li:last-child{
+			border-bottom: none;
 		}
 		li.selected a{
 			color: $color_malibu_approx;

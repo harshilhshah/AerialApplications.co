@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :user_aircraft]
-  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile, :add_card, :update_card, :remove_card, :card_info]
+  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile, :add_card, :update_card, :remove_card, :card_info, :show, :payment]
 
   # GET /users
   # GET /users.json
@@ -11,9 +11,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find_by_id(params[:id])
   end
 
   def confirm_signup
+    @non_user_page = true
   end
 
   # GET /users/new
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
 
   def become_a_pilot
     @user = User.new
+    @non_user_page = true
   end
 
   def account
@@ -129,6 +132,7 @@ class UsersController < ApplicationController
 
   def signup
     @user = User.new
+    @non_user_page = true
   end
   # GET /users/1/edit
   def edit
@@ -188,6 +192,9 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def payment
   end
 
   # DELETE /users/1

@@ -1,18 +1,14 @@
 .homebody
-  .content.no-margin
+  .content
     %h1.center User Signup
     .center
       = form_for @user do |f|
-        - if @user.errors.any?
-          #error_explanation
-            %h2= "#{pluralize(@user.errors.count, "error")} prohibited this signup from being   registered:"
-            %ul
-              - @user.errors.full_messages.each do |msg|
-                %li= msg
         .field
           = f.label :first_name
           %br
           = f.text_field :firstName
+          - if @user.errors[:firstName].any?
+            %p{:class => "error-message"}= "Error: Name #{@user.errors[:firstName].join(', ')}"
         .field
           = f.label :last_name
           %br
@@ -25,9 +21,22 @@
           = f.label :email
           %br
           = f.text_field :email
+          - if @user.errors[:email].any?
+            %p{:class => "error-message"}= "Error: Email #{@user.errors[:email].join(', ')}"
         .field
           = f.label :password
           %br
           = f.password_field :password
         .actions
-          = f.submit 'Sign Up'
+          = f.submit 'Sign Up', :class => "button"
+      %br
+      %p 
+        By signing up, I agree to Aerial Application’s 
+        %br
+        Terms and Conditions and Privacy Policy.
+      %p
+        %br
+        Already a member? 
+        %span{:class => "a-blue"}
+          = link_to "Log in", "/sessions/login", :class => "a-blue"
+        %span .

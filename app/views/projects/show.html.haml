@@ -1,33 +1,80 @@
-%p#notice= notice
-
-%p
-  %b Customerid:
-  = @project.customerId
-%p
-  %b Affiliateid:
-  = @project.affiliateId
-%p
-  %b Address:
-  = @project.address
-%p
-  %b Zip:
-  = @project.zip
-%p
-  %b Latitude:
-  = @project.latitude
-%p
-  %b Longitude:
-  = @project.longitude
-%p
-  %b Due:
-  = @project.due
-%p
-  %b Projecttypeid:
-  = @project.projectTypeId
-%p
-  %b Owner:
-  = @project.owner
-
-= link_to 'Edit', edit_project_path(@project)
-\|
-= link_to 'Back', projects_path
+.mid-content.full
+  .container
+    .col-row
+      / title
+      .title.affilate
+        .project_summary_title=@project.address
+        = link_to 'View All Projects', '/projects', :class => "a-blue"
+      / end title
+      / left part
+      .project_summary_sidebar
+        .full
+          .button.sm Upload Files
+          .col-side.full
+            %p.project_summary_heading Client Name
+            %p 
+              =@project.get_client_name()
+            %br
+          .col-side.full
+            %p.project_summary_heading Paid Upon Submission
+            %p $000.000
+            %br
+          .col-side.full
+            %p.project_summary_heading Date Requested
+            %p 
+              =@project.created_at
+            %br
+          .col-side.full
+            %p.project_summary_heading Deadline
+            %p 
+              =@project.due
+            %br
+          .col-side.full
+            %p.project_summary_heading Services Required
+            %p Photography
+      / end left part
+      / right part
+      .floatleft{:style => "width: 730px; margin-left: 50px;"}
+        .full.right-content
+          %h4 Project Location
+          %p
+            =@project.address
+          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14231.630964141881!2d75.73132284999998!3d26.906422949999996!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1460826242500", :style => "border:0", :width => "100%"}
+          .border-bottom.full
+          %h4 Project Specifications
+          %p
+            Whatever the client gave as project specs will show here. Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit. Cras condimentum ipsum sit amet ante pretium bibendum. Donec
+            egestas ornare dolor, sit amet ultricies justo mollis non. Proin vulputate rhoncus dui quis placerat.
+            Nullam laoreet ex nisi, vitae aliquam dui lacinia elementum. Phasellus sed leo vel urna laoreet
+            lobortis.
+          %p
+            Duis cursus bibendum ullamcorper. Donec sollicitudin fringilla turpis, id bibendum neque finibus
+            accumsan. Duis in viverra tellus. Donec in varius diam, ac consectetur lorem. Curabitur quis risus
+            ultricies dolor blandit tincidunt ac gravida mi. Phasellus id magna porta, placerat dolor in, aliquet
+            libero. Proin at urna luctus, hendrerit nisi eu, dictum libero.
+          .border-bottom.full
+          %h4
+            Latest Messages
+            %a{:href => "#"} View All
+          .afiliate-right-bottom.full
+            %p
+              %strong ClientFirst ClientLast
+              %br
+                %span mm-dd hh:mm PM
+                %br
+                  Message goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum
+                  ipsum sit amet ante pretium bestas ornare dolor, sit amet ultricies justo mollis non. Proin vulputate
+                  rhoncus dui quis placerat.
+            %p
+              %strong PilotFirst PilotLast
+              %br
+                %span mm-dd hh:mm PM
+                %br
+                  Message goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum
+                  ipsum sit amet ante pretium bestas ornare dolor, sit amet ultricies justo mollis non. Proin vulputate
+                  rhoncus dui quis placerat.
+          %form.afiliate-form.full
+            %input.form-control{:placeholder => "your response here", :type => "text"}
+              %input.btn-default.db-blue{:type => "submit", :value => "Send Message"}
+      / end right part

@@ -1,6 +1,7 @@
 module UsersHelper
 	def us_states
     [
+      ['Select state', ''],
       ['Alabama', 'AL'],
       ['Alaska', 'AK'],
       ['Arizona', 'AZ'],

@@ -53,16 +53,17 @@
             %tr
               %th Address
               %th Date Scheduled
-              %th Pilot
+              %th Client
             - @projects.each do |project|
               %tr
-                %td= project.address
+                %td
+                  = link_to project.address, project_path(project.id)
                 %td= project.due.strftime('%m-%d-%Y')
                 %td 
-                  = project.get_client_name
+                  = link_to project.get_client_name, user_path(project.customerId)
                   %br
                   %span
-                    %a Message Client
+                    %a.blue-link Message Client
       .active-project
         %h3 New Messages
         %p No new messages
@@ -93,13 +94,14 @@
                 %th Pilot
             - @projects.each do |project|
               %tr
-                %td= project.address
+                %td
+                  = link_to project.address, project_path(project.id)
                 %td= project.due.strftime('%m-%d-%Y')
                 %td 
-                  = project.get_pilot_name
+                  = link_to project.get_pilot_name, user_path(project.affiliateId)
                   %br
                   %span
-                    %a Message Pilot
+                    %a.blue-link Message Pilot
         .button.dashboard-btn
           = link_to 'New Project', new_project_path
       .active-project
