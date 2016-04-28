@@ -163,7 +163,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    SignUpMailer.signup_mail(params[:user][:email]).deliver
     respond_to do |format|
       if @user.save
         session[:user] = @user.id

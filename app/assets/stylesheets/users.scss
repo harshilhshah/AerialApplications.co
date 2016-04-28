@@ -186,7 +186,7 @@ section#Payment{
 		margin-bottom: 20px;
 	}
 }
-.lbl {
+.lbl, .lbl2 {
 	padding: 1px;
 	margin-bottom: 5px;
 	position: relative;
@@ -213,14 +213,31 @@ section#Payment{
 }
 .cbx {
 	display: none;
-	&:checked ~ label {
+	&:checked ~ .lbl {
 		background: $color_picton_blue_approx;
 		&:after {
 			right: 2px;
 			background: $color_astral_approx;
 		}
 	}
-	&:disabled ~ label {
+	&:disabled ~ .lbl {
+		background: $color_quill_gray_approx;
+		pointer-events: none;
+		&:after {
+			background: $color_silver_approx;
+		}
+	}
+}
+.cbx2 {
+	display: none;
+	&:checked ~ .lbl2 {
+		background: $color_picton_blue_approx;
+		&:after {
+			right: 2px;
+			background: $color_astral_approx;
+		}
+	}
+	&:disabled ~ .lbl2 {
 		background: $color_quill_gray_approx;
 		pointer-events: none;
 		&:after {
