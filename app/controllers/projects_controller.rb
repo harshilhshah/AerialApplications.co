@@ -41,7 +41,10 @@ class ProjectsController < ApplicationController
     @loc = params[:project][:address]
     @due = DateTime.strptime(params[:due][:month] + params[:due][:day].strip.gsub(/\s+/,'') + params[:due][:year],"%B%d%Y")
     @comment = params[:comment][:text]
-    @card = @current_user.get_card(@current_user.get_default_id)
+    @card = nil
+    if @current_user.get_default_id
+      @card = @current_user.get_card(@current_user.get_default_id)
+    end
     logger.debug params["pilot"].keys.first.to_s
     @pilot = User.find(params["pilot"].keys.first.to_i)
     @project = Project.new
