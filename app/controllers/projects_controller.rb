@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   # intermediary between project input and confirm project details.
   def confirm_project
     @loc = params[:project][:address]
-    @due = DateTime.strptime(params[:due][:month] + params[:due][:day].strip + params[:due][:year],"%B%d%Y")
+    @due = DateTime.strptime(params[:due][:month] + params[:due][:day].strip.gsub(/\s+/,'') + params[:due][:year],"%B%d%Y")
     @comment = params[:comment][:text]
     @card = @current_user.get_card(@current_user.get_default_id)
     logger.debug params["pilot"].keys.first.to_s
