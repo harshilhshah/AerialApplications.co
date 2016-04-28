@@ -2,11 +2,10 @@
   .container
     .col-row
       / title
-      .title.affilate
+      .project_summary_title_container
         .project_summary_title=@project.address
         = link_to 'View All Projects', '/projects', :class => "a-blue"
       / end title
-      / left part
       .project_summary_sidebar
         .full
           .button.sm Upload Files
@@ -22,18 +21,16 @@
           .col-side.full
             %p.project_summary_heading Date Requested
             %p 
-              =@project.created_at
+              =@project.created_at.strftime('%m/%d/%y')
             %br
           .col-side.full
             %p.project_summary_heading Deadline
             %p 
-              =@project.due
+              =@project.due.strftime('%m/%d/%y')
             %br
           .col-side.full
             %p.project_summary_heading Services Required
             %p Photography
-      / end left part
-      / right part
       .floatleft{:style => "width: 730px; margin-left: 50px;"}
         .full.right-content
           %h4 Project Location
@@ -75,6 +72,6 @@
                   ipsum sit amet ante pretium bestas ornare dolor, sit amet ultricies justo mollis non. Proin vulputate
                   rhoncus dui quis placerat.
           %form.afiliate-form.full
-            %input.form-control{:placeholder => "your response here", :type => "text"}
-              %input.btn-default.db-blue{:type => "submit", :value => "Send Message"}
-      / end right part
+            %input.form-control{:placeholder => "your response here", :type => "text", :style => "width: 75%"}
+            %span
+              %input.button.sm{:type => "submit", :value => "Send Message"}

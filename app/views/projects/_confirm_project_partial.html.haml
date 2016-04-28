@@ -15,9 +15,10 @@
     .full.payment-method
       %h4 Primary Method
       %p
-        = @card.name
-        %br
-          = "%s **** **** **** %d" % [@card.brand, @card.last4]
+        - if @card
+          = @card.name
+          %br
+            = "%s **** **** **** %d" % [@card.brand, @card.last4]
       .full.border-bottom
       %input.gray-button{:value =>  "Change Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#changeCardModal"}
       %input.gray-button{:value =>  "Add New Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}

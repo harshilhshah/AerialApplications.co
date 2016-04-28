@@ -102,16 +102,15 @@
             %h3 Saved Methods
             %table
               %tbody
-                %tr
-                  %td Direct Deposit
-                  %td.payment-info John Doe, *****1234, 123456789 (checking)
-                  %td
-                    %input.gray-button{:value => "Edit Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#editMethodModal"}
-                %tr
-                  %td PayPal
-                  %td.payment-info Visa **** **** **** 1234 Exp: 11/19
-                  %td
-                    %input.gray-button{:value => "Edit Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#editMethodModal"}
+                - @cards.each do |c|
+                  %tr
+                    %td Direct Deposit
+                    %td.payment-info
+                      = "%s **** **** **** %d Exp: %d/%d" % [c.brand, c.last4, c.exp_month, c.exp_year]
+                    %td
+                      %input.gray-button{:value => "Edit Method", :type => "button", 'data-toggle' => "modal", 'data-target' => "#editMethodModal"}
+                      = radio_button_tag "Default", "Primary", (c.id == @default_id)
+                      Primary
             %input.button.sm{:value => "Add New Method", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addMethodModal"}      
       -else
         %section#Payment
@@ -123,7 +122,11 @@
                 - @cards.each do |c|
                   %tr
                     %td.payment-info
-                      = "%s **** **** **** %d Exp: %d/%d" % [c.brand, c.last4, c.exp_month, c.exp_year]
+                      - if c.exp_year > current_year or (c.exp_year = current_year and c.exp_month > current_month)
+                        = "%s **** **** **** %d Exp: %d/%d" % [c.brand, c.last4, c.exp_month, c.exp_year]
+                      - else
+                        = "%s **** **** **** %d" % [c.brand, c.last4]
+                        %span{:style => "color: red;"} Card Expired
                     %td
                       .gray-button
                         =link_to "Update This Card", user_card_info_url(@user, :authenticity_token => form_authenticity_token(), card_id: c.id), :type => "button", :style=>"margin: 0px;", :remote => true, method: :post, "data-toggle" => "modal"

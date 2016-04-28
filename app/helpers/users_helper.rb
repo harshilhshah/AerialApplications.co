@@ -1,4 +1,16 @@
 module UsersHelper
+	def current_date
+	  Time.zone.today
+	end
+
+	def current_month
+	  current_date.month
+	end
+
+	def current_year
+	  current_date.year
+	end
+
 	def us_states
     [
       ['Alabama', 'AL'],

@@ -4,6 +4,7 @@ class MainController < ApplicationController
   def index
     @home = true
     @non_user_page = true
+    @signup_link = '/signup'
     render layout: 'responsive'
   end
 
@@ -18,6 +19,7 @@ class MainController < ApplicationController
 
   def affiliates
     @non_user_page = true
+    @signup_link = '/become_a_pilot'
     render layout: 'responsive'
   end
 
