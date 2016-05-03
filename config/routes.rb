@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'users/calendar'
   get 'users/payment'
   get 'projects/dashboard'
+  get 'projects/geocode'
   get 'users/:id/aircraft' => 'users#aircraft'
   get 'sessions/login'
   get 'sessions/logout'
@@ -28,6 +29,10 @@ Rails.application.routes.draw do
     post 'card_info'
     post 'remove_card'
     patch 'update_password'
+    member do
+      get :confirm_email
+      get :send_confirmation_email
+    end
   end
   get 'main/index'
   get 'about' => 'main#about'
@@ -42,6 +47,7 @@ Rails.application.routes.draw do
   get 'about/timothy_haas' => 'main#timothy_haas'
   get 'affiliates' => 'main#affiliates'
   get 'contact' => 'main#contact'
+  get 'contact_success' => 'main#contact_success'
   post 'main/create_contact'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

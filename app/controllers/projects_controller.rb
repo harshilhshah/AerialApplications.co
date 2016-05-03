@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
   # intermediary between project input and confirm project details.
   def confirm_project
     @loc = params[:project][:address]
-    @due = DateTime.strptime(params[:due][:month] + params[:due][:day].strip.gsub(/\s+/,'') + params[:due][:year],"%B%d%Y")
+    @due = DateTime.strptime(params[:due][:month] + params[:due][:day].strip.gsub(/\s+/,'') + params[:due][:year],"%B%e%Y")
     @comment = params[:comment][:text]
     @card = nil
     if @current_user.get_default_id
@@ -50,6 +50,9 @@ class ProjectsController < ApplicationController
     @project = Project.new
     @active_id = ProjectType.find_by_description("Active").id
     @my_id = @current_user.id
+    #location = Geocoder.search(params[:project][:address])
+    #lat = location[0].latitude
+    #lng = location[0].longitude
     respond_to do |format|
       format.js{render :layout => false}
     end
@@ -64,6 +67,9 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @current_user.charge(1)
+    pilot_email = User.find(params[:project][:affiliateId]).email
+    ProjectMailer.new_project_mail(pilot_email).deliver
+    ProjectMailer.update_hq.deliver
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }

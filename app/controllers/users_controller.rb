@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :user_aircraft]
-  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile, :add_card, :update_card, :remove_card, :card_info, :show, :payment]
+  before_filter :ensure_admin, except: [:profile, :calendar, :aircraft, :account, :new_pilot, :signup, :become_a_pilot, :create, :confirm_signup, :update_password, :update, :edit_profile, :add_card, :update_card, :remove_card, :card_info, :show, :payment, :confirm_email, :send_confirmation_email]
 
   # GET /users
   # GET /users.json
@@ -163,10 +163,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    SignUpMailer.signup_mail(params[:user][:email]).deliver
     respond_to do |format|
       if @user.save
         session[:user] = @user.id
+        SignUpMailer.signup_mail(@user).deliver
         format.html { redirect_to '/confirm_signup'}
         format.json { render :show, status: :created, location: @user }
       else
@@ -218,6 +218,26 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def send_confirmation_email
+    SignUpMailer.signup_mail(@current_user).deliver
+    respond_to do |format|
+      format.js{render :layout => false}
+    end
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to 'signin'
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to ''
     end
   end
 

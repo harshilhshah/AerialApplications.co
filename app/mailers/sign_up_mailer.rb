@@ -1,6 +1,7 @@
 class SignUpMailer < ApplicationMailer
 
-	def signup_mail(user_email)
-		mail(:from => 'info@aerialapplications.co', :to => user_email, :subject => "Thank you for signing up!")
+	def signup_mail(user)
+		@user = user
+		mail(:from => 'info@aerialapplications.co', :to => user.email, :subject => "Registration Confirmation")
 	end
 end

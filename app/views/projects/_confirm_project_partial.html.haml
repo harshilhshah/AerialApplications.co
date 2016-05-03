@@ -44,12 +44,13 @@
         = @loc
       %p
         %span Deadline
-        = @due
+        = @due.to_date
       %p
         %span Comments
         = @comment
       .button-right.full.right
-        %input.gray-button{:value => "Change"}
+        .gray-button
+          = link_to 'Change', new_project_path
     = project.hidden_field :address, :value => @loc
     = project.hidden_field :zip, :value => "08854"
     = project.hidden_field :affiliateId, :value => @pilot.id

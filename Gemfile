@@ -7,6 +7,8 @@ gem 'haml-rails'
 gem 'rails_12factor'
 gem 'sendgrid-ruby'
 gem "simple_calendar", "~> 2.0"
+gem 'devise', '3.4.1'
+gem 'geocoder'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record

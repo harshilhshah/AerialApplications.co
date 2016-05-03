@@ -1,4 +1,5 @@
 =stylesheet_link_tag 'bootstrap.min'
+- current_pilots_size = 10
 .full
   .container
     .col-row
@@ -23,14 +24,15 @@
                 %h3.header-margin Are you sure you want to cancel this project?
                 %input.gray-button{:value => "Nevermind", :type => "button", 'data-dismiss' => "modal"}
                 %input.red-button.button{:value => "Yes, Cancel", :type => "button", 'data-dismiss' => "modal"}
-      = form_for @project, url: projects_confirm_project_url(@project), :remote => true, :authenticity_token => true do |p|
+      = form_for @project, url: projects_confirm_project_url(@project), :remote => true, :authenticity_token => true, :onkeyup => "return event.keyCode != 13;" do |p|
         #projectSpecs.col-8.right-block.floatleft{:style => "display: block;"}
           %h2.sub-title Project Specifications
           .full.right-content
             %h4 Location
             %p What is the location of your project?
-            = p.text_field :address, :class => "form-control", :placeholder => "10 Park Ave, New York, NY 10016"
-            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d14231.630964141881!2d75.73132284999998!3d26.906422949999996!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1460826242500", :style => "border:0", :width => "100%"}
+            - address = "10 Park Ave, New York, NY 10016"
+            = p.text_field :address, :class => "form-control", :placeholder => address
+            %img.full{:src => "https://maps.googleapis.com/maps/api/staticmap?center=#{address}&zoom=14&size=500x300&markers=#{address}&sensor=false", :id => 'map_image'}
             .border-bottom.full
             %h4 Deadline
             %p
@@ -54,9 +56,25 @@
             %p.no-padding 
               = @pilots.size 
               available pilots
+            - if @pilots.size < current_pilots_size
+              - current_pilots_size = @pilots.size
+            #current_pilots_size.invisible
+              = current_pilots_size
             .border-bottom.full
-            - @pilots.each do |pilot|
+            - @pilots.first(current_pilots_size).each do |pilot|
               .full.pilot-list
+                .col-row
+                  .pilot-image.col-3.floatleft
+                    %img{:alt => "", :height => "200", :width => "200"}
+                  .pilot-content.col-9.floatleft
+                    .floatleft.p-left
+                      = pilot.name
+                      %p $100 hourly
+                      = link_to 'View Portfolio', user_path(pilot.id)
+                    .hire-buton
+                      = p.submit "Hire Pilot" , :class => "button sm", :name => "pilot[#{pilot.id}]"
+            - @pilots.slice(current_pilots_size, @pilots.size).each do |pilot|
+              .full.pilot-list{:style => "display: none;"}
                 .col-row
                   .pilot-image.col-3.floatleft
                     %img{:alt => "", :height => "200", :width => "200"}
@@ -69,12 +87,18 @@
                       = p.submit "Hire Pilot" , :class => "button sm", :name => "pilot[#{pilot.id}]"
             .border-bottom.full
             %p
-              Showing 10 of 
-              = @pilots.size
-              available pilots
-              %a.link{:href => "#"} Show more
+              %span.showing-text
+                Showing 
+                - if @pilots.size < current_pilots_size
+                  = @pilots.size
+                - else
+                  = current_pilots_size
+                of 
+                = @pilots.size
+                available pilots
+              - if @pilots.size - current_pilots_size > 0
+                = link_to 'Show More', '#', :remote => true, :class => 'a-blue', :id => 'show_more_link'
           .button-right.full.right
-            = p.submit 'Next Step', :class => "button sm"
   #addCardModal.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
     %section.modal-dialog{:role => "document", :style => "width: 670px;"}
       .form_area.popup

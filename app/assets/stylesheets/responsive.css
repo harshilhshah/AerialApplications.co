@@ -467,7 +467,7 @@ blockquote:last-child { margin-bottom: 0; }
 .nav li { float: left; font-size: 16px; font-weight: 400; letter-spacing: .12em; color: #727272; }
 .nav .mobile { display: none; }
 .nav li a { display: inline-block; text-decoration: none; transition: all .3s; }
-.nav li:hover a { color: #4aa5ec; background-color: #eeeff1}
+.nav li:hover a { color: #4aa5ec;}
 .nav li + li { margin-left: 22px; }
 .nav ul { list-style: none; }
 .nav ul:after { content: ''; display: table; clear: both; }

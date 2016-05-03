@@ -34,7 +34,9 @@
       %p 
         By signing up, I agree to Aerial Application’s 
         %br
-        Terms and Conditions and Privacy Policy.
+        = link_to 'Terms and Conditions', '/terms_and_conditions', :class => 'a-blue'
+        and
+        = link_to 'Privacy Policy.', '/privacy_policy', :class => 'a-blue'
       %p
         %br
         Already a member? 

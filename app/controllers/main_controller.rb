@@ -55,12 +55,15 @@ class MainController < ApplicationController
     respond_to do |format|
       if @contact.save
         AdminMailer.contact_mail(params[:contact][:name],params[:contact][:email],params[:contact][:message]).deliver
-      	format.html { redirect_to '/' }
+      	format.html { redirect_to '/contact_success' }
       else
       	format.html { render 'contact' }
       	format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def contact_success
   end
 
   private

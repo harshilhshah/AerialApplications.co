@@ -43,9 +43,13 @@
   .user-dash
     .dashboard
       %h2 Dashboard
-      .notice-bar 
-        .exclamation !
-        .notice-message Please verify your email address. Click to resend verification email.
+      - if not @current_user.email_confirmed
+        .notice-bar 
+          .exclamation !
+          .notice-message 
+            Please verify your email address. 
+            %span.verification-email
+              = link_to 'Click to resend verification email', send_confirmation_email_user_path(@current_user), :remote => true
       .active-project
         %h3 Active Projects
         - if @projects.length > 0
@@ -78,9 +82,13 @@
   .user-dash
     .dashboard
       %h2 Dashboard
-      .notice-bar 
-        .exclamation !
-        .notice-message Please verify your email address. Click to resend verification email.
+      - if not @current_user.email_confirmed
+        .notice-bar 
+          .exclamation !
+          .notice-message 
+            Please verify your email address. 
+            %span.verification-email
+              = link_to 'Click to resend verification email', send_confirmation_email_user_path(@current_user), :remote => true
       .active-project
         %h3 Active Projects
         - if @projects.length > 0

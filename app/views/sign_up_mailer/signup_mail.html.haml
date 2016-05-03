@@ -1,2 +1,9 @@
-.p
-  Welcome.
+%p
+  Hi 
+  = @user.name
+  ,
+  %br
+%p
+  Thanks for registering! To confirm your registration click the URL below.
+  %br
+  = confirm_email_user_url(@user.confirm_token) 

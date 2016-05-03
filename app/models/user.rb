@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   before_create :set_user_type
   before_create :set_stripe_id
+  before_create :confirmation_token
   validates :email, presence: true
   validates :email, uniqueness: true
   validates_format_of :email,:with => @email_regex
@@ -150,5 +151,17 @@ class User < ActiveRecord::Base
     else
       return Company.find(self.company_id)
     end
+  end
+  def email_activate
+    self.email_confirmed = true
+    self.confirm_token = nil
+    save!(:validate => false)
+  end
+  
+  private
+  def confirmation_token
+      if self.confirm_token.blank?
+          self.confirm_token = SecureRandom.urlsafe_base64.to_s
+      end
   end
 end

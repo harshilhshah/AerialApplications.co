@@ -1,12 +1,33 @@
+=stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'
+=stylesheet_link_tag 'bootstrap.min'
 .homebody
-  .content{:style => "padding: 0px;"}
-    .success 
-      %h1.confirm Success!
-      =image_tag "checkmark.png", size: "80x80"
+  .content.no-margin
+    .success.center
+      %h1
+        Success!
+        %br
+        %i.fa.fa-check{"aria-hidden" => "true"}
       %p
         Thanks you for joining us!
         We are delighted to serve you.
       %br
-      %br
-      .button{:style => "margin: 0px auto;"}
-        = link_to 'View Your Dashboard', '/dashboard'
+        %br
+          .center.mailconfirm
+            A confirmation message was sent to
+            %br
+            %h3 
+              = @current_user.email
+          .mailresendupdate
+            = link_to 'Resend Confirmation', send_confirmation_email_user_path(@current_user), :remote => true
+            \&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            = link_to 'Update Email Address', users_account_path
+          .button{:style => "margin: 0px auto;"}
+            = link_to 'View Your Dashboard', dashboard_path
+#emailConfirm.modal.fade{"aria-labelledby" => "gridSystemModalLabel", :role => "dialog", :style => "display:none;", :tabindex => "-1"}
+  %section.modal-dialog{:role => "document", :style => "width: 600px;"}
+    .form_area.popup
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+      %form.center
+        A new confirmation email has been sent.
+        .button.sm{:style => "margin: 0px auto; margin-top: 20px;", "aria-label" => "Close", "data-dismiss" => "modal", :type => "button"} Okay

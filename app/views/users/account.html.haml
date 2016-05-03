@@ -117,7 +117,7 @@
           %h2 Payment Methods
           .form_area
             %h3 Saved cards
-            %table
+            %table{:style => "margin: 0px;"}
               %tbody
                 - @cards.each do |c|
                   %tr
@@ -130,8 +130,9 @@
                     %td
                       .gray-button
                         =link_to "Update This Card", user_card_info_url(@user, :authenticity_token => form_authenticity_token(), card_id: c.id), :type => "button", :style=>"margin: 0px;", :remote => true, method: :post, "data-toggle" => "modal"
-                      = radio_button_tag "Default", "Primary", (c.id == @default_id)
-                      Primary
+                      .default-payment
+                        = radio_button_tag "Default", "Primary", (c.id == @default_id)
+                        Primary
             %input.button.sm{:value => "Add New Card", :type => "button", :style => "float:right;", 'data-toggle' => "modal", 'data-target' => "#addCardModal"}
       %section#Notification
         %h2 Notification Settings

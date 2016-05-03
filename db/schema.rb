@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160427223806) do
+ActiveRecord::Schema.define(version: 20160428230116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,8 +141,8 @@ ActiveRecord::Schema.define(version: 20160427223806) do
     t.integer  "userTypeId"
     t.integer  "active"
     t.integer  "approved"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "stripe_id"
     t.integer  "company_id"
     t.string   "address1"
@@ -151,6 +151,8 @@ ActiveRecord::Schema.define(version: 20160427223806) do
     t.string   "city"
     t.string   "state"
     t.integer  "phoneType"
+    t.boolean  "email_confirmed", default: false
+    t.string   "confirm_token"
   end
 
 end
