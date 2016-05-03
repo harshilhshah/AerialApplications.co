@@ -3,22 +3,18 @@ class MainController < ApplicationController
 
   def index
     @home = true
-    @non_user_page = true
     @signup_link = '/signup'
     render layout: 'responsive'
   end
 
   def about
-    @non_user_page = true
   end
 
   def contact
     @contact = Contact.new
-    @non_user_page = true
   end
 
   def affiliates
-    @non_user_page = true
     @signup_link = '/become_a_pilot'
     render layout: 'responsive'
   end

@@ -649,3 +649,27 @@ blockquote:last-child { margin-bottom: 0; }
 	.col { font-variant: normal; }
 	.col-1of2 { width: 100%; }
 }
+
+/* Dark header for user */
+.dark-header{
+    background-color: #606060;
+}
+.dark-header .header-content .nav{
+    padding-top: 0px;
+}
+.dark-header .header-content .nav ul li{
+    padding-top: 13px;
+}
+.dark-header .bordered{
+    border: 2px solid white;
+    padding: 11px 28px 11px 28px;
+    border-radius: 5px;
+}
+.dark-header .header-content .nav ul li a,
+.dark-header .header-content .nav-access li a{
+    color: white;
+    letter-spacing: 0px;
+}
+.dark-header .logo{
+    background-position: -408px -103px;
+}
