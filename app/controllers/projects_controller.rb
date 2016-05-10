@@ -66,11 +66,16 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @current_user.charge(1)
+    pilot_email = User.find(params[:project][:affiliateId]).email
+    client_email = User.find(params[:project][:customerId]).email
+    payment_received = @current_user.charge(1)
+    if payment_received
+      ProjectMailer.client_notify_payment_received(client_email).deliver
+      ProjectMailer.sales_alert_payment_received().deliver
+      ProjectMailer.pilot_alert_payment_received(pilot_email).deliver
+    end
     respond_to do |format|
       if @project.save
-        pilot_email = User.find(params[:project][:affiliateId]).email
-        client_email = User.find(params[:project][:customerId]).email
         ProjectMailer.order_placed_mail(client_email).deliver
         ProjectMailer.new_project_mail(pilot_email).deliver
         ProjectMailer.upcoming_project_mail(pilot_email).deliver

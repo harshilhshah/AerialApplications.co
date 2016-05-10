@@ -106,7 +106,9 @@ class User < ActiveRecord::Base
       customer: self.stripe_id
     )
     Rails.logger.debug(response)
+    Rails.logger.debug(response.failure_code)
     self.charges.create({amount: amount, refunded: false, last_four: response.source.last4})
+    return response.failure_code == nil
   end
   def clear_password
     self.password = nil
