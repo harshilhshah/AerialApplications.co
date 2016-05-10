@@ -67,11 +67,14 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @current_user.charge(1)
-    pilot_email = User.find(params[:project][:affiliateId]).email
-    ProjectMailer.new_project_mail(pilot_email).deliver
-    ProjectMailer.update_hq.deliver
     respond_to do |format|
       if @project.save
+        pilot_email = User.find(params[:project][:affiliateId]).email
+        client_email = User.find(params[:project][:customerId]).email
+        ProjectMailer.order_placed_mail(client_email).deliver
+        ProjectMailer.new_project_mail(pilot_email).deliver
+        ProjectMailer.upcoming_project_mail(pilot_email).deliver
+        ProjectMailer.update_hq.deliver
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else

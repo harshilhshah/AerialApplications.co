@@ -76,6 +76,7 @@ class UsersController < ApplicationController
         format.json {render json: @current_user.errors, status: :unprocessable_entity }
         format.js{ render :layout => false, status: :unprocessable_entity}
       else
+        UserMailer.new_card_mail(@current_user.email).deliver
         format.json
         format.js{ render :layout => false}
       end
@@ -166,7 +167,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user] = @user.id
-        SignUpMailer.signup_mail(@user).deliver
+        UserMailer.signup_mail(@user).deliver
+        UserMailer.welcome_mail(@current_user).deliver
         format.html { redirect_to '/confirm_signup'}
         format.json { render :show, status: :created, location: @user }
       else
@@ -222,7 +224,7 @@ class UsersController < ApplicationController
   end
 
   def send_confirmation_email
-    SignUpMailer.signup_mail(@current_user).deliver
+    UserMailer.signup_mail(@current_user).deliver
     respond_to do |format|
       format.js{render :layout => false}
     end
@@ -232,7 +234,7 @@ class UsersController < ApplicationController
     user = User.find_by_confirm_token(params[:id])
     if user
       user.email_activate
-      flash[:success] = "Welcome to the Sample App! Your email has been confirmed.
+      flash[:success] = "Your email has been confirmed.
       Please sign in to continue."
       redirect_to 'signin'
     else
