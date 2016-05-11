@@ -1,11 +1,15 @@
-.border-bottom.full.center
-  .afiliate-right-bottom.full
-    - @messages.each do |m|
-      %p
-        %strong
-          = m.get_sender_name
-        %br
-          %span
-            = m.created_at
-          %br
-            = m.message
+.user-dash
+  .dashboard
+    %h2 Messages
+    .active-project
+      - if @messages.length > 0
+        %table.a-1ist
+          %tr
+            %th From
+            %th Date
+            %th Message
+          - @messages.each do |msg|
+            %tr
+              %td= msg.get_sender_name
+              %td= msg.created_at.strftime('%m-%d-%Y')
+              %td= msg.message

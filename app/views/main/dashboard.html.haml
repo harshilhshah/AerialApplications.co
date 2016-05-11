@@ -61,10 +61,10 @@
             - @projects.each do |project|
               %tr
                 %td
-                  = link_to project.address, project_path(project.id)
+                  = link_to project.address, project_path(project.id), :class => "underline"
                 %td= project.due.strftime('%m-%d-%Y')
                 %td 
-                  = link_to project.get_client_name, user_path(project.customerId)
+                  = link_to project.get_client_name, user_path(project.customerId), :class => "underline"
                   %br
                   %span
                     = link_to 'Message Client', messages_new_path(:toId => project.customerId), :class => "blue-link"
@@ -113,10 +113,10 @@
             - @projects.each do |project|
               %tr
                 %td
-                  = link_to project.address, project_path(project.id)
+                  = link_to project.address, project_path(project.id), :class => "underline"
                 %td= project.due.strftime('%m-%d-%Y')
                 %td 
-                  = link_to project.get_pilot_name, user_path(project.affiliateId)
+                  = link_to project.get_pilot_name, user_path(project.affiliateId), :class => "underline"
                   %br
                   %span
                     = link_to 'Message Pilot', messages_new_path(:toId => project.affiliateId), :class => "blue-link"
