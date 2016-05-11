@@ -55,23 +55,22 @@
             Latest Messages
             %a{:href => "#"} View All
           .afiliate-right-bottom.full
-            %p
-              %strong ClientFirst ClientLast
-              %br
-                %span mm-dd hh:mm PM
+            - @messages.each do |m|
+              %p
+                %strong
+                  = m.get_sender_name
                 %br
-                  Message goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum
-                  ipsum sit amet ante pretium bestas ornare dolor, sit amet ultricies justo mollis non. Proin vulputate
-                  rhoncus dui quis placerat.
-            %p
-              %strong PilotFirst PilotLast
-              %br
-                %span mm-dd hh:mm PM
-                %br
-                  Message goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras condimentum
-                  ipsum sit amet ante pretium bestas ornare dolor, sit amet ultricies justo mollis non. Proin vulputate
-                  rhoncus dui quis placerat.
-          %form.afiliate-form.full
-            %input.form-control{:placeholder => "your response here", :type => "text", :style => "width: 75%"}
+                  %span
+                    = m.created_at
+                  %br
+                    = m.message
+          = form_for @message, url: messages_create_path(@message), :class => " afiliate-form full", :remote => true, :authenticity_token => true do |m|
+            = m.text_field :message, :class => "form-control", :placeholder => "your response here", :style => "width: 75%"
+            = m.hidden_field :projectId, :value => @project.id
+            = m.hidden_field :fromId, :value => @current_user.id
+            - if @current_user.id == @project.affiliateId
+              = m.hidden_field :toId, :value => @project.customerId
+            - else
+              = m.hidden_field :toId, :value => @project.affiliateId
             %span
-              %input.button.sm{:type => "submit", :value => "Send Message"}
+              =m.submit "Send Message", :class => "button sm"

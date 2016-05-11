@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'sessions/login_attempt'
   post 'users/new_pilot'
   post 'projects/confirm_project'
+  post 'messages/create'
   resources :interactions
   resources :referrals
   resources :media_types

@@ -147,10 +147,11 @@ class UsersController < ApplicationController
 
   def new_pilot
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         session[:user] = @user.id
+        UserMailer.signup_mail(@user).deliver
+        UserMailer.welcome_mail(@user).deliver
         format.html { redirect_to '/confirm_signup'}
         format.json { render :show, status: :created, location: @user }
       else
@@ -168,7 +169,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user] = @user.id
         UserMailer.signup_mail(@user).deliver
-        UserMailer.welcome_mail(@current_user).deliver
+        UserMailer.welcome_mail(@user).deliver
         format.html { redirect_to '/confirm_signup'}
         format.json { render :show, status: :created, location: @user }
       else

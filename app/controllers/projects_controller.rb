@@ -23,6 +23,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @messages = Message.where(:projectId => @project.id)
+    @message = Message.new
   end
 
   # GET /projects/new
