@@ -1,0 +1,11 @@
+.border-bottom.full.center
+  .afiliate-right-bottom.full
+    - @messages.each do |m|
+      %p
+        %strong
+          = m.get_sender_name
+        %br
+          %span
+            = m.created_at
+          %br
+            = m.message

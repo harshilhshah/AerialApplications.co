@@ -1,1 +1,1 @@
-$('.afiliate-right-bottom').append("<p><strong> John Smith </strong><br><span> 2016-05-10 21:51:28 UTC </span><br>I need this project done, pilot.<br><br></p>");
+$('.afiliate-right-bottom').append("<p><strong><%= @message.get_sender_name %></strong><br><span><%=@message.created_at%></span><br><%=@message.message%><br><br></p>");

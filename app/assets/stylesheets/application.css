@@ -49,6 +49,9 @@ p{
 .invisible{
     display: none;
 }
+.underline:hover{
+    text-decoration: underline;
+}
 
 select{
     height: 40px;

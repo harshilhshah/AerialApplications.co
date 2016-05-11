@@ -67,10 +67,20 @@
                   = link_to project.get_client_name, user_path(project.customerId)
                   %br
                   %span
-                    %a.blue-link Message Client
+                    = link_to 'Message Client', messages_new_path(:toId => project.customerId), :class => "blue-link"
       .active-project
         %h3 New Messages
-        %p No new messages
+        - if @messages.length > 0
+          %table.a-1ist
+            %tr
+              %th From
+              %th Date
+              %th Message
+            - @messages.each do |msg|
+              %tr
+                %td= msg.get_sender_name
+                %td= msg.created_at.strftime('%m-%d-%Y')
+                %td= msg.message
       .active-project
         %h3 Referrals
         %p.inline
@@ -109,12 +119,22 @@
                   = link_to project.get_pilot_name, user_path(project.affiliateId)
                   %br
                   %span
-                    %a.blue-link Message Pilot
+                    = link_to 'Message Pilot', messages_new_path(:toId => project.affiliateId), :class => "blue-link"
         .button.dashboard-btn
           = link_to 'New Project', new_project_path
       .active-project
         %h3 New Messages
-        %p No new messages
+        - if @messages.length > 0
+          %table.a-1ist
+            %tr
+              %th From
+              %th Date
+              %th Message
+            - @messages.each do |msg|
+              %tr
+                %td= msg.get_sender_name
+                %td= msg.created_at.strftime('%m-%d-%Y')
+                %td= msg.message
       .active-project
         %h3 Referrals
         %p.inline

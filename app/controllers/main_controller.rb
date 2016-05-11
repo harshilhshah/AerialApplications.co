@@ -21,6 +21,7 @@ class MainController < ApplicationController
 
   def dashboard
     active_id = ProjectType.find_by_description("Active").id
+    @messages = Message.where(:toId => @current_user.id)
     if @current_user.is_admin?
       @projects = Project.where(:projectTypeId => active_id)
     elsif @current_user.is_affiliate?

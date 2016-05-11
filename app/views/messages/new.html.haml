@@ -1,0 +1,17 @@
+.border-bottom.full.center
+  .afiliate-right-bottom.full
+    - @messages.each do |m|
+      %p
+        %strong
+          = m.get_sender_name
+        %br
+          %span
+            = m.created_at
+          %br
+            = m.message
+  = form_for @message, url: messages_create_path(@message), :class => " afiliate-form full", :remote => true, :authenticity_token => true do |m|
+    = m.text_field :message, :class => "form-control", :placeholder => "your message here", :style => "width: 75%"
+    = m.hidden_field :fromId, :value => @current_user.id
+    = m.hidden_field :toId, :value => @toId
+    %span
+      =m.submit "Send Message", :class => "button sm"

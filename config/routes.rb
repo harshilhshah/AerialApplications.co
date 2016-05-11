@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'users/edit_profile'
   get 'users/calendar'
   get 'users/payment'
+  get 'messages' => 'messages#index'
+  get 'messages/new'
   get 'projects/dashboard'
   get 'projects/geocode'
   get 'users/:id/aircraft' => 'users#aircraft'
